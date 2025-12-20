@@ -1,0 +1,41 @@
+.categories-container {
+    display: flex;
+    justify-content: flex-start;
+    gap: 10px;
+    background-color: #ffff;
+
+    margin-top: 10px;
+    overflow-x: auto;
+    padding: 10px 12px;
+
+
+    -webkit-overflow-scrolling: touch;
+
+
+    -ms-overflow-style: none;
+    /* IE and Edge */
+    scrollbar-width: none;
+    /* Firefox */
+
+    .category-item {
+        background: transparent;
+        border: none;
+        padding: 8px 10px;
+        font-size: 16px;
+        color: #004d45;
+        border-radius: 12px;
+        cursor: pointer;
+        transition: 0.2s;
+        white-space: nowrap;
+
+
+        &:hover {
+            background: rgba(0, 128, 128, 0.1);
+        }
+
+        &.active {
+            background: #004d45;
+            color: #fff;
+        }
+    }
+}
