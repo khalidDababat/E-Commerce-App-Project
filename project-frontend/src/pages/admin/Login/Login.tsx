@@ -54,7 +54,6 @@ const Login = () => {
     return (
         <div className="login-page">
             <Paper className="login-card" elevation={8}>
-
                 <div className="form-section">
                     <div className="logo-container">
                         <Logo />
@@ -123,8 +122,6 @@ const Login = () => {
                         >
                             Log In
                         </Button>
-
-
                     </Box>
                 </div>
             </Paper>

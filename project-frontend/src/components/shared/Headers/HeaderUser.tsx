@@ -25,7 +25,7 @@ const HeaderUser: React.FC<HeaderUserProps> = ({ title }) => {
                 borderColor: 'divider',
             }}
         >
-            <Toolbar sx={{ display: 'flex', justifyContent: 'space-between' }}  >
+            <Toolbar sx={{ display: 'flex', justifyContent: 'space-between' }}>
                 <Typography
                     variant="h5"
                     component="h1"

@@ -21,9 +21,9 @@ const CreateProduct = () => {
             );
 
             if (!response.ok) {
-                <Alert severity="warning" onClose={() => { }}>
+                <Alert severity="warning" onClose={() => {}}>
                     This Alert displays the default close icon.
-                </Alert>
+                </Alert>;
                 // alert('create Product failed!');
             } else {
                 navigate('/products');

@@ -1,26 +1,16 @@
 .category-management {
-
-
     .main-content {
         text-align: center;
 
-
         .category-list {
-
             .category-item {
-
                 .card-body {
-                    display: flex;
-                    justify-content: space-between;
-                    align-items: center;
-                    direction: rtl;
-
                     .delete-icon {
-                        margin-left: 0;
+                        text-align: left;
+                        margin-left: 10px;
                     }
                 }
             }
-
         }
     }
 
@@ -93,7 +83,6 @@
                     label {
                         font-weight: bold;
                         direction: rtl;
-
                     }
 
                     input {

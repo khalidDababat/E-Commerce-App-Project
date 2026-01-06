@@ -24,8 +24,7 @@ const Dashboard = () => {
             value: '320',
             icon: <PeopleIcon fontSize="large" />,
             color: '#ff9800',
-        }
-
+        },
     ];
 
     return (

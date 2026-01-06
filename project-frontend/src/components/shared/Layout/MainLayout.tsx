@@ -5,18 +5,16 @@ import Category from '../../user/Category/Category';
 import ProductList from '../../user/ProductList/ProductList';
 
 const MainLayout = () => {
-  return (
-    <div>
+    return (
+        <div>
+            <MainHeader />
 
-      <MainHeader />
+            <div className="container">
+                <Category />
 
-      <div className="container">
-        <Category />
-
-        <ProductList />
-      </div>
-    </div>
-  );
-}
-  ;
+                <ProductList />
+            </div>
+        </div>
+    );
+};
 export default MainLayout;

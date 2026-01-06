@@ -28,8 +28,6 @@ import UpdateProduct from '../UpdateProduct/UpdateProduct';
 import './Products.scss';
 import { Product } from '../../../types';
 
-
-
 const Products = () => {
     const [selectProduct, setSelectedProduct] = useState<Product | null>(null);
     const [showModel, setShowModel] = useState<boolean>(false);
@@ -171,7 +169,9 @@ const Products = () => {
                                     </IconButton>
                                     <IconButton
                                         color="error"
-                                        onClick={() => handelDeleteProduct(item.id)}
+                                        onClick={() =>
+                                            handelDeleteProduct(item.id)
+                                        }
                                         aria-label="delete"
                                     >
                                         <DeleteIcon />

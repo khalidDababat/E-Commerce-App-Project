@@ -1,36 +1,39 @@
-
-
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
-
-export const fetchProduct = createAsyncThunk("products/fetchProducts",
+export const fetchProduct = createAsyncThunk(
+    'products/fetchProducts',
 
     async () => {
         const res = await fetch(`${process.env.REACT_APP_BACKEND_UR}/products`);
         const data = await res.json();
         return data;
-    });
+    }
+);
 
-export const deleteProduct = createAsyncThunk("products/deleteProduct",
+export const deleteProduct = createAsyncThunk(
+    'products/deleteProduct',
 
     async (productId: string) => {
-        await fetch(`${process.env.REACT_APP_BACKEND_UR}/products/${productId}`, {
-            method: "DELETE",
-            headers: {
-                'Content-Type': 'application/json',
-                authorization: `Bearer ${localStorage.getItem('token')}`,
-            },
-        });
+        await fetch(
+            `${process.env.REACT_APP_BACKEND_UR}/products/${productId}`,
+            {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json',
+                    authorization: `Bearer ${localStorage.getItem('token')}`,
+                },
+            }
+        );
         return productId;
-    });
+    }
+);
 
 const productsSlice = createSlice({
-    name: "products",
+    name: 'products',
     initialState: {
         items: [],
         status: 'idle',
         loading: false,
-
     },
     reducers: {},
     extraReducers: (builder) => {
@@ -47,16 +50,14 @@ const productsSlice = createSlice({
             .addCase(fetchProduct.rejected, (state) => {
                 state.status = 'rejected';
                 state.loading = false;
-
             })
 
             .addCase(deleteProduct.fulfilled, (state, action) => {
-                state.items = state.items.filter((p: any) => p.id !== action.payload);
+                state.items = state.items.filter(
+                    (p: any) => p.id !== action.payload
+                );
             });
-    }
-
-
+    },
 });
-
 
 export default productsSlice.reducer;

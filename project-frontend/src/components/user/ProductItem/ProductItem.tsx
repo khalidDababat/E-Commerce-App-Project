@@ -11,17 +11,11 @@ interface ProductItemProps {
 }
 
 const ProductItem: React.FC<ProductItemProps> = ({ name, price, image }) => {
-
-
-
     const [faveriteProducts, setFaveriteProducts] = useState([]);
     const storeProductIntoFavorite = () => {
         //    setFaveriteProducts([...faveriteProducts, { name, price, image }]);
         alert('Product added to favorite');
-
-    }
-
-
+    };
 
     return (
         <div className="Product-Item">

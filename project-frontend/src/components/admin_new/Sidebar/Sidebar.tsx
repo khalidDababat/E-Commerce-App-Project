@@ -32,10 +32,17 @@ const Sidebar = () => {
     const menuItems = [
         { text: 'لوحة التحكم', icon: <DashboardIcon />, path: '/dashboard' },
         { text: 'المنتجات', icon: <ShoppingBasketIcon />, path: '/products' },
-        { text: 'الأصناف', icon: <CategoryIcon />, path: '/category-management' },
-        { text: 'إضافات الطعام', icon: <AddCircleOutlineIcon />, path: '#' },
+        {
+            text: 'الأصناف',
+            icon: <CategoryIcon />,
+            path: '/category-management',
+        },
+        {
+            text: 'إضافات الطعام',
+            icon: <AddCircleOutlineIcon />,
+            path: '/add-feat-food',
+        },
         { text: 'الطلبات', icon: <BookmarkIcon />, path: '#' },
-
     ];
 
     const handelLogout = () => {

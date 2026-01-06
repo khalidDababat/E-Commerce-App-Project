@@ -1,9 +1,7 @@
 .main-header {
-
     display: flex;
     justify-content: space-around;
     align-items: center;
-
 
     background-color: #000051;
     height: 130px;
@@ -29,9 +27,6 @@
     .cart {
         display: flex;
 
-
-
-
         .icon-cart {
             position: relative;
 
@@ -47,11 +42,7 @@
         }
     }
 
-
-
-
     .logo img {
         height: 180px;
-
     }
 }

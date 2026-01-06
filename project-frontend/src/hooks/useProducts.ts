@@ -1,18 +1,17 @@
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
-import { fetchProduct } from "../store/features/productsSlice";
+import { fetchProduct } from '../store/features/productsSlice';
 
 export const useProducts = () => {
+    const dispatch = useDispatch<any>();
+    const { items: products, loading } = useSelector(
+        (state: any) => state.products
+    );
 
-   const dispatch = useDispatch<any>();
-   const { items: products, loading } = useSelector((state: any) => state.products);
+    useEffect(() => {
+        dispatch(fetchProduct());
+    }, [dispatch]);
 
-   useEffect(() => {
-      dispatch(fetchProduct());
-   }, [dispatch]);
-
-
-
-   return { products, loading };
+    return { products, loading };
 };

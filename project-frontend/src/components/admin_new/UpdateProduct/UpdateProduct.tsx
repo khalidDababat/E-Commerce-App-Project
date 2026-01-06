@@ -11,7 +11,6 @@ import CloseIcon from '@mui/icons-material/Close';
 import ProductForm from '../ProductForm/ProductForm';
 import './UpdateProduct.scss';
 
-
 interface UpdateProductProps {
     product: any; // ideally your Product type
     onClose: () => void;

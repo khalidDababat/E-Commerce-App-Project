@@ -8,9 +8,7 @@
     overflow-x: auto;
     padding: 10px 12px;
 
-
     -webkit-overflow-scrolling: touch;
-
 
     -ms-overflow-style: none;
     /* IE and Edge */
@@ -27,7 +25,6 @@
         cursor: pointer;
         transition: 0.2s;
         white-space: nowrap;
-
 
         &:hover {
             background: rgba(0, 128, 128, 0.1);

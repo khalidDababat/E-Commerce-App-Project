@@ -3,7 +3,7 @@ import { Box } from '@mui/material';
 import logo from '../../../assets/images/Logo.png';
 import './Logo.scss';
 
-const Logo:React.FC = () => {
+const Logo: React.FC = () => {
     return (
         <Box
             sx={{

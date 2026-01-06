@@ -1,29 +1,25 @@
-import React, { Fragment, useEffect, useState } from 'react';
-import './CategoryManagement.scss';
-import CategoryItem from './CategoryItem';
+import React, { Fragment, useState, useEffect } from 'react';
+import CategoryItem from '../category-management/CategoryItem';
+
 import {
-    getAllCategories,
-    deleteCategory,
-    handleAddCategory,
-} from '../api/Category';
+    getAllFeatuers,
+    handleAddFeetFood,
+    deleteFeetFood,
+} from '../api/FeaturesFood';
 
-const CategoryManagement = () => {
+const AddfeatFood = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);
-    const [nameCategory, setnameCategory] = useState('');
+    const [featFood, setfeatFood] = useState('');
 
-    const [categories, setCategories] = useState<any[]>([]);
+    const [featuers, setfeatuers] = useState<any[]>([]);
 
-    const fetchCategories = async () => {
-        try {
-            const data = await getAllCategories();
-            setCategories(data);
-        } catch (error) {
-            console.error('Failed to fetch categories', error);
-        }
+    const fetchFeatuers = async () => {
+        const data = await getAllFeatuers();
+        setfeatuers(data);
     };
 
     useEffect(() => {
-        fetchCategories();
+        fetchFeatuers();
     }, []);
 
     const toggleModal = () => {
@@ -34,25 +30,25 @@ const CategoryManagement = () => {
         <Fragment>
             <div className="category-management">
                 <div className="main-content">
-                    <h1>إضافة اصناف جديدة للمتجر </h1>
+                    <h1>إضافة إضافات للوجبات </h1>
                     <button onClick={toggleModal} className="add-btn">
-                        إضافة صنف جديد
+                        إضافة إضافات جديدة
                     </button>
                     <hr />
                     <div className="category-list row">
-                        {categories.map((cat) => (
-                            <div key={cat.id} className="col-md-4 mb-4">
+                        {featuers.map((feet) => (
+                            <div key={feet.id} className="col-md-4 mb-4">
                                 <CategoryItem
-                                    category={cat.category}
+                                    category={feet.name}
                                     onDelete={async () => {
                                         const conferm = window.confirm(
-                                            `Are you sure you want to delete ${cat.category}?`
+                                            `Are you sure you want to delete ${feet.name}?`
                                         );
                                         if (!conferm) {
                                             return;
                                         }
-                                        await deleteCategory(cat.id);
-                                        fetchCategories();
+                                        await deleteFeetFood(feet.id);
+                                        fetchFeatuers();
                                     }}
                                 />
                             </div>
@@ -66,24 +62,24 @@ const CategoryManagement = () => {
                             <button onClick={toggleModal} className="close-btn">
                                 &times;
                             </button>
-                            <h2>إضافة صنف جديد</h2>
+                            <h2>إضافة إضافات جديدة</h2>
                             <form
                                 onSubmit={async (e) => {
-                                    await handleAddCategory(e, nameCategory);
-                                    fetchCategories();
+                                    await handleAddFeetFood(e, featFood);
+                                    fetchFeatuers();
                                     setIsModalOpen(false);
-                                    setnameCategory('');
+                                    setfeatFood('');
                                 }}
                             >
                                 <div className="form-group">
-                                    <label htmlFor="name">اسم الصنف :</label>
+                                    <label htmlFor="name">اسم الأضافة :</label>
                                     <input
                                         type="text"
                                         id="name"
                                         name="name"
-                                        value={nameCategory}
+                                        value={featFood}
                                         onChange={(e) =>
-                                            setnameCategory(e.target.value)
+                                            setfeatFood(e.target.value)
                                         }
                                     />
                                 </div>
@@ -99,4 +95,4 @@ const CategoryManagement = () => {
     );
 };
 
-export default CategoryManagement;
+export default AddfeatFood;

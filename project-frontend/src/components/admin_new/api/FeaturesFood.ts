@@ -1,24 +1,24 @@
 import { toast } from 'react-toastify';
 
-export const handleAddCategory = async (
+export const handleAddFeetFood = async (
     e: React.FormEvent<HTMLFormElement>,
-    nameCategory: string
+    name: string
 ) => {
     e.preventDefault();
 
-    const res = await fetch(`${process.env.REACT_APP_BACKEND_UR}/categories`, {
+    const res = await fetch(`${process.env.REACT_APP_BACKEND_UR}/features`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
             Authorization: `Bearer ${localStorage.getItem('token')}`,
         },
-        body: JSON.stringify({ category: nameCategory }),
+        body: JSON.stringify({ name: name }),
     });
 
     if (!res.ok) {
-        toast.error('Failed to add category', { position: 'top-center' });
+        toast.error('Failed to add Featuer', { position: 'top-center' });
     } else {
-        toast.success('Category added successfully', {
+        toast.success('Featuer added successfully', {
             position: 'top-center',
         });
     }
@@ -27,9 +27,9 @@ export const handleAddCategory = async (
     return data;
 };
 
-export const deleteCategory = async (id: string) => {
+export const deleteFeetFood = async (id: string) => {
     const res = await fetch(
-        `${process.env.REACT_APP_BACKEND_UR}/categories/${id}`,
+        `${process.env.REACT_APP_BACKEND_UR}/features/${id}`,
         {
             method: 'DELETE',
             headers: {
@@ -40,9 +40,9 @@ export const deleteCategory = async (id: string) => {
     );
 
     if (!res.ok) {
-        toast.error('Failed to delete category', { position: 'top-center' });
+        toast.error('Failed to delete Featuer', { position: 'top-center' });
     } else {
-        toast.success('Category deleted successfully', {
+        toast.success('Featuer deleted successfully', {
             position: 'top-center',
         });
     }
@@ -51,8 +51,8 @@ export const deleteCategory = async (id: string) => {
     return data;
 };
 
-export const getAllCategories = async () => {
-    const res = await fetch(`${process.env.REACT_APP_BACKEND_UR}/categories`, {
+export const getAllFeatuers = async () => {
+    const res = await fetch(`${process.env.REACT_APP_BACKEND_UR}/features`, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',

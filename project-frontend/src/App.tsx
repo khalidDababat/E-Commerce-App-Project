@@ -6,7 +6,6 @@ import { router } from './routes/router';
 
 import CssBaseline from '@mui/material/CssBaseline';
 
-
 function App() {
     return (
         <Fragment>

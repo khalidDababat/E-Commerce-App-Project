@@ -8,6 +8,7 @@ import CategoryManagement from '../components/admin_new/category-management/Cate
 
 import MainLayout from '../components/shared/Layout/MainLayout';
 import { authLoader } from './authLoader';
+import AddfeatFood from '../components/admin_new/addfeatfood/addfeatFood';
 
 export const router = createBrowserRouter([
     {
@@ -21,21 +22,25 @@ export const router = createBrowserRouter([
         loader: authLoader, // Check auth for all nested routes
         children: [
             {
-                path: 'dashboard',
+                path: '/dashboard',
                 element: <Dashboard />,
             },
             {
-                path: 'products',
+                path: '/products',
                 element: <Products />,
             },
             {
-                path: 'createProduct',
+                path: '/createProduct',
                 element: <CreateProduct />,
             },
             {
-                path: 'category-management',
-                element: <CategoryManagement />
-            }
+                path: '/category-management',
+                element: <CategoryManagement />,
+            },
+            {
+                path: '/add-feat-food',
+                element: <AddfeatFood />,
+            },
         ],
     },
 ]);

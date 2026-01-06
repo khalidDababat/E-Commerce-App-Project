@@ -17,6 +17,10 @@ const Layout = () => {
                 return 'إضافة منتج جديد';
             case '/orders':
                 return 'إدارة الطلبات';
+            case '/category-management':
+                return 'إدارة الأصناف';
+            case '/add-feat-food':
+                return 'إضافات الطعام';
             default:
                 return 'Restaurant App';
         }

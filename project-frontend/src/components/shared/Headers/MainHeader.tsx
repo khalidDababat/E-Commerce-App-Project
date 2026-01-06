@@ -30,7 +30,7 @@ const MainHeader = () => {
             </div>
 
             <div className="menu-icon">
-                <Link to="\" >
+                <Link to="\">
                     <MenuIcon />
                 </Link>
             </div>
