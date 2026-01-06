@@ -1,11 +1,12 @@
 import { createBrowserRouter, redirect } from 'react-router-dom';
-import Dashboard from '../Components/Dashboard/Dashboard';
-import LogINSignUb from '../Components/LoginSignUp/LogInUser';
-import Products from '../Components/Products/Products';
-import CreateProduct from '../Components/CreateProduct/CreateProduct';
-import Layout from '../Components/Layout/Layout';
+import Dashboard from '../components/admin_new/Dashboard/Dashboard';
+import Login from '../pages/admin/Login/Login';
+import Products from '../components/admin_new/Products/Products';
+import CreateProduct from '../components/admin_new/CreateProduct/CreateProduct';
+import Layout from '../components/shared/Layout/Layout';
+import CategoryManagement from '../components/admin_new/category-management/CategoryManagement';
 
-import MainLayout from '../Components/Layout/MainLayout';
+import MainLayout from '../components/shared/Layout/MainLayout';
 import { authLoader } from './authLoader';
 
 export const router = createBrowserRouter([
@@ -14,23 +15,27 @@ export const router = createBrowserRouter([
         loader: () => redirect('/MainLayout'),
     },
     { path: '/MainLayout', element: <MainLayout /> },
-    { path: '/login', element: <LogINSignUb /> },
+    { path: '/login', element: <Login /> },
     {
         element: <Layout />,
         loader: authLoader, // Check auth for all nested routes
         children: [
             {
-                path: '/dashboard',
+                path: 'dashboard',
                 element: <Dashboard />,
             },
             {
-                path: '/products',
+                path: 'products',
                 element: <Products />,
             },
             {
-                path: '/createProduct',
+                path: 'createProduct',
                 element: <CreateProduct />,
             },
+            {
+                path: 'category-management',
+                element: <CategoryManagement />
+            }
         ],
     },
 ]);

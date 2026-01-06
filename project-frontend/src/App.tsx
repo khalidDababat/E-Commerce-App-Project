@@ -1,18 +1,19 @@
-import React from 'react';
-import './App.scss';
+import React, { Fragment } from 'react';
+import { ToastContainer } from 'react-toastify';
+import './styles/App.scss';
 import { RouterProvider } from 'react-router-dom';
-import { router } from './Routes/router';
+import { router } from './routes/router';
 
-import { ThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
-import theme from './theme';
+
 
 function App() {
     return (
-        <ThemeProvider theme={theme}>
+        <Fragment>
             <CssBaseline />
+            <ToastContainer />
             <RouterProvider router={router} />
-        </ThemeProvider>
+        </Fragment>
     );
 }
 
