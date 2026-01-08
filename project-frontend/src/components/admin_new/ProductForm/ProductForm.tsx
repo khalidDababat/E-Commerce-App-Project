@@ -8,19 +8,32 @@ import {
     Paper,
     Stack,
     InputAdornment,
+    FormControl,
+    FormLabel,
+    RadioGroup,
+    FormControlLabel,
+    Radio,
+    Select,
+    MenuItem,
+    InputLabel,
 } from '@mui/material';
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import SaveIcon from '@mui/icons-material/Save';
 import CancelIcon from '@mui/icons-material/Cancel';
+import { getAllCategories } from '../api/Category';
+
+import './ProductForm.scss';
 
 interface ProductFormProps {
     initialData?: {
         name?: string;
         price?: string;
         description?: string;
-        category?: string;
-        features?: string;
+        categoryId?: number | string;
+        categoryName?: string;
+        stock?: number;
         image?: string;
+        isActive?: boolean;
     };
     onSubmit: (formData: FormData) => void;
     onCancel: () => void;
@@ -39,17 +52,39 @@ const ProductForm: React.FC<ProductFormProps> = ({
     const [description, setDescription] = useState(
         initialData.description || ''
     );
-    const [category, setCategory] = useState(initialData.category || '');
-    const [features, setFeatures] = useState<string>(
-        initialData.features || ''
-    );
+    const [categoryId, setCategoryId] = useState(initialData.categoryId || '');
+    const [stock, setStock] = useState<number>(initialData.stock || 0);
     const [file, setFile] = useState<File | null>(null);
+    const [isActive, setIsActive] = useState<boolean>(
+        initialData.isActive !== undefined ? initialData.isActive : true
+    );
+    const [categoriesList, setCategoriesList] = useState<any[]>([]);
 
     useEffect(() => {
         if (initialData.image) {
             setImagePreview(initialData.image);
         }
-    }, [initialData.image]);
+
+        const fetchCategories = async () => {
+            try {
+                const data = await getAllCategories();
+                setCategoriesList(data);
+
+                // If we have a categoryName but no valid categoryId, try to find it
+                if (!categoryId && initialData.categoryName) {
+                    const found = data.find(
+                        (cat: any) => cat.category === initialData.categoryName
+                    );
+                    if (found) {
+                        setCategoryId(found.id);
+                    }
+                }
+            } catch (error) {
+                console.error('Failed to fetch categories:', error);
+            }
+        };
+        fetchCategories();
+    }, [initialData.image, initialData.categoryName]);
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
@@ -57,10 +92,12 @@ const ProductForm: React.FC<ProductFormProps> = ({
         formData.append('name', nameProduct);
         formData.append('price', priceProduct);
         formData.append('description', description);
-        formData.append('category', category);
-        formData.append('features', JSON.stringify(features.split(',')));
+        formData.append('categoryId', categoryId.toString());
+        formData.append('stock', stock.toString());
 
         if (file) formData.append('image', file);
+        formData.append('isActive', isActive.toString());
+
         onSubmit(formData);
     };
 
@@ -73,9 +110,9 @@ const ProductForm: React.FC<ProductFormProps> = ({
     };
 
     return (
-        <Paper elevation={3} sx={{ p: 4, borderRadius: 2 }}>
+        <Box sx={{ p: 1 }}>
             <form onSubmit={handleSubmit}>
-                <Grid container spacing={4}>
+                <Grid container spacing={2} sx={{ textAlign: 'right' }}>
                     <Grid size={{ xs: 12, md: 4 }}>
                         <Box
                             sx={{
@@ -85,7 +122,7 @@ const ProductForm: React.FC<ProductFormProps> = ({
                                 p: 2,
                                 textAlign: 'center',
                                 cursor: 'pointer',
-                                height: '100%',
+                                minHeight: 150,
                                 display: 'flex',
                                 flexDirection: 'column',
                                 justifyContent: 'center',
@@ -110,7 +147,7 @@ const ProductForm: React.FC<ProductFormProps> = ({
                                     alt="Preview"
                                     sx={{
                                         width: '100%',
-                                        maxHeight: 300,
+                                        maxHeight: 180,
                                         objectFit: 'contain',
                                         borderRadius: 1,
                                     }}
@@ -119,16 +156,16 @@ const ProductForm: React.FC<ProductFormProps> = ({
                                 <>
                                     <CloudUploadIcon
                                         sx={{
-                                            fontSize: 48,
+                                            fontSize: 40,
                                             color: 'text.secondary',
                                             mb: 1,
                                         }}
                                     />
                                     <Typography
-                                        variant="body1"
+                                        variant="body2"
                                         color="text.secondary"
                                     >
-                                        Click to upload image
+                                        اضغط لتحميل الصورة
                                     </Typography>
                                 </>
                             )}
@@ -136,54 +173,121 @@ const ProductForm: React.FC<ProductFormProps> = ({
                     </Grid>
 
                     <Grid size={{ xs: 12, md: 8 }}>
-                        <Stack spacing={3}>
-                            <TextField
-                                label="Product Name"
-                                value={nameProduct}
-                                onChange={(e) => setNameProduct(e.target.value)}
-                                required
-                                fullWidth
-                            />
-                            <TextField
-                                label="Price"
-                                value={priceProduct}
-                                onChange={(e) =>
-                                    setPriceProduct(e.target.value)
-                                }
-                                required
-                                fullWidth
-                                type="number"
-                                InputProps={{
-                                    startAdornment: (
-                                        <InputAdornment position="start">
-                                            $
-                                        </InputAdornment>
-                                    ),
-                                }}
-                            />
-                            <TextField
-                                label="Category"
-                                value={category}
-                                onChange={(e) => setCategory(e.target.value)}
-                                required
-                                fullWidth
-                            />
-                            <TextField
-                                label="Description"
-                                value={description}
-                                onChange={(e) => setDescription(e.target.value)}
-                                multiline
-                                rows={4}
-                                fullWidth
-                            />
-                            <TextField
-                                label="Features (comma separated)"
-                                value={features}
-                                onChange={(e) => setFeatures(e.target.value)}
-                                fullWidth
-                                helperText="Example: Spicy, Vegan, Gluten-free"
-                            />
-                        </Stack>
+                        <Grid container spacing={1.5}>
+                            <Grid size={{ xs: 12 }}>
+                                <TextField
+                                    label=" إسم المنتج"
+                                    value={nameProduct}
+                                    onChange={(e) =>
+                                        setNameProduct(e.target.value)
+                                    }
+                                    required
+                                    fullWidth
+                                    size="small"
+                                />
+                            </Grid>
+
+                            <Grid size={{ xs: 6 }}>
+                                <TextField
+                                    label="سعر المنتج"
+                                    value={priceProduct}
+                                    onChange={(e) =>
+                                        setPriceProduct(e.target.value)
+                                    }
+                                    required
+                                    fullWidth
+                                    type="number"
+                                    size="small"
+                                    InputProps={{
+                                        startAdornment: (
+                                            <InputAdornment position="start">
+                                                $
+                                            </InputAdornment>
+                                        ),
+                                    }}
+                                />
+                            </Grid>
+
+                            <Grid size={{ xs: 6 }}>
+                                <TextField
+                                    label="الكمية"
+                                    value={stock}
+                                    onChange={(e) =>
+                                        setStock(Number(e.target.value))
+                                    }
+                                    type="number"
+                                    fullWidth
+                                    size="small"
+                                />
+                            </Grid>
+
+                            <Grid size={{ xs: 6 }}>
+                                <FormControl fullWidth required size="small">
+                                    <InputLabel id="category-label">
+                                        الفئة
+                                    </InputLabel>
+                                    <Select
+                                        labelId="category-label"
+                                        value={categoryId}
+                                        label="الفئة"
+                                        onChange={(e) =>
+                                            setCategoryId(
+                                                e.target.value as string
+                                            )
+                                        }
+                                    >
+                                        {categoriesList.map((cat) => (
+                                            <MenuItem
+                                                key={cat.id}
+                                                value={cat.id}
+                                            >
+                                                {cat.category}
+                                            </MenuItem>
+                                        ))}
+                                    </Select>
+                                </FormControl>
+                            </Grid>
+
+                            <Grid size={{ xs: 6 }}>
+                                <FormControl fullWidth size="small">
+                                    <RadioGroup
+                                        row
+                                        value={isActive.toString()}
+                                        onChange={(e) =>
+                                            setIsActive(
+                                                e.target.value === 'true'
+                                            )
+                                        }
+                                        sx={{ justifyContent: 'center' }}
+                                    >
+                                        <FormControlLabel
+                                            value="true"
+                                            control={<Radio size="small" />}
+                                            label="نشط"
+                                        />
+                                        <FormControlLabel
+                                            value="false"
+                                            control={<Radio size="small" />}
+                                            label="غير نشط"
+                                        />
+                                    </RadioGroup>
+                                </FormControl>
+                            </Grid>
+
+                            <Grid size={{ xs: 12 }}>
+                                <TextField
+                                    label="وصف المنتج"
+                                    value={description}
+                                    onChange={(e) =>
+                                        setDescription(e.target.value)
+                                    }
+                                    multiline
+                                    rows={2}
+                                    fullWidth
+                                    size="small"
+                                />
+                            </Grid>
+                        </Grid>
                     </Grid>
 
                     <Grid size={{ xs: 12 }}>
@@ -191,19 +295,22 @@ const ProductForm: React.FC<ProductFormProps> = ({
                             direction="row"
                             spacing={2}
                             justifyContent="flex-end"
+                            sx={{ mt: 1 }}
                         >
                             <Button
                                 variant="outlined"
                                 color="secondary"
                                 startIcon={<CancelIcon />}
                                 onClick={onCancel}
+                                size="large"
                             >
-                                Cancel
+                                الغاء
                             </Button>
                             <Button
                                 type="submit"
                                 variant="contained"
                                 startIcon={<SaveIcon />}
+                                size="large"
                             >
                                 {submitLabel}
                             </Button>
@@ -211,7 +318,7 @@ const ProductForm: React.FC<ProductFormProps> = ({
                     </Grid>
                 </Grid>
             </form>
-        </Paper>
+        </Box>
     );
 };
 

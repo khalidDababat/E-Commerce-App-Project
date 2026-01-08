@@ -9,10 +9,10 @@ import {
 } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 import ProductForm from '../ProductForm/ProductForm';
-import './UpdateProduct.scss';
+import { toast } from 'react-toastify';
 
 interface UpdateProductProps {
-    product: any; // ideally your Product type
+    product: any;
     onClose: () => void;
     onUpdateSuccess: () => void;
 }
@@ -33,9 +33,10 @@ const UpdateProduct: React.FC<UpdateProductProps> = ({
             );
 
             if (!res.ok) {
-                console.log('failed Update Product in server');
+                toast.error('Update failed Product');
             } else {
                 onUpdateSuccess();
+                toast.success('Update success Product');
             }
         } catch (error) {
             console.log('Update failed Product', error);
@@ -53,36 +54,31 @@ const UpdateProduct: React.FC<UpdateProductProps> = ({
                     alignItems: 'center',
                 }}
             >
-                <Typography variant="h6" component="div" fontWeight="bold">
-                    Update Product
+                <Typography variant="h5" fontWeight="bold">
+                    تحديث منتج
                 </Typography>
-                <IconButton
-                    aria-label="close"
-                    onClick={onClose}
-                    sx={{
-                        color: (theme) => theme.palette.grey[500],
-                    }}
-                >
+                <IconButton aria-label="close" onClick={onClose}>
                     <CloseIcon />
                 </IconButton>
             </DialogTitle>
+
             <DialogContent dividers>
                 <ProductForm
                     initialData={{
                         name: product.name,
                         price: product.price,
                         description: product.description,
-                        category: product.category,
-                        features: Array.isArray(product.features)
-                            ? product.features.join(',')
-                            : product.features || '',
+                        categoryId: product.categoryId,
+                        categoryName: product.category,
+                        stock: product.stock,
                         image: product.image
                             ? `${process.env.REACT_APP_BACKEND_UR}${product.image}`
                             : '',
+                        isActive: product.isActive,
                     }}
                     onSubmit={handelUpdate}
                     onCancel={onClose}
-                    submitLabel="Update Product"
+                    submitLabel="تحديث المنتج"
                 />
             </DialogContent>
         </Dialog>

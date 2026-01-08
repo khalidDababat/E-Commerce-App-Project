@@ -3,7 +3,10 @@ import { useNavigate } from 'react-router';
 import { useDispatch } from 'react-redux';
 import { deleteProduct } from '../../../store/features/productsSlice';
 
+// I Will To fix about error  when I go into Store redux
+import { fetchProduct } from '../../../store/features/productsSlice';
 import { useProducts } from '../../../hooks/useProducts';
+
 import {
     Box,
     Grid,
@@ -41,9 +44,7 @@ const Products = () => {
     };
 
     const handelDeleteProduct = async (id: string) => {
-        const confirmDelete = window.confirm(
-            'Are you sure you want to delete this product?'
-        );
+        const confirmDelete = window.confirm('هل انت متأكد من حذف هذا المنتج؟');
         if (confirmDelete) {
             dispatch(deleteProduct(id));
         }
@@ -59,7 +60,7 @@ const Products = () => {
         setSelectedProduct(null);
     };
     const handleUpdateSuccess = () => {
-        // dispatch(fetchProduct());
+        dispatch(fetchProduct());
         handelCloseModel();
     };
 
@@ -79,7 +80,7 @@ const Products = () => {
                     onClick={addProduct}
                     sx={{ borderRadius: 1 }}
                 >
-                    Add Product
+                    إضافة منتج جديد
                 </Button>
             </Stack>
 
@@ -184,7 +185,7 @@ const Products = () => {
             ) : (
                 <Box sx={{ textAlign: 'center', mt: 4 }}>
                     <Typography variant="h6" color="text.secondary">
-                        No products found.
+                        لا يوجد منتجات
                     </Typography>
                 </Box>
             )}
