@@ -9,7 +9,6 @@ const store = new featureStore();
 
 const index = async (_req: Request, res: Response) => {
     const Features = await store.index();
-    console.log(Features);
     res.json(Features);
 };
 

@@ -27,7 +27,7 @@ export class productFeatureStore {
         // '@ts-expect-error
         const conn = await client.connect();
         const sql = `
-            SELECT f.name
+            SELECT f.id, f.name
             FROM product_features pf
             JOIN features f ON f.id = pf.feature_id
             WHERE pf.product_id = $1
