@@ -89,7 +89,7 @@ const update = async (req: Request, res: Response) => {
             price: req.body.price,
             description: req.body.description,
             category_id: req.body.category,
-            image: req.file ? `/uploads/${req.file.filename}` : req.body.existingImage,
+            image: req.file ? `/uploads/${req.file.filename}` : '',
             stock: req.body.stock,
             is_active: req.body.is_active,
         };
