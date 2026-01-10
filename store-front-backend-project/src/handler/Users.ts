@@ -21,7 +21,7 @@ const index = async (_req: Request, res: Response) => {
 };
 
 const show = async (_req: Request, res: Response) => {
-    const id = parseInt(_req.params['id'] ?? '');
+    const id = parseInt((_req.params['id'] as string) ?? '');
     if (isNaN(id)) {
         res.status(400).json({ error: 'Invalid user id' });
         return;

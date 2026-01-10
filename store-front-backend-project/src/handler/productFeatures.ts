@@ -33,7 +33,7 @@ async function assignFeatureToProduct(req: Request, res: Response) {
 // get all feature by product id
 const getFeaturesByProduct = async (req: Request, res: Response) => {
     try {
-        const productId = parseInt(req.params['product_id']!);
+        const productId = parseInt((req.params['product_id'] as string)!);
         if (isNaN(productId)) {
             res.status(400).json({ error: 'Invalid product id' });
             return;
