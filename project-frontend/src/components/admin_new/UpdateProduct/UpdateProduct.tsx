@@ -24,6 +24,10 @@ const UpdateProduct: React.FC<UpdateProductProps> = ({
 }) => {
     const handelUpdate = async (formData: FormData) => {
         try {
+            if (!formData.get('image')) {
+                formData.append('existingImage', product.image);
+            }
+
             const res = await fetch(
                 `${process.env.REACT_APP_BACKEND_UR}/products/${product.id}`,
                 {
@@ -54,7 +58,7 @@ const UpdateProduct: React.FC<UpdateProductProps> = ({
                     alignItems: 'center',
                 }}
             >
-                <Typography variant="h5" fontWeight="bold">
+                <Typography variant="h5" fontWeight="bold" component="div">
                     تحديث منتج
                 </Typography>
                 <IconButton aria-label="close" onClick={onClose}>

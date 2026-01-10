@@ -62,3 +62,45 @@ export const getAllFeatuers = async () => {
     const data = await res.json();
     return data;
 };
+//assignFeatureToProduct
+export const assignFeatureToProduct = async (
+    productId: number,
+    featureId: number
+) => {
+    const res = await fetch(
+        `${process.env.REACT_APP_BACKEND_UR}/product-features`,
+        {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${localStorage.getItem('token')}`,
+            },
+            body: JSON.stringify({
+                product_id: productId,
+                feature_id: featureId,
+            }),
+        }
+    );
+
+    if (!res.ok) {
+        toast.error('Failed to assign feature');
+    }
+    return await res.json();
+};
+
+//getFeatguresforProductId
+export const getFeatguresforProductId = async (id: string) => {
+    const res = await fetch(
+        `${process.env.REACT_APP_BACKEND_UR}/product-features/${id}`,
+        {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${localStorage.getItem('token')}`,
+            },
+        }
+    );
+
+    const data = await res.json();
+    return data;
+};

@@ -52,7 +52,7 @@ const ProductForm: React.FC<ProductFormProps> = ({
     const [description, setDescription] = useState(
         initialData.description || ''
     );
-    const [categoryId, setCategoryId] = useState(initialData.categoryId || '');
+    const [categoryId, setCategoryId] = useState<number | ''>('');
     const [stock, setStock] = useState<number>(initialData.stock || 0);
     const [file, setFile] = useState<File | null>(null);
     const [isActive, setIsActive] = useState<boolean>(
@@ -61,20 +61,18 @@ const ProductForm: React.FC<ProductFormProps> = ({
     const [categoriesList, setCategoriesList] = useState<any[]>([]);
 
     useEffect(() => {
-        if (initialData.image) {
-            setImagePreview(initialData.image);
-        }
-
         const fetchCategories = async () => {
             try {
                 const data = await getAllCategories();
                 setCategoriesList(data);
 
-                // If we have a categoryName but no valid categoryId, try to find it
-                if (!categoryId && initialData.categoryName) {
+                if (initialData.categoryId !== undefined) {
+                    setCategoryId(Number(initialData.categoryId));
+                } else if (initialData.categoryName) {
                     const found = data.find(
                         (cat: any) => cat.category === initialData.categoryName
                     );
+
                     if (found) {
                         setCategoryId(found.id);
                     }
@@ -84,7 +82,7 @@ const ProductForm: React.FC<ProductFormProps> = ({
             }
         };
         fetchCategories();
-    }, [initialData.image, initialData.categoryName]);
+    }, [initialData.categoryName]);
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
@@ -230,9 +228,10 @@ const ProductForm: React.FC<ProductFormProps> = ({
                                         labelId="category-label"
                                         value={categoryId}
                                         label="الفئة"
+                                        disabled={!categoriesList.length}
                                         onChange={(e) =>
                                             setCategoryId(
-                                                e.target.value as string
+                                                Number(e.target.value)
                                             )
                                         }
                                     >

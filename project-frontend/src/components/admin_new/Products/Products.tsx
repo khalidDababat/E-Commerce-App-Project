@@ -1,19 +1,13 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router';
 import { useDispatch } from 'react-redux';
-import { deleteProduct } from '../../../store/features/productsSlice';
 
-// I Will To fix about error  when I go into Store redux
 import { fetchProduct } from '../../../store/features/productsSlice';
 import { useProducts } from '../../../hooks/useProducts';
-
+import ProductItem from './ProductItem';
 import {
     Box,
     Grid,
-    Card,
-    CardMedia,
-    CardContent,
-    CardActions,
     Typography,
     Button,
     IconButton,
@@ -23,8 +17,7 @@ import {
     Stack,
 } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
-import EditIcon from '@mui/icons-material/Edit';
-import DeleteIcon from '@mui/icons-material/Delete';
+
 import SearchInput from '../../shared/SearchInput/SearchInput';
 import UpdateProduct from '../UpdateProduct/UpdateProduct';
 
@@ -41,13 +34,6 @@ const Products = () => {
 
     const addProduct = () => {
         navigate('/createProduct');
-    };
-
-    const handelDeleteProduct = async (id: string) => {
-        const confirmDelete = window.confirm('هل انت متأكد من حذف هذا المنتج؟');
-        if (confirmDelete) {
-            dispatch(deleteProduct(id));
-        }
     };
 
     const handelUpdate = (p: Product) => {
@@ -95,90 +81,7 @@ const Products = () => {
                             key={item.id}
                             size={{ xs: 12, sm: 6, md: 4, lg: 3 }}
                         >
-                            <Card
-                                sx={{
-                                    height: '100%',
-                                    display: 'flex',
-                                    flexDirection: 'column',
-                                    position: 'relative',
-                                }}
-                            >
-                                <CardMedia
-                                    component="img"
-                                    height="200"
-                                    image={
-                                        item.image
-                                            ? `${process.env.REACT_APP_BACKEND_UR}${item.image}`
-                                            : 'https://via.placeholder.com/200'
-                                    }
-                                    alt={item.name}
-                                    sx={{ objectFit: 'cover' }}
-                                />
-                                <CardContent sx={{ flexGrow: 1 }}>
-                                    <Box
-                                        sx={{
-                                            display: 'flex',
-                                            justifyContent: 'space-between',
-                                            alignItems: 'flex-start',
-                                            mb: 1,
-                                        }}
-                                    >
-                                        <Typography
-                                            gutterBottom
-                                            variant="h6"
-                                            component="div"
-                                            noWrap
-                                        >
-                                            {item.name}
-                                        </Typography>
-                                        <Typography
-                                            variant="h6"
-                                            color="primary.main"
-                                            fontWeight="bold"
-                                        >
-                                            ${item.price}
-                                        </Typography>
-                                    </Box>
-                                    <Chip
-                                        label={item.category}
-                                        size="small"
-                                        sx={{ mb: 1 }}
-                                    />
-                                    <Typography
-                                        variant="body2"
-                                        color="text.secondary"
-                                        sx={{
-                                            display: '-webkit-box',
-                                            overflow: 'hidden',
-                                            WebkitBoxOrient: 'vertical',
-                                            WebkitLineClamp: 2,
-                                        }}
-                                    >
-                                        {item.description ||
-                                            'No description available.'}
-                                    </Typography>
-                                </CardContent>
-                                <CardActions
-                                    sx={{ justifyContent: 'flex-end', p: 2 }}
-                                >
-                                    <IconButton
-                                        color="primary"
-                                        onClick={() => handelUpdate(item)}
-                                        aria-label="edit"
-                                    >
-                                        <EditIcon />
-                                    </IconButton>
-                                    <IconButton
-                                        color="error"
-                                        onClick={() =>
-                                            handelDeleteProduct(item.id)
-                                        }
-                                        aria-label="delete"
-                                    >
-                                        <DeleteIcon />
-                                    </IconButton>
-                                </CardActions>
-                            </Card>
+                            <ProductItem product={item} onEdit={handelUpdate} />
                         </Grid>
                     ))}
                 </Grid>
