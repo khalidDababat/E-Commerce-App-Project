@@ -4,7 +4,7 @@ import ControlPointIcon from '@mui/icons-material/ControlPoint';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { useDispatch } from 'react-redux';
-import { deleteProduct } from '../../../store/features/productsSlice';
+import { deleteProduct } from '../../../Store/features/productsSlice';
 
 import FeatureSelectionModal from './FeatureSelectionModal';
 import { getFeatguresforProductId } from '../api/FeaturesFood';

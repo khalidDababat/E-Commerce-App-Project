@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router';
 import { useDispatch } from 'react-redux';
 
-import { fetchProduct } from '../../../store/features/productsSlice';
+import { fetchProduct } from '../../../Store/features/productsSlice';
 import { useProducts } from '../../../hooks/useProducts';
 import ProductItem from './ProductItem';
 import {
