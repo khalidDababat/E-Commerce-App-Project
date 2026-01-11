@@ -14,7 +14,7 @@ const index = async (_req: Request, res: Response) => {
 };
 
 const show = async (_req: Request, res: Response) => {
-    const id = parseInt(_req.params['id'] ?? '');
+    const id = parseInt((_req.params['id'] as string) ?? '');
     if (isNaN(id)) {
         res.status(400).json({ error: 'Invalid category id' });
         return;
@@ -39,7 +39,7 @@ const create = async (req: Request, res: Response) => {
 
 const deleteCategory = async (req: Request, res: Response) => {
     try {
-        const id = parseInt(req.params['id'] ?? '');
+        const id = parseInt((req.params['id'] as string) ?? '');
         if (isNaN(id)) {
             res.status(400).json({ error: 'Invalid category id' });
             return;

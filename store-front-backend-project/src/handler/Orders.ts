@@ -15,7 +15,7 @@ const index = async (_req: Request, res: Response) => {
 };
 const show = async (_req: Request, res: Response) => {
     try {
-        const id = parseInt(_req.params['id'] ?? '');
+        const id = parseInt((_req.params['id'] as string) ?? '');
         if (isNaN(id)) {
             res.status(400).json({ error: 'Invalid order id' });
             return;
@@ -29,7 +29,7 @@ const show = async (_req: Request, res: Response) => {
 
 const updateStatus = async (req: Request, res: Response) => {
     try {
-        const id = parseInt(req.params['id']!);
+        const id = parseInt(req.params['id'] as string);
         const status: string = req.body.status;
 
         if (isNaN(id)) {
@@ -66,7 +66,7 @@ const create = async (req: Request, res: Response) => {
 
 const updatePrice = async (req: Request, res: Response) => {
     try {
-        const id = parseInt(req.params['id']!);
+        const id = parseInt(req.params['id'] as string);
         if (isNaN(id)) {
             res.status(400).json({ error: 'Invalid order id' });
             return;
@@ -81,7 +81,7 @@ const updatePrice = async (req: Request, res: Response) => {
 
 const deleteOrder = async (req: Request, res: Response) => {
     try {
-        const id = parseInt(req.params['id']!);
+        const id = parseInt(req.params['id'] as string);
         if (isNaN(id)) {
             res.status(400).json({ error: 'Invalid order id' });
             return;
