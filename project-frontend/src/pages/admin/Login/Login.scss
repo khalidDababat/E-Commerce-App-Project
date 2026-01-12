@@ -1,0 +1,17 @@
+.login-page {
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+
+    .login-card {
+        width: 50%;
+    }
+
+    .form-section {
+        padding: 20px;
+
+        .welcome-text {
+            text-align: center;
+        }
+    }
+}
