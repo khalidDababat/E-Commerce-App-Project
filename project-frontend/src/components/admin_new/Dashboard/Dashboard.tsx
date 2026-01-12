@@ -8,19 +8,19 @@ import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
 const Dashboard = () => {
     const stats = [
         {
-            title: 'Total Revenue',
+            title: 'إجمالي المبيعات',
             value: '$12,340',
             icon: <AttachMoneyIcon fontSize="large" />,
             color: '#4caf50',
         },
         {
-            title: 'Total Orders',
+            title: 'إجمالي الطلبات',
             value: '1,250',
             icon: <ShoppingCartIcon fontSize="large" />,
             color: '#2196f3',
         },
         {
-            title: 'New Customers',
+            title: 'العملاء الجدد',
             value: '320',
             icon: <PeopleIcon fontSize="large" />,
             color: '#ff9800',
@@ -35,7 +35,7 @@ const Dashboard = () => {
                 gutterBottom
                 sx={{ mb: 4 }}
             >
-                Dashboard Overview
+                لوحة التحكم
             </Typography>
             <Grid container spacing={3}>
                 {stats.map((stat, index) => (
@@ -87,10 +87,10 @@ const Dashboard = () => {
                     sx={{ p: 3, borderRadius: 2, minHeight: 400 }}
                 >
                     <Typography variant="h6" gutterBottom>
-                        Recent Activity
+                        النشاط
                     </Typography>
-                    <Typography variant="body1" color="text.secondary">
-                        No recent activity to display.
+                    <Typography variant="body2" color="text.secondary">
+                        لا يوجد نشاط لعرضه حاليًا.
                     </Typography>
                 </Paper>
             </Box>
