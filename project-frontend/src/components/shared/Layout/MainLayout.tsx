@@ -1,19 +1,28 @@
 import React from 'react';
 import MainHeader from '../Headers/MainHeader';
 import Category from '../../user/Category/Category';
-
 import ProductList from '../../user/ProductList/ProductList';
+import { Container, Grid } from '@mui/material';
+
+import './MainLayout.scss';
 
 const MainLayout = () => {
     return (
         <div>
             <MainHeader />
 
-            <div className="container">
-                <Category />
+            <Container maxWidth="lg" className="main-layout-container">
+                <Grid container spacing={4} className="layout-grid">
+                    <Grid size={12} className="category-wrapper">
+                        <Category />
+                    </Grid>
 
-                <ProductList />
-            </div>
+                    <Grid size={12}>
+                        <ProductList />
+                    </Grid>
+                </Grid>
+            </Container>
+
         </div>
     );
 };

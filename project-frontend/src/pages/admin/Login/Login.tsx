@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import { LoginPayload } from '../types';
+import { LoginPayload } from '../../types';
 import './Login.scss';
 import {
     Box,

@@ -1,32 +1,32 @@
 import React from 'react';
 import ProductItem from '../ProductItem/ProductItem';
-
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
-
+import { Grid, Typography, CircularProgress, Box } from '@mui/material';
 import './ProductList.scss';
 import { useProducts } from '../../../hooks/useProducts';
 
 const ProductList = () => {
     const { products, loading } = useProducts();
 
-    if (loading) return <h2>Loading...</h2>;
+    if (loading) {
+        return (
+            <Box display="flex" justifyContent="center" py={4}>
+                <CircularProgress color="inherit" />
+            </Box>
+        );
+    }
 
     return (
-        <Container>
-            <Row>
-                {products.map((p: any) => (
-                    <Col key={p.id} sm={12} md={6} lg={4} xl={4}>
-                        <ProductItem
-                            name={p.name}
-                            price={p.price}
-                            image={p.image}
-                        />
-                    </Col>
-                ))}
-            </Row>
-        </Container>
+        <Grid container spacing={3} justifyContent="center">
+            {products.map((p: any) => (
+                <Grid key={p.id} size={{ xs: 12, sm: 6, md: 4, lg: 4 }}>
+                    <ProductItem
+                        name={p.name}
+                        price={p.price}
+                        image={p.image}
+                    />
+                </Grid>
+            ))}
+        </Grid>
     );
 };
 

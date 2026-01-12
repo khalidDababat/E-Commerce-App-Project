@@ -1,0 +1,17 @@
+.main-layout-container {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+
+    .layout-grid {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .category-wrapper {
+        display: flex;
+        justify-content: center;
+    }
+}

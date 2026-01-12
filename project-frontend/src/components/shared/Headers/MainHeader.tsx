@@ -18,11 +18,11 @@ const MainHeader = () => {
                     </Link>
                 </div>
 
-                <div className="icon-login">
+                {/* <div className="icon-login">
                     <Link to="\">
                         <PermIdentityIcon />
                     </Link>
-                </div>
+                </div> */}
             </div>
 
             <div className="logo">
