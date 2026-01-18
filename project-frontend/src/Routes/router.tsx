@@ -9,6 +9,8 @@ import CategoryManagement from '../components/admin_new/category-management/Cate
 import MainLayout from '../components/shared/Layout/MainLayout';
 import { authLoader } from './authLoader';
 import AddfeatFood from '../components/admin_new/addfeatfood/addfeatFood';
+import CartList from '../components/user/cartlistproduct/CartList';
+
 
 export const router = createBrowserRouter([
     {
@@ -16,7 +18,9 @@ export const router = createBrowserRouter([
         loader: () => redirect('/MainLayout'),
     },
     { path: '/MainLayout', element: <MainLayout /> },
+    { path: '/cartlist', element: <CartList /> },
     { path: '/login', element: <Login /> },
+
     {
         element: <Layout />,
         loader: authLoader, // Check auth for all nested routes

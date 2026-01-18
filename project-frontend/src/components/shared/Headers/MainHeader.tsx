@@ -5,24 +5,32 @@ import MenuIcon from '@mui/icons-material/Menu';
 
 import logoImage from '../../../assets/images/Logo.png';
 
-import './Header.scss';
+import './MainHeader.scss';
 import { Link } from 'react-router-dom';
+
+import { useSelector } from 'react-redux';
+
+
+
 const MainHeader = () => {
+
+
+    const cartItems = useSelector((state: any) => state.cart.items);
+
+
+
+
     return (
         <header className="main-header">
             <div className="cart">
                 <div className="icon-cart">
-                    <span>0</span>
-                    <Link to="\">
+                    <span>{cartItems.length}</span>
+                    <Link to="/cartlist">
                         <ProductionQuantityLimitsIcon />
                     </Link>
                 </div>
 
-                {/* <div className="icon-login">
-                    <Link to="\">
-                        <PermIdentityIcon />
-                    </Link>
-                </div> */}
+
             </div>
 
             <div className="logo">

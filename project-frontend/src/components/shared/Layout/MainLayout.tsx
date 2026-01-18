@@ -3,7 +3,7 @@ import MainHeader from '../Headers/MainHeader';
 import Category from '../../user/Category/Category';
 import ProductList from '../../user/ProductList/ProductList';
 import { Container, Grid } from '@mui/material';
-
+import Footer from '../../user/footer/Footer';
 import './MainLayout.scss';
 
 const MainLayout = () => {
@@ -22,7 +22,7 @@ const MainLayout = () => {
                     </Grid>
                 </Grid>
             </Container>
-
+            <Footer />
         </div>
     );
 };

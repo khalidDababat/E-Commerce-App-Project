@@ -16,7 +16,6 @@ interface HeaderUserProps {
 const HeaderUser: React.FC<HeaderUserProps> = ({ title }) => {
     return (
         <AppBar
-            position="sticky"
             elevation={0}
             sx={{
                 backgroundColor: 'background.default',

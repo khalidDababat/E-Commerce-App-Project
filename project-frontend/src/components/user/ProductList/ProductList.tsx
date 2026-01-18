@@ -20,6 +20,7 @@ const ProductList = () => {
             {products.map((p: any) => (
                 <Grid key={p.id} size={{ xs: 12, sm: 6, md: 4, lg: 4 }}>
                     <ProductItem
+                        id={p.id}
                         name={p.name}
                         price={p.price}
                         image={p.image}
