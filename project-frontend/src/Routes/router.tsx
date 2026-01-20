@@ -11,7 +11,6 @@ import { authLoader } from './authLoader';
 import AddfeatFood from '../components/admin_new/addfeatfood/addfeatFood';
 import CartList from '../components/user/cartlistproduct/CartList';
 
-
 export const router = createBrowserRouter([
     {
         path: '/',

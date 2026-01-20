@@ -7,7 +7,6 @@ import ShoppingBasketIcon from '@mui/icons-material/ShoppingBasket';
 import { useDispatch } from 'react-redux';
 import { addToCart } from '../../../Store/features/cartSlice';
 
-
 interface ProductItemProps {
     id: number;
     name: string;
@@ -15,12 +14,15 @@ interface ProductItemProps {
     image?: string;
 }
 
-const ProductItem: React.FC<ProductItemProps> = ({ id, name, price, image }) => {
+const ProductItem: React.FC<ProductItemProps> = ({
+    id,
+    name,
+    price,
+    image,
+}) => {
     const [faveriteProducts, setFaveriteProducts] = useState([]);
 
     const dispatch = useDispatch();
-
-
 
     const storeProductIntoFavorite = () => {
         //    setFaveriteProducts([...faveriteProducts, { name, price, image }]);
@@ -33,12 +35,12 @@ const ProductItem: React.FC<ProductItemProps> = ({ id, name, price, image }) => 
                 id: id,
                 name: name,
                 price: price,
+                image: image || '',
                 quantity: 1, // initial value, reducer will handle it
             })
-
         );
         toast.success('تم إضافة المنتج للسلة');
-    }
+    };
 
     return (
         <div className="Product-Item">

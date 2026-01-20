@@ -1,9 +1,7 @@
-
 import React from 'react';
 import styles from './Footer.module.scss';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-
 
 const Footer = () => {
     const cartItems = useSelector((state: any) => state.cart.items);
@@ -14,22 +12,19 @@ const Footer = () => {
         0
     );
 
-
-
-
     const openCartList = () => {
         navigate('/cartlist');
-    }
+    };
 
     return (
-
-
-
         <footer className={styles.footer}>
             <div className={styles.footerContent}>
-
-                <div className={styles.footerTitle} onClick={() => { openCartList() }}>
-
+                <div
+                    className={styles.footerTitle}
+                    onClick={() => {
+                        openCartList();
+                    }}
+                >
                     <div className={styles.quantity}>
                         <span>{cartItems.length}</span>
                     </div>
@@ -39,15 +34,10 @@ const Footer = () => {
                     <p>
                         <span>₪</span>
                         {totalPrice}
-
                     </p>
                 </div>
-
             </div>
         </footer>
-
-
-
     );
 };
 

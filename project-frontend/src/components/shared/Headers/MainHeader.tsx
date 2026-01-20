@@ -10,15 +10,8 @@ import { Link } from 'react-router-dom';
 
 import { useSelector } from 'react-redux';
 
-
-
 const MainHeader = () => {
-
-
     const cartItems = useSelector((state: any) => state.cart.items);
-
-
-
 
     return (
         <header className="main-header">
@@ -29,8 +22,6 @@ const MainHeader = () => {
                         <ProductionQuantityLimitsIcon />
                     </Link>
                 </div>
-
-
             </div>
 
             <div className="logo">
