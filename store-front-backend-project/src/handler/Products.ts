@@ -127,7 +127,7 @@ const ProductsRoutes = (app: express.Application) => {
     app.put('/products/:id', UpLoad.single('image'), update);
     app.put('/update-stock/:id', updateStockProduct);
 
-    app.get('/productsByCategoryName', getProductsByCategoryName);
+    app.post('/productsByCategoryName', getProductsByCategoryName);
 };
 
 export default ProductsRoutes;

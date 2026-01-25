@@ -5,7 +5,7 @@ export type Product = {
     name: string;
     price: number;
     description?: string;
-    category_id: number;
+    category_id: string;
     image?: string;
     stock?: number;
     is_active?: boolean;
@@ -161,7 +161,7 @@ export class productStore {
              `;
             const res = await conn.query(sql, [categoryname]);
             conn.release();
-            return res.rows[0];
+            return res.rows;
         } catch (error) {
             throw new Error(
                 `could not find any Products for category Name ${categoryname} Error ${error}`
