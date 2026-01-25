@@ -10,13 +10,11 @@
     .layout-grid {
         width: 100%;
         justify-content: center;
-
     }
 
     .category-wrapper {
         display: flex;
         justify-content: center;
-
     }
 
     .product-wrapper {
@@ -35,7 +33,5 @@
 
         // Add padding to ensure content isn't cut off at the bottom
         margin-bottom: 5rem;
-
-
     }
 }

@@ -18,13 +18,13 @@ const Footer = () => {
 
     return (
         <footer className={styles.footer}>
-            <div className={styles.footerContent} onClick={() => {
-                openCartList();
-            }}>
-                <div
-                    className={styles.footerTitle}
-
-                >
+            <div
+                className={styles.footerContent}
+                onClick={() => {
+                    openCartList();
+                }}
+            >
+                <div className={styles.footerTitle}>
                     <div className={styles.quantity}>
                         <span>{cartItems.length}</span>
                     </div>

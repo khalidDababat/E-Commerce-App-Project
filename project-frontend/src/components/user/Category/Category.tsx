@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import './Category.scss';
 import { getAllCategories } from '../../api/Category';
 
-
 interface CategoryProps {
     active: string;
     setActive: (category: string) => void;
@@ -19,10 +18,13 @@ const Category = ({ active, setActive }: CategoryProps) => {
                 const categoryNames = data.map((item: any) => item.category);
 
                 // Merge with "الكل" if it's not already in the list
-                const finalCategories = ['الكل', ...categoryNames.filter((name: string) => name !== 'الكل')];
+                const finalCategories = [
+                    'الكل',
+                    ...categoryNames.filter((name: string) => name !== 'الكل'),
+                ];
                 setCategories(finalCategories);
             } catch (error) {
-                console.error("Failed to fetch categories:", error);
+                console.error('Failed to fetch categories:', error);
             }
         };
 

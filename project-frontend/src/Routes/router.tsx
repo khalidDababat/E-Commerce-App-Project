@@ -17,6 +17,7 @@ export const router = createBrowserRouter([
         loader: () => redirect('/MainLayout'),
     },
     { path: '/MainLayout', element: <MainLayout /> },
+
     { path: '/cartlist', element: <CartList /> },
     { path: '/login', element: <Login /> },
 
