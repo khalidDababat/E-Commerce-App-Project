@@ -1,13 +1,17 @@
-import React, { useState, useRef, MouseEvent } from 'react';
+import React, { useState, useEffect } from 'react';
 import './Category.scss';
 import { getAllCategories } from '../../api/Category';
 
 
-const Category = () => {
-    const [categories, setCategories] = useState<string[]>(['الكل']);
-    const [active, setActive] = useState('الكل');
+interface CategoryProps {
+    active: string;
+    setActive: (category: string) => void;
+}
 
-    React.useEffect(() => {
+const Category = ({ active, setActive }: CategoryProps) => {
+    const [categories, setCategories] = useState<string[]>(['الكل']);
+
+    useEffect(() => {
         const fetchCategories = async () => {
             try {
                 const data = await getAllCategories();
@@ -25,17 +29,8 @@ const Category = () => {
         fetchCategories();
     }, []);
 
-
-
-
-
-
-
     return (
-        <div
-            className="categories-container"
-
-        >
+        <div className="categories-container">
             {categories.map((item) => (
                 <button
                     key={item}

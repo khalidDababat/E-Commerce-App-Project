@@ -56,7 +56,7 @@ const CartList = () => {
             <CartListHeader onBack={handleBack} />
 
             {isCartEmpty && step === 1 ? (
-                <div className="card_list_content">
+                <div className="card-list_content">
                     <img src={cartEmpty} alt="cart-empty" />
                     <h3>لا توجد أصناف بالسلة</h3>
                 </div>

@@ -4,8 +4,18 @@ import { Grid, Typography, CircularProgress, Box } from '@mui/material';
 import './ProductList.scss';
 import { useProducts } from '../../../hooks/useProducts';
 
-const ProductList = () => {
-    const { products, loading } = useProducts();
+import { useCategoryProducts } from '../../../hooks/useCategoryProducts';
+
+interface ProductListProps {
+    selectedCategory: string;
+}
+
+const ProductList = ({ selectedCategory }: ProductListProps) => {
+    const { products: allProducts, loading: loadingAll } = useProducts();
+    const { products: categoryProducts, loading: loadingCategory } = useCategoryProducts(selectedCategory === 'الكل' ? '' : selectedCategory);
+
+    const products = selectedCategory === 'الكل' ? allProducts : categoryProducts;
+    const loading = selectedCategory === 'الكل' ? loadingAll : loadingCategory;
 
     if (loading) {
         return (
@@ -17,7 +27,7 @@ const ProductList = () => {
 
     return (
         <Grid container spacing={3} justifyContent="center">
-            {products.map((p: any) => (
+            {Array.isArray(products) && products.map((p: any) => (
                 <Grid key={p.id} size={{ xs: 12, sm: 6, md: 4, lg: 4 }}>
                     <ProductItem
                         id={p.id}
