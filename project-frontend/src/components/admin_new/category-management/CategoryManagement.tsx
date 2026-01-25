@@ -5,7 +5,7 @@ import {
     getAllCategories,
     deleteCategory,
     handleAddCategory,
-} from '../api/Category';
+} from '../../api/Category';
 
 const CategoryManagement = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);

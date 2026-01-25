@@ -20,7 +20,7 @@ import {
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import SaveIcon from '@mui/icons-material/Save';
 import CancelIcon from '@mui/icons-material/Cancel';
-import { getAllCategories } from '../api/Category';
+import { getAllCategories } from '../../api/Category';
 
 import './ProductForm.scss';
 

@@ -15,7 +15,7 @@ import {
     Typography,
     Divider,
 } from '@mui/material';
-import { getAllFeatuers, assignFeatureToProduct } from '../api/FeaturesFood';
+import { getAllFeatuers, assignFeatureToProduct } from '../../api/FeaturesFood';
 import { toast } from 'react-toastify';
 
 interface FeatureSelectionModalProps {

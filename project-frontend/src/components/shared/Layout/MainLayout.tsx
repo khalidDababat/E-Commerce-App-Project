@@ -17,7 +17,7 @@ const MainLayout = () => {
                         <Category />
                     </Grid>
 
-                    <Grid size={12}>
+                    <Grid size={12} className="product-wrapper">
                         <ProductList />
                     </Grid>
                 </Grid>

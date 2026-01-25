@@ -1,55 +1,40 @@
 import React, { useState, useRef, MouseEvent } from 'react';
 import './Category.scss';
+import { getAllCategories } from '../../api/Category';
+
 
 const Category = () => {
-    const sliderRef = useRef<HTMLDivElement>(null);
-    const [isDown, setIsDown] = useState(false);
-    const [startX, setStartX] = useState(0);
-    const [scrollLeft, setScrollLeft] = useState(0);
-
-    const [categories] = useState([
-        'الكل',
-        'السعادة والدلال',
-        'وجبات التوفير العائلية',
-        'لفات وسندويشات',
-        'بايجت / باشكا',
-        'صحون سفري شاورما ونجبر',
-        'سلطات وجبات',
-        'صوصات',
-        'مشروبات وعصائر',
-    ]);
-
+    const [categories, setCategories] = useState<string[]>(['الكل']);
     const [active, setActive] = useState('الكل');
 
-    const startDragging = (e: MouseEvent<HTMLDivElement>) => {
-        setIsDown(true);
-        if (sliderRef.current) {
-            setStartX(e.pageX - sliderRef.current.offsetLeft);
-            setScrollLeft(sliderRef.current.scrollLeft);
-        }
-    };
+    React.useEffect(() => {
+        const fetchCategories = async () => {
+            try {
+                const data = await getAllCategories();
+                // Extracting the category names from the returned objects
+                const categoryNames = data.map((item: any) => item.category);
 
-    const stopDragging = () => {
-        setIsDown(false);
-    };
+                // Merge with "الكل" if it's not already in the list
+                const finalCategories = ['الكل', ...categoryNames.filter((name: string) => name !== 'الكل')];
+                setCategories(finalCategories);
+            } catch (error) {
+                console.error("Failed to fetch categories:", error);
+            }
+        };
 
-    const onMouseMove = (e: MouseEvent<HTMLDivElement>) => {
-        if (!isDown || !sliderRef.current) return;
-        e.preventDefault();
-        const x = e.pageX - sliderRef.current.offsetLeft;
-        const walk = (x - startX) * 2; // scroll-fast
-        sliderRef.current.scrollLeft = scrollLeft - walk;
-    };
+        fetchCategories();
+    }, []);
+
+
+
+
+
+
 
     return (
         <div
             className="categories-container"
-            ref={sliderRef}
-            onMouseDown={startDragging}
-            onMouseLeave={stopDragging}
-            onMouseUp={stopDragging}
-            onMouseMove={onMouseMove}
-            style={{ cursor: isDown ? 'grabbing' : 'grab' }}
+
         >
             {categories.map((item) => (
                 <button

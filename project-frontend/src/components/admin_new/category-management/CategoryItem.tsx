@@ -1,5 +1,5 @@
 import React from 'react';
-import { deleteCategory } from '../api/Category';
+import { deleteCategory } from '../../api/Category';
 import DeleteIcon from '@mui/icons-material/Delete';
 
 interface CategoryItemProps {

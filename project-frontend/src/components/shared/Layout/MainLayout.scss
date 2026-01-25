@@ -4,14 +4,39 @@
     display: flex !important;
     flex-direction: column !important;
     align-items: center !important;
+    min-height: 100vh;
+    scroll-behavior: smooth;
 
     .layout-grid {
         width: 100%;
         justify-content: center;
+        flex-grow: 1;
     }
 
     .category-wrapper {
         display: flex;
         justify-content: center;
+        margin-bottom: 2rem;
+    }
+
+    .product-wrapper {
+        width: 100%;
+        display: block !important;
+        position: relative;
+        z-index: 1;
+
+        // Isolation: reset properties that might be leaked from elsewhere
+        text-align: initial;
+        box-sizing: border-box;
+
+        // Ensure all products are displayed and scrollable within the layout
+        min-height: auto;
+        overflow: visible;
+
+        // Add padding to ensure content isn't cut off at the bottom
+        margin-bottom: 5rem;
+
+        // Specificity boost to protect against external overrides
+
     }
 }

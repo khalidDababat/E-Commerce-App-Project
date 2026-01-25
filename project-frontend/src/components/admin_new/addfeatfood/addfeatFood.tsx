@@ -5,7 +5,7 @@ import {
     getAllFeatuers,
     handleAddFeetFood,
     deleteFeetFood,
-} from '../api/FeaturesFood';
+} from '../../api/FeaturesFood';
 
 const AddfeatFood = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);

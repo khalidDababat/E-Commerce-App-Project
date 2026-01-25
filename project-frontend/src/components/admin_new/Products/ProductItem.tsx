@@ -7,7 +7,7 @@ import { useDispatch } from 'react-redux';
 import { deleteProduct } from '../../../Store/features/productsSlice';
 
 import FeatureSelectionModal from './FeatureSelectionModal';
-import { getFeatguresforProductId } from '../api/FeaturesFood';
+import { getFeatguresforProductId } from '../../api/FeaturesFood';
 import { useEffect } from 'react';
 
 interface ProductItemProps {
