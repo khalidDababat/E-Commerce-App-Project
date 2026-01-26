@@ -1,11 +1,13 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './ProductItem.scss';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import FavoriteIcon from '@mui/icons-material/Favorite';
 import { toast } from 'react-toastify';
 
 import ShoppingBasketIcon from '@mui/icons-material/ShoppingBasket';
-import { useDispatch } from 'react-redux';
-import { addToCart } from '../../../Store/features/cartSlice';
+import { RootState } from '../../../Store/Store';
+import ProductDetails from '../productdetails/ProductDetails';
+import { useProductActions } from '../../../hooks/useProductActions';
 
 interface ProductItemProps {
     id: number;
@@ -20,56 +22,61 @@ const ProductItem: React.FC<ProductItemProps> = ({
     price,
     image,
 }) => {
-    const [faveriteProducts, setFaveriteProducts] = useState([]);
+    const { isFavorite, handleToggleFavorite, handleAddToCart } =
+        useProductActions({
+            id,
+            name,
+            price,
+            image: image || '',
+        });
 
-    const dispatch = useDispatch();
+    const [isModalOpen, setIsModalOpen] = React.useState(false);
 
-    const storeProductIntoFavorite = () => {
-        //    setFaveriteProducts([...faveriteProducts, { name, price, image }]);
-        alert('Product added to favorite');
-    };
-
-    const handleAddToCart = () => {
-        dispatch(
-            addToCart({
-                id: id,
-                name: name,
-                price: price,
-                image: image || '',
-                quantity: 1, // initial value, reducer will handle it
-            })
-        );
-        toast.success('تم إضافة المنتج للسلة');
-    };
+    const handleOpenModal = () => setIsModalOpen(true);
+    const handleCloseModal = () => setIsModalOpen(false);
 
     return (
-        <div className="Product-Item">
-            <div className="product-details">
-                <div className="title">
-                    <h5>{name}</h5>
-                    <p onClick={() => storeProductIntoFavorite()}>
-                        <FavoriteBorderIcon />
+        <>
+            <div className="Product-Item" onClick={handleOpenModal}>
+                <div className="product-details">
+                    <div className="title">
+                        <h5>{name}</h5>
+                        <p onClick={handleToggleFavorite}>
+                            {isFavorite ? (
+                                <FavoriteIcon sx={{ color: '#ff5252' }} />
+                            ) : (
+                                <FavoriteBorderIcon />
+                            )}
+                        </p>
+                    </div>
+                    <p>
+                        <span>₪</span>
+                        {price}
                     </p>
-                </div>
-                <p>
-                    <span>₪</span>
-                    {price}
-                </p>
 
-                <button onClick={handleAddToCart}>
-                    أضف للسلة{' '}
-                    <span>
-                        <ShoppingBasketIcon />
-                    </span>
-                </button>
+                    <button onClick={(e) => handleAddToCart(1, e)}>
+                        أضف للسلة{' '}
+                        <span>
+                            <ShoppingBasketIcon />
+                        </span>
+                    </button>
+                </div>
+                <div className="product-image">
+                    <img
+                        src={`${process.env.REACT_APP_BACKEND_UR}${image}`}
+                        alt={name}
+                    />
+                </div>
             </div>
-            <div className="product-image" onClick={() => alert('HI')}>
-                <img
-                    src={`${process.env.REACT_APP_BACKEND_UR}${image}`}
-                    alt="not Found"
-                />
-            </div>
-        </div>
+            <ProductDetails
+                open={isModalOpen}
+                onClose={handleCloseModal}
+                id={id}
+                name={name}
+                price={price}
+                image={image}
+            />
+        </>
     );
 };
 

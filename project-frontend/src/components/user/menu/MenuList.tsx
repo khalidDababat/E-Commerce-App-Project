@@ -27,7 +27,11 @@ const MenuList: React.FC<MenuListProps> = ({ onClose }) => {
                 </div>
 
                 <div className="content-list">
-                    <Link to="#" className="menu-item" onClick={onClose}>
+                    <Link
+                        to="/favorite"
+                        className="menu-item"
+                        onClick={onClose}
+                    >
                         <ArrowBackIosNewIcon className="arrow-icon" />
                         <span className="item-text">المفضلة</span>
                         <FavoriteBorderIcon className="item-icon" />

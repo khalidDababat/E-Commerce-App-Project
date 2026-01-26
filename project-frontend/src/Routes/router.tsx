@@ -10,6 +10,7 @@ import MainLayout from '../components/shared/Layout/MainLayout';
 import { authLoader } from './authLoader';
 import AddfeatFood from '../components/admin_new/addfeatfood/addfeatFood';
 import CartList from '../components/user/cartlistproduct/CartList';
+import FavoriteList from '../components/user/favoriteproducts/FavoriteList';
 
 export const router = createBrowserRouter([
     {
@@ -18,6 +19,7 @@ export const router = createBrowserRouter([
     },
     { path: '/MainLayout', element: <MainLayout /> },
 
+    { path: '/favorite', element: <FavoriteList /> },
     { path: '/cartlist', element: <CartList /> },
     { path: '/login', element: <Login /> },
 

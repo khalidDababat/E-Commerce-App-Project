@@ -1,5 +1,5 @@
 import React from 'react';
-import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
+import ArrowForwardIcon from '../../shared/ArrowForwardIcon/ArrowForwardIcon';
 import { useNavigate } from 'react-router-dom';
 import { Typography, IconButton } from '@mui/material';
 
@@ -13,9 +13,7 @@ const CartListHeader = ({ onBack }: CartListHeaderProps) => {
             <Typography variant="h6" component="h3" sx={{ fontWeight: 'bold' }}>
                 سلة المشتريات
             </Typography>
-            <div className="back_home" onClick={onBack}>
-                <ArrowForwardIcon />
-            </div>
+            <ArrowForwardIcon onClick={onBack} />
         </div>
     );
 };
