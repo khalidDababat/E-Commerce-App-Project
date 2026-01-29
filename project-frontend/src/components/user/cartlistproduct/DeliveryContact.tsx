@@ -9,11 +9,22 @@ import HomeIcon from '@mui/icons-material/Home';
 import InputAdornment from '@mui/material/InputAdornment';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from '../../../Store/Store';
+import {
+    setCustomerArea,
+    setCustomerAddress,
+    setOrderNote,
+} from '../../../Store/features/orderSlice';
+
 const DeliveryContact = () => {
-    const [area, setArea] = useState('');
+    const dispatch = useDispatch();
+    const { customer_area, customer_address, note } = useSelector(
+        (state: RootState) => state.order
+    );
 
     const handleChange = (event: SelectChangeEvent) => {
-        setArea(event.target.value);
+        dispatch(setCustomerArea(event.target.value as string));
     };
 
     return (
@@ -23,7 +34,7 @@ const DeliveryContact = () => {
                 <Select
                     labelId="area-select-label"
                     id="area-select"
-                    value={area}
+                    value={customer_area}
                     label="اختر المنطقة"
                     onChange={handleChange}
                     startAdornment={
@@ -35,13 +46,15 @@ const DeliveryContact = () => {
                         </InputAdornment>
                     }
                 >
-                    <MenuItem value={10}>طوباس</MenuItem>
-                    <MenuItem value={20}>الجامع القديم</MenuItem>
-                    <MenuItem value={30}>الأسكان - ضاحية الحج حسن</MenuItem>
-                    <MenuItem value={40}>عقابا</MenuItem>
-                    <MenuItem value={50}>الفارعه</MenuItem>
-                    <MenuItem value={60}>ميثلون</MenuItem>
-                    <MenuItem value={70}>الشاطئ</MenuItem>
+                    <MenuItem value="طوباس">طوباس</MenuItem>
+                    <MenuItem value="الجامع القديم">الجامع القديم</MenuItem>
+                    <MenuItem value="الأسكان - ضاحية الحج حسن">
+                        الأسكان - ضاحية الحج حسن
+                    </MenuItem>
+                    <MenuItem value="عقابا">عقابا</MenuItem>
+                    <MenuItem value="الفارعه">الفارعه</MenuItem>
+                    <MenuItem value="ميثلون">ميثلون</MenuItem>
+                    <MenuItem value="الشاطئ">الشاطئ</MenuItem>
                 </Select>
             </FormControl>
 
@@ -51,6 +64,8 @@ const DeliveryContact = () => {
                 variant="outlined"
                 size="small"
                 className="field-input"
+                value={customer_address}
+                onChange={(e) => dispatch(setCustomerAddress(e.target.value))}
                 InputProps={{
                     startAdornment: (
                         <InputAdornment position="start">
@@ -70,6 +85,8 @@ const DeliveryContact = () => {
                 variant="outlined"
                 size="small"
                 className="field-input"
+                value={note}
+                onChange={(e) => dispatch(setOrderNote(e.target.value))}
             />
         </div>
     );

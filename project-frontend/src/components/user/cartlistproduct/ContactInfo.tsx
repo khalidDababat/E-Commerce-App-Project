@@ -7,16 +7,24 @@ import {
     Radio,
 } from '@mui/material';
 
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from '../../../Store/Store';
+import { setOrderMethod } from '../../../Store/features/orderSlice';
+
 import RestaurantContact from './RestaurantContact';
 import PickupContact from './PickupContact';
-
 import DeliveryContact from './DeliveryContact';
 
 const ContactInfo = () => {
-    const [method, setMethod] = React.useState('restaurant');
+    const dispatch = useDispatch();
+    const method = useSelector((state: RootState) => state.order.method);
 
     const handleMethodChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setMethod(event.target.value);
+        dispatch(
+            setOrderMethod(
+                event.target.value as 'delivery' | 'pickup' | 'restaurant'
+            )
+        );
     };
 
     return (

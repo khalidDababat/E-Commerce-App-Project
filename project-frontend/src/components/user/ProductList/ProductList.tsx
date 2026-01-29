@@ -24,7 +24,7 @@ const ProductList = ({ selectedCategory }: ProductListProps) => {
     if (loading) {
         return (
             <Box display="flex" justifyContent="center" py={4}>
-                <CircularProgress color="inherit" />
+                <CircularProgress />
             </Box>
         );
     }

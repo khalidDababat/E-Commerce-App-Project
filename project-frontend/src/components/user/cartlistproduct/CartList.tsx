@@ -12,16 +12,27 @@ import CouponSection from './CouponSection';
 import ContactInfo from './ContactInfo';
 import FastfoodIcon from '@mui/icons-material/Fastfood';
 import {
+    createOrder,
+    OrderData,
+    addProductToOrder,
+    ProductOrderData,
+} from '../../api/Orders';
+import { RootState } from '../../../Store/Store';
+import { resetOrderState } from '../../../Store/features/orderSlice';
+import {
     increaseQuantity,
     decreaseQuantity,
     removeFromCart,
+    clearCart,
 } from '../../../Store/features/cartSlice';
 
 const CartList = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    const cart = useSelector((state: any) => state.cart);
+    const cart = useSelector((state: RootState) => state.cart);
+    const orderInfo = useSelector((state: RootState) => state.order);
     const [step, setStep] = useState(1); // 1: Cart, 2: Contact Info
+    const [loading, setLoading] = useState(false);
 
     const handleIncrease = (id: number) => {
         dispatch(increaseQuantity(id));
@@ -48,6 +59,51 @@ const CartList = () => {
             setStep(1);
         } else {
             navigate('/MainLayout');
+        }
+    };
+
+    const handleSendOrder = async () => {
+        if (isCartEmpty) return;
+
+        setLoading(true);
+        try {
+            const orderData: OrderData = {
+                user_id: 1,
+                customer_name: orderInfo.customer_name,
+                customer_phone: orderInfo.customer_phone,
+                customer_address: orderInfo.customer_address,
+                customer_area: orderInfo.customer_area,
+                note: orderInfo.note,
+                status: 'pending',
+                total_price: totalPrice,
+                order_type: orderInfo.method,
+            };
+
+            const result = await createOrder(orderData);
+            if (result && result.id) {
+                const orderId = result.id;
+
+                // Connect each product in the cart to the order
+                const productOrderPromises = cart.items.map((item: any) => {
+                    const poData: ProductOrderData = {
+                        product_id: item.id,
+                        order_id: orderId,
+                        quantity: item.quantity,
+                    };
+                    return addProductToOrder(poData);
+                });
+
+                await Promise.all(productOrderPromises);
+
+                // Success: reset state and navigate or show success UI
+                dispatch(resetOrderState());
+                dispatch(clearCart());
+                navigate('/MainLayout');
+            }
+        } catch (error) {
+            console.error('Failed to send order:', error);
+        } finally {
+            setLoading(false);
         }
     };
 
@@ -110,8 +166,10 @@ const CartList = () => {
                             className="btn-next"
                             startIcon={<FastfoodIcon />}
                             sx={{ py: 1.5, px: 2, fontSize: '1.2rem' }}
+                            onClick={handleSendOrder}
+                            disabled={loading}
                         >
-                            إرسال الطلب
+                            {loading ? 'جاري الإرسال...' : 'إرسال الطلب'}
                         </Button>
                     )}
                 </div>
