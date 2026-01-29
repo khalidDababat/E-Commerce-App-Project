@@ -1,0 +1,8 @@
+
+
+
+ALTER TABLE orders
+ADD order_type VARCHAR(30) NOT NULL DEFAULT 'delivery';
+
+ALTER TABLE orders
+ALTER COLUMN order_type DROP DEFAULT;

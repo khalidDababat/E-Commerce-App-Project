@@ -8,7 +8,8 @@ export type Order = {
     customer_address: string;
     customer_area: string;
     note?: string;
-    status: string;
+    status?: string;
+    order_type: string;
     total_price: number;
 };
 
@@ -20,8 +21,8 @@ export class orderStore {
             const conn = await client.connect();
             const sql = ` 
             INSERT INTO orders
-            (user_id, status,  total_price , customer_name, customer_phone,customer_address, customer_area, note)
-            VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
+            (user_id, status,  total_price , customer_name, customer_phone,customer_address, customer_area, note, order_type)
+            VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)
             RETURNING *
         `;
             const res = await conn.query(sql, [
@@ -33,6 +34,7 @@ export class orderStore {
                 o.customer_address,
                 o.customer_area,
                 o.note,
+                o.order_type,
             ]);
             conn.release();
             return res.rows[0];

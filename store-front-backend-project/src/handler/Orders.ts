@@ -55,9 +55,9 @@ const create = async (req: Request, res: Response) => {
             customer_address: req.body.customer_address,
             customer_area: req.body.customer_area,
             note: req.body.note,
+            order_type: req.body.order_type,
         };
         const newOrder = await store.create(o);
-        console.log(newOrder);
         res.json(newOrder);
     } catch (err) {
         res.status(400).json(err);
