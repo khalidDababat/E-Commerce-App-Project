@@ -39,7 +39,7 @@ const Layout = () => {
                 }}
             >
                 <HeaderUser title={title} />
-                <Box sx={{ p: 4, direction: 'rtl' }}>
+                <Box sx={{ p: 4, direction: 'rtl', mt: 8 }}>
                     <Outlet />
                 </Box>
             </Box>
