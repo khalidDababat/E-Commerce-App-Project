@@ -1,0 +1,40 @@
+.order-page {
+    direction: rtl;
+
+    .order-item-card {
+        border-radius: 12px;
+        transition:
+            transform 0.2s,
+            box-shadow 0.2s;
+        overflow: hidden;
+
+        &:hover {
+            cursor: pointer;
+            transform: translateY(-4px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+        }
+
+        .type-chip {
+            font-weight: 600;
+
+            &.pickup {
+                background-color: #e3f2fd;
+                color: #1976d2;
+            }
+
+            &.restaurant {
+                background-color: #f3e5f5;
+                color: #7b1fa2;
+            }
+
+            &.delivery {
+                background-color: #e8f5e9;
+                color: #2e7d32;
+            }
+        }
+
+        .order-time-container {
+            gap: 10px;
+        }
+    }
+}

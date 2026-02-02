@@ -20,6 +20,7 @@ import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 
 import CategoryIcon from '@mui/icons-material/Category';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
+import StoreIcon from '@mui/icons-material/Store';
 
 import Logo from '../../shared/Logo/Logo';
 
@@ -27,7 +28,6 @@ const drawerWidth = 240;
 
 const Sidebar = () => {
     const location = useLocation();
-    //const navigate = useNavigate();
 
     const menuItems = [
         { text: 'لوحة التحكم', icon: <DashboardIcon />, path: '/dashboard' },
@@ -42,7 +42,8 @@ const Sidebar = () => {
             icon: <AddCircleOutlineIcon />,
             path: '/add-feat-food',
         },
-        { text: 'الطلبات', icon: <BookmarkIcon />, path: '#' },
+        { text: 'الطلبات', icon: <BookmarkIcon />, path: '/order' },
+        { text: 'معاينة المتجر', icon: <StoreIcon />, path: '/MainLayout' },
     ];
 
     const handelLogout = () => {

@@ -5,6 +5,8 @@ import Products from '../components/admin_new/Products/Products';
 import CreateProduct from '../components/admin_new/CreateProduct/CreateProduct';
 import Layout from '../components/shared/Layout/Layout';
 import CategoryManagement from '../components/admin_new/category-management/CategoryManagement';
+import MainPage from '../components/admin_new/order/MainPage';
+import ViewOrder from '../components/admin_new/order/ViewOrder';
 
 import MainLayout from '../components/shared/Layout/MainLayout';
 import { authLoader } from './authLoader';
@@ -46,6 +48,14 @@ export const router = createBrowserRouter([
             {
                 path: '/add-feat-food',
                 element: <AddfeatFood />,
+            },
+            {
+                path: '/order',
+                element: <MainPage />,
+            },
+            {
+                path: '/order/:id',
+                element: <ViewOrder />,
             },
         ],
     },

@@ -9,19 +9,19 @@ const Dashboard = () => {
     const stats = [
         {
             title: 'إجمالي المبيعات',
-            value: '$12,340',
+            value: '$0',
             icon: <AttachMoneyIcon fontSize="large" />,
             color: '#4caf50',
         },
         {
             title: 'إجمالي الطلبات',
-            value: '1,250',
+            value: '0',
             icon: <ShoppingCartIcon fontSize="large" />,
             color: '#2196f3',
         },
         {
             title: 'العملاء الجدد',
-            value: '320',
+            value: '0',
             icon: <PeopleIcon fontSize="large" />,
             color: '#ff9800',
         },

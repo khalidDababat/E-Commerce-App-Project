@@ -52,10 +52,6 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({
             image: image || '',
         });
 
-    const cartTotalPrice = useSelector(
-        (state: RootState) => state.cart.totalPrice
-    );
-
     const [quantity, setQuantity] = useState(1);
     const [features, setFeatures] = useState<Feature[]>([]);
     const [loadingFeatures, setLoadingFeatures] = useState(false);

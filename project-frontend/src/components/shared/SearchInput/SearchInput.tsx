@@ -5,7 +5,7 @@ import SearchIcon from '@mui/icons-material/Search';
 const SearchInput = () => {
     return (
         <TextField
-            placeholder="Search Product"
+            placeholder="إبحث عن المنتج"
             variant="outlined"
             size="small"
             sx={{
