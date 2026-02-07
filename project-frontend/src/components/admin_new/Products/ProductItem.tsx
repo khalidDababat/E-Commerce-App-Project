@@ -48,7 +48,7 @@ const ProductItem: React.FC<ProductItemProps> = ({ product, onEdit }) => {
         <div className="product-item">
             <div className="product-item-image-container">
                 <img
-                    src={`${process.env.REACT_APP_BACKEND_UR}${product.image}`}
+                    src={`${process.env.REACT_APP_BACKEND_URL}${product.image}`}
                     alt={product.name}
                 />
             </div>

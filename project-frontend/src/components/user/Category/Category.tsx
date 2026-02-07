@@ -14,10 +14,9 @@ const Category = ({ active, setActive }: CategoryProps) => {
         const fetchCategories = async () => {
             try {
                 const data = await getAllCategories();
-                // Extracting the category names from the returned objects
+
                 const categoryNames = data.map((item: any) => item.category);
 
-                // Merge with "الكل" if it's not already in the list
                 const finalCategories = [
                     'الكل',
                     ...categoryNames.filter((name: string) => name !== 'الكل'),

@@ -42,7 +42,7 @@ const AddfeatFood = () => {
                                     category={feet.name}
                                     onDelete={async () => {
                                         const conferm = window.confirm(
-                                            `Are you sure you want to delete ${feet.name}?`
+                                            `هل أنت متأكد من حذف ميزة ${feet.name}?`
                                         );
                                         if (!conferm) {
                                             return;

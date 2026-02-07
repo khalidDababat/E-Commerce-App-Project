@@ -69,7 +69,7 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({
         setLoadingFeatures(true);
         try {
             const res = await fetch(
-                `${process.env.REACT_APP_BACKEND_UR}/product-features/${id}`
+                `${process.env.REACT_APP_BACKEND_URL}/product-features/${id}`
             );
             const data = await res.json();
             setFeatures(data);
@@ -113,7 +113,7 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({
             <DialogContent className="dialog-content">
                 <Box className="image-container">
                     <img
-                        src={`${process.env.REACT_APP_BACKEND_UR}${image}`}
+                        src={`${process.env.REACT_APP_BACKEND_URL}${image}`}
                         alt={name}
                         className="product-image"
                     />

@@ -20,7 +20,7 @@ export interface ProductOrderData {
 
 export const createOrder = async (orderData: OrderData) => {
     try {
-        const res = await fetch(`${process.env.REACT_APP_BACKEND_UR}/orders`, {
+        const res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/orders`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -51,7 +51,7 @@ export const createOrder = async (orderData: OrderData) => {
 export const addProductToOrder = async (poData: ProductOrderData) => {
     try {
         const res = await fetch(
-            `${process.env.REACT_APP_BACKEND_UR}/productOrder`,
+            `${process.env.REACT_APP_BACKEND_URL}/productOrder`,
             {
                 method: 'POST',
                 headers: {
@@ -75,7 +75,7 @@ export const addProductToOrder = async (poData: ProductOrderData) => {
 
 export const getOrders = async () => {
     try {
-        const res = await fetch(`${process.env.REACT_APP_BACKEND_UR}/orders`);
+        const res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/orders`);
 
         if (!res.ok) {
             console.error('Failed to fetch orders');
@@ -93,7 +93,7 @@ export const getOrders = async () => {
 export const getOrderById = async (id: number) => {
     try {
         const res = await fetch(
-            `${process.env.REACT_APP_BACKEND_UR}/dashboard/orders/${id}`,
+            `${process.env.REACT_APP_BACKEND_URL}/dashboard/orders/${id}`,
             {
                 method: 'GET',
                 headers: {
@@ -119,7 +119,7 @@ export const getOrderById = async (id: number) => {
 export const updateOrderStatus = async (id: number, status: string) => {
     try {
         const res = await fetch(
-            `${process.env.REACT_APP_BACKEND_UR}/orders/${id}`,
+            `${process.env.REACT_APP_BACKEND_URL}/orders/${id}`,
             {
                 method: 'PUT',
                 headers: {
@@ -147,7 +147,7 @@ export const updateOrderStatus = async (id: number, status: string) => {
 export const deleteOrder = async (id: number) => {
     try {
         const res = await fetch(
-            `${process.env.REACT_APP_BACKEND_UR}/orders/${id}`,
+            `${process.env.REACT_APP_BACKEND_URL}/orders/${id}`,
             {
                 method: 'DELETE',
                 headers: {

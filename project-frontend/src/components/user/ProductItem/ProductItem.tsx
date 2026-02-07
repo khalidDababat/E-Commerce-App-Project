@@ -63,7 +63,7 @@ const ProductItem: React.FC<ProductItemProps> = ({
                 </div>
                 <div className="product-image">
                     <img
-                        src={`${process.env.REACT_APP_BACKEND_UR}${image}`}
+                        src={`${process.env.REACT_APP_BACKEND_URL}${image}`}
                         alt={name}
                     />
                 </div>

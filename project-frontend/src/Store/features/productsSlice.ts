@@ -4,7 +4,9 @@ export const fetchProduct = createAsyncThunk(
     'products/fetchProducts',
 
     async () => {
-        const res = await fetch(`${process.env.REACT_APP_BACKEND_UR}/products`);
+        const res = await fetch(
+            `${process.env.REACT_APP_BACKEND_URL}/products`
+        );
         const data = await res.json();
         return data;
     }
@@ -15,7 +17,7 @@ export const deleteProduct = createAsyncThunk(
 
     async (productId: string) => {
         await fetch(
-            `${process.env.REACT_APP_BACKEND_UR}/products/${productId}`,
+            `${process.env.REACT_APP_BACKEND_URL}/products/${productId}`,
             {
                 method: 'DELETE',
                 headers: {

@@ -115,7 +115,7 @@ const Sidebar = () => {
                     onClick={handelLogout}
                     sx={{ borderRadius: 2 }}
                 >
-                    Logout
+                    تسجيل الخروج
                 </Button>
             </Box>
         </Drawer>

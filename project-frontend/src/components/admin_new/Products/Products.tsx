@@ -64,7 +64,7 @@ const Products = () => {
                     variant="contained"
                     startIcon={<AddIcon />}
                     onClick={addProduct}
-                    sx={{ borderRadius: 1 }}
+                    sx={{ gap: 1, borderRadius: 1 }}
                 >
                     إضافة منتج جديد
                 </Button>

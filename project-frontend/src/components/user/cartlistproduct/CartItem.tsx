@@ -30,7 +30,7 @@ const CartItem: React.FC<CartItemProps> = ({
         >
             <Box
                 component="img"
-                src={`${process.env.REACT_APP_BACKEND_UR}${item.image}`}
+                src={`${process.env.REACT_APP_BACKEND_URL}${item.image}`}
                 alt={item.name}
                 sx={{
                     width: 80,

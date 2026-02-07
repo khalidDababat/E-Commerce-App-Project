@@ -4,7 +4,7 @@ export const createNewProduct = async (formData: FormData) => {
     try {
         const token = localStorage.getItem('token');
         const response = await fetch(
-            `${process.env.REACT_APP_BACKEND_UR}/products`,
+            `${process.env.REACT_APP_BACKEND_URL}/products`,
             {
                 method: 'POST',
                 headers: {
@@ -15,9 +15,9 @@ export const createNewProduct = async (formData: FormData) => {
         );
 
         if (!response.ok) {
-            toast.error('create Product failed!');
+            toast.error('فشل إضافة المنتج');
         } else {
-            toast.success('create Product successfully!');
+            toast.success('تم إضافة المنتج بنجاح');
         }
         const data = await response.json();
         return data;

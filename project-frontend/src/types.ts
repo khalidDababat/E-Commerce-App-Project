@@ -7,3 +7,8 @@ export type Product = {
     image?: string;
     features?: string;
 };
+
+export interface Feature {
+    id: number | string;
+    name: string;
+}

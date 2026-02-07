@@ -199,7 +199,7 @@ const ProductForm: React.FC<ProductFormProps> = ({
                                     InputProps={{
                                         startAdornment: (
                                             <InputAdornment position="start">
-                                                $
+                                                ₪
                                             </InputAdornment>
                                         ),
                                     }}

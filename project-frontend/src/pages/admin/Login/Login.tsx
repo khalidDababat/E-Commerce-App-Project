@@ -30,7 +30,7 @@ const Login = () => {
             const payload: LoginPayload = { email, password };
 
             const res: Response = await fetch(
-                `${process.env.REACT_APP_BACKEND_UR}/users/authenticate`,
+                `${process.env.REACT_APP_BACKEND_URL}/users/authenticate`,
                 {
                     method: 'POST',
                     headers: { 'content-Type': 'application/json' },

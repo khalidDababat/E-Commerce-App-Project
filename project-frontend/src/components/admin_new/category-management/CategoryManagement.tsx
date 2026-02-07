@@ -46,7 +46,7 @@ const CategoryManagement = () => {
                                     category={cat.category}
                                     onDelete={async () => {
                                         const conferm = window.confirm(
-                                            `Are you sure you want to delete ${cat.category}?`
+                                            `هل انت متاكد من حذف ${cat.category}?`
                                         );
                                         if (!conferm) {
                                             return;

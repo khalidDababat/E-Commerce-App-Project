@@ -6,7 +6,7 @@ export const handleAddFeetFood = async (
 ) => {
     e.preventDefault();
 
-    const res = await fetch(`${process.env.REACT_APP_BACKEND_UR}/features`, {
+    const res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/features`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -29,7 +29,7 @@ export const handleAddFeetFood = async (
 
 export const deleteFeetFood = async (id: string) => {
     const res = await fetch(
-        `${process.env.REACT_APP_BACKEND_UR}/features/${id}`,
+        `${process.env.REACT_APP_BACKEND_URL}/features/${id}`,
         {
             method: 'DELETE',
             headers: {
@@ -52,7 +52,7 @@ export const deleteFeetFood = async (id: string) => {
 };
 
 export const getAllFeatuers = async () => {
-    const res = await fetch(`${process.env.REACT_APP_BACKEND_UR}/features`, {
+    const res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/features`, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
@@ -68,7 +68,7 @@ export const assignFeatureToProduct = async (
     featureId: number
 ) => {
     const res = await fetch(
-        `${process.env.REACT_APP_BACKEND_UR}/product-features`,
+        `${process.env.REACT_APP_BACKEND_URL}/product-features`,
         {
             method: 'POST',
             headers: {
@@ -91,7 +91,7 @@ export const assignFeatureToProduct = async (
 //getFeatguresforProductId
 export const getFeatguresforProductId = async (id: string) => {
     const res = await fetch(
-        `${process.env.REACT_APP_BACKEND_UR}/product-features/${id}`,
+        `${process.env.REACT_APP_BACKEND_URL}/product-features/${id}`,
         {
             method: 'GET',
             headers: {
@@ -103,4 +103,25 @@ export const getFeatguresforProductId = async (id: string) => {
 
     const data = await res.json();
     return data;
+};
+
+export const removeFeatureFromProduct = async (
+    productId: number,
+    featureId: number
+) => {
+    const res = await fetch(
+        `${process.env.REACT_APP_BACKEND_URL}/product-features/${productId}/${featureId}`,
+        {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${localStorage.getItem('token')}`,
+            },
+        }
+    );
+
+    if (!res.ok) {
+        toast.error('Failed to remove feature');
+    }
+    return await res.json();
 };

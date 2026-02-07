@@ -6,7 +6,7 @@ export const handleAddCategory = async (
 ) => {
     e.preventDefault();
 
-    const res = await fetch(`${process.env.REACT_APP_BACKEND_UR}/categories`, {
+    const res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/categories`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -29,7 +29,7 @@ export const handleAddCategory = async (
 
 export const deleteCategory = async (id: string) => {
     const res = await fetch(
-        `${process.env.REACT_APP_BACKEND_UR}/categories/${id}`,
+        `${process.env.REACT_APP_BACKEND_URL}/categories/${id}`,
         {
             method: 'DELETE',
             headers: {
@@ -52,12 +52,28 @@ export const deleteCategory = async (id: string) => {
 };
 
 export const getAllCategories = async () => {
-    const res = await fetch(`${process.env.REACT_APP_BACKEND_UR}/categories`, {
+    const res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/categories`, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
         },
     });
+
+    const data = await res.json();
+    return data;
+};
+
+export const getProductsByCategoryName = async (categoryName: string) => {
+    const res = await fetch(
+        `${process.env.REACT_APP_BACKEND_URL}/productsByCategoryName`,
+        {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ category: categoryName }),
+        }
+    );
 
     const data = await res.json();
     return data;

@@ -29,7 +29,7 @@ const UpdateProduct: React.FC<UpdateProductProps> = ({
             }
 
             const res = await fetch(
-                `${process.env.REACT_APP_BACKEND_UR}/products/${product.id}`,
+                `${process.env.REACT_APP_BACKEND_URL}/products/${product.id}`,
                 {
                     method: 'PUT',
                     body: formData,
@@ -37,10 +37,10 @@ const UpdateProduct: React.FC<UpdateProductProps> = ({
             );
 
             if (!res.ok) {
-                toast.error('Update failed Product');
+                toast.error('فشل في تحديث بيانات المنتج');
             } else {
                 onUpdateSuccess();
-                toast.success('Update success Product');
+                toast.success('تم تحديث بيانات المنتج بنجاح');
             }
         } catch (error) {
             console.log('Update failed Product', error);
@@ -76,7 +76,7 @@ const UpdateProduct: React.FC<UpdateProductProps> = ({
                         categoryName: product.category,
                         stock: product.stock,
                         image: product.image
-                            ? `${process.env.REACT_APP_BACKEND_UR}${product.image}`
+                            ? `${process.env.REACT_APP_BACKEND_URL}${product.image}`
                             : '',
                         isActive: product.isActive,
                     }}
