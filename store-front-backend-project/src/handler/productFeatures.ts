@@ -39,15 +39,38 @@ const getFeaturesByProduct = async (req: Request, res: Response) => {
             return;
         }
         const features = await store.getFeaturesByProduct(productId);
-        res.json(features);
+        return res.json(features);
     } catch (err) {
-        res.status(400).json(err);
+        return res.status(400).json(err);
+    }
+};
+
+// delete feature from product
+const deleteFeatureFromProduct = async (req: Request, res: Response) => {
+    try {
+        const productId = parseInt(req.params['product_id'] as string);
+        const featureId = parseInt(req.params['feature_id'] as string);
+
+        if (isNaN(productId) || isNaN(featureId)) {
+            return res.status(400).json({
+                error: 'product_id and feature_id must be numbers',
+            });
+        }
+
+        const deletedPF = await store.delete(productId, featureId);
+        return res.json(deletedPF);
+    } catch (err) {
+        return res.status(400).json(err);
     }
 };
 
 const ProductFeatureRoutes = (app: express.Application) => {
     app.post('/product-features', assignFeatureToProduct);
     app.get('/product-features/:product_id', getFeaturesByProduct);
+    app.delete(
+        '/product-features/:product_id/:feature_id',
+        deleteFeatureFromProduct
+    );
 };
 
 export default ProductFeatureRoutes;

@@ -36,4 +36,18 @@ export class productFeatureStore {
         conn.release();
         return res.rows;
     }
+
+    async delete(productId: number, featureId: number): Promise<ProductFeature> {
+        if (!client) throw new Error('Database client not initialized');
+        // '@ts-expect-error
+        const conn = await client.connect();
+        const sql = `
+            DELETE FROM product_features 
+            WHERE product_id = $1 AND feature_id = $2
+            RETURNING *
+        `;
+        const res = await conn.query(sql, [productId, featureId]);
+        conn.release();
+        return res.rows[0];
+    }
 }
