@@ -3,12 +3,13 @@ export type Product = {
     name: string;
     price: number;
     description?: string;
-    category: string;
+    //category: string;
+    category_id: number;
     image?: string;
     features?: string;
 };
 
 export interface Feature {
-    id: number | string;
+    id: number;
     name: string;
 }

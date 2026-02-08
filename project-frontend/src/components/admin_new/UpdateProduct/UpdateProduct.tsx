@@ -72,7 +72,7 @@ const UpdateProduct: React.FC<UpdateProductProps> = ({
                         name: product.name,
                         price: product.price,
                         description: product.description,
-                        categoryId: product.categoryId,
+                        category_id: product.category_id,
                         categoryName: product.category,
                         stock: product.stock,
                         image: product.image

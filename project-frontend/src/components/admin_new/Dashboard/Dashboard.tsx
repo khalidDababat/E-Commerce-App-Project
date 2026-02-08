@@ -1,31 +1,50 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Grid, Paper, Typography, Box } from '@mui/material';
 import TrendingUpIcon from '@mui/icons-material/TrendingUp';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import PeopleIcon from '@mui/icons-material/People';
 import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
 
+import { getDashboardData, DashboardData } from '../../api/dashboard';
+
 const Dashboard = () => {
+    const [data, setData] = useState<DashboardData | null>(null);
     const stats = [
         {
-            title: 'إجمالي المبيعات',
-            value: '$0',
+            title: 'عدد المنتجات',
+            value: `${data?.products_count || 0}`,
             icon: <AttachMoneyIcon fontSize="large" />,
             color: '#4caf50',
         },
+
         {
             title: 'إجمالي الطلبات',
-            value: '0',
+            value: `${data?.orders_count || 0}`,
             icon: <ShoppingCartIcon fontSize="large" />,
             color: '#2196f3',
         },
         {
-            title: 'العملاء الجدد',
-            value: '0',
+            title: 'عدد العملاء',
+            value: `${data?.orders_count || 0}`,
             icon: <PeopleIcon fontSize="large" />,
             color: '#ff9800',
         },
     ];
+
+    useEffect(() => {
+        const fetchDashboardData = async () => {
+            try {
+                const data = await getDashboardData();
+                if (data) {
+                    setData(data);
+                }
+            } catch (error) {
+                console.error(error);
+            }
+        };
+
+        fetchDashboardData();
+    }, []);
 
     return (
         <Box>

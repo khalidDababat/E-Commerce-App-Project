@@ -5,8 +5,6 @@ import {
     Button,
     Grid,
     Typography,
-    Paper,
-    Stack,
     InputAdornment,
     FormControl,
     FormLabel,
@@ -30,6 +28,7 @@ interface ProductFormProps {
         price?: string;
         description?: string;
         categoryId?: number | string;
+        category_id?: number | string;
         categoryName?: string;
         stock?: number;
         image?: string;
@@ -61,12 +60,20 @@ const ProductForm: React.FC<ProductFormProps> = ({
     const [categoriesList, setCategoriesList] = useState<any[]>([]);
 
     useEffect(() => {
+        if (initialData.image) {
+            setImagePreview(initialData.image);
+        }
+    }, [initialData.image]);
+
+    useEffect(() => {
         const fetchCategories = async () => {
             try {
                 const data = await getAllCategories();
                 setCategoriesList(data);
 
-                if (initialData.categoryId !== undefined) {
+                if (initialData.category_id !== undefined) {
+                    setCategoryId(Number(initialData.category_id));
+                } else if (initialData.categoryId !== undefined) {
                     setCategoryId(Number(initialData.categoryId));
                 } else if (initialData.categoryName) {
                     const found = data.find(
@@ -82,7 +89,11 @@ const ProductForm: React.FC<ProductFormProps> = ({
             }
         };
         fetchCategories();
-    }, [initialData.categoryName]);
+    }, [
+        initialData.categoryName,
+        initialData.categoryId,
+        initialData.category_id,
+    ]);
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
@@ -93,7 +104,9 @@ const ProductForm: React.FC<ProductFormProps> = ({
         formData.append('categoryId', categoryId.toString());
         formData.append('stock', stock.toString());
 
-        if (file) formData.append('image', file);
+        if (file) {
+            formData.append('image', file);
+        }
         formData.append('isActive', isActive.toString());
 
         onSubmit(formData);
@@ -108,30 +121,11 @@ const ProductForm: React.FC<ProductFormProps> = ({
     };
 
     return (
-        <Box sx={{ p: 1 }}>
+        <Box className="product-form-container">
             <form onSubmit={handleSubmit}>
-                <Grid container spacing={2} sx={{ textAlign: 'right' }}>
-                    <Grid size={{ xs: 12, md: 4 }}>
-                        <Box
-                            sx={{
-                                border: '2px dashed',
-                                borderColor: 'divider',
-                                borderRadius: 2,
-                                p: 2,
-                                textAlign: 'center',
-                                cursor: 'pointer',
-                                minHeight: 150,
-                                display: 'flex',
-                                flexDirection: 'column',
-                                justifyContent: 'center',
-                                alignItems: 'center',
-                                '&:hover': {
-                                    borderColor: 'primary.main',
-                                    bgcolor: 'action.hover',
-                                },
-                            }}
-                            component="label"
-                        >
+                <Box className="form-grid">
+                    <Box className="image-section">
+                        <Box className="image-upload-box" component="label">
                             <input
                                 accept="image/*"
                                 type="file"
@@ -143,38 +137,27 @@ const ProductForm: React.FC<ProductFormProps> = ({
                                     component="img"
                                     src={imagePreview}
                                     alt="Preview"
-                                    sx={{
-                                        width: '100%',
-                                        maxHeight: 180,
-                                        objectFit: 'contain',
-                                        borderRadius: 1,
-                                    }}
+                                    className="preview-img"
                                 />
                             ) : (
                                 <>
-                                    <CloudUploadIcon
-                                        sx={{
-                                            fontSize: 40,
-                                            color: 'text.secondary',
-                                            mb: 1,
-                                        }}
-                                    />
+                                    <CloudUploadIcon className="upload-icon" />
                                     <Typography
+                                        className="upload-text"
                                         variant="body2"
-                                        color="text.secondary"
                                     >
                                         اضغط لتحميل الصورة
                                     </Typography>
                                 </>
                             )}
                         </Box>
-                    </Grid>
+                    </Box>
 
-                    <Grid size={{ xs: 12, md: 8 }}>
-                        <Grid container spacing={1.5}>
+                    <Box className="fields-section">
+                        <Grid container spacing={2}>
                             <Grid size={{ xs: 12 }}>
                                 <TextField
-                                    label=" إسم المنتج"
+                                    label="إسم المنتج"
                                     value={nameProduct}
                                     onChange={(e) =>
                                         setNameProduct(e.target.value)
@@ -198,7 +181,10 @@ const ProductForm: React.FC<ProductFormProps> = ({
                                     size="small"
                                     InputProps={{
                                         startAdornment: (
-                                            <InputAdornment position="start">
+                                            <InputAdornment
+                                                position="start"
+                                                sx={{ paddingRight: 1 }}
+                                            >
                                                 ₪
                                             </InputAdornment>
                                         ),
@@ -216,6 +202,7 @@ const ProductForm: React.FC<ProductFormProps> = ({
                                     type="number"
                                     fullWidth
                                     size="small"
+                                    sx={{ paddingRight: 1 }}
                                 />
                             </Grid>
 
@@ -250,6 +237,7 @@ const ProductForm: React.FC<ProductFormProps> = ({
                             <Grid size={{ xs: 6 }}>
                                 <FormControl fullWidth size="small">
                                     <RadioGroup
+                                        className="status-radio-group"
                                         row
                                         value={isActive.toString()}
                                         onChange={(e) =>
@@ -257,7 +245,6 @@ const ProductForm: React.FC<ProductFormProps> = ({
                                                 e.target.value === 'true'
                                             )
                                         }
-                                        sx={{ justifyContent: 'center' }}
                                     >
                                         <FormControlLabel
                                             value="true"
@@ -281,41 +268,34 @@ const ProductForm: React.FC<ProductFormProps> = ({
                                         setDescription(e.target.value)
                                     }
                                     multiline
-                                    rows={2}
+                                    rows={3}
                                     fullWidth
                                     size="small"
                                 />
                             </Grid>
                         </Grid>
-                    </Grid>
 
-                    <Grid size={{ xs: 12 }}>
-                        <Stack
-                            direction="row"
-                            spacing={2}
-                            justifyContent="flex-end"
-                            sx={{ mt: 1 }}
-                        >
+                        <Box className="action-stack">
                             <Button
+                                className="btn"
                                 variant="outlined"
                                 color="secondary"
                                 startIcon={<CancelIcon />}
                                 onClick={onCancel}
-                                size="large"
                             >
-                                الغاء
+                                إلغاء
                             </Button>
                             <Button
+                                className="btn"
                                 type="submit"
                                 variant="contained"
                                 startIcon={<SaveIcon />}
-                                size="large"
                             >
                                 {submitLabel}
                             </Button>
-                        </Stack>
-                    </Grid>
-                </Grid>
+                        </Box>
+                    </Box>
+                </Box>
             </form>
         </Box>
     );

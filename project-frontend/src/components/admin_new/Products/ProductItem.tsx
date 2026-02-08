@@ -6,6 +6,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import { useDispatch } from 'react-redux';
 import { deleteProduct } from '../../../Store/features/productsSlice';
 
+import getCategoryName from '../../../utilities/getCategoryName';
 import FeatureSelectionModal from './FeatureSelectionModal';
 import { getFeatguresforProductId } from '../../api/FeaturesFood';
 import { useEffect } from 'react';
@@ -19,19 +20,25 @@ const ProductItem: React.FC<ProductItemProps> = ({ product, onEdit }) => {
     const dispatch = useDispatch<any>();
     const [showModel, setShowModel] = useState<boolean>(false);
     const [productFeatures, setProductFeatures] = useState<any[]>([]);
+    const [categoryName, setCategoryName] = useState<string>('');
 
     useEffect(() => {
-        const fetchProductFeatures = async () => {
+        const fetchData = async () => {
             try {
-                const data = await getFeatguresforProductId(product.id);
-                setProductFeatures(data);
+                const features = await getFeatguresforProductId(product.id);
+                setProductFeatures(features);
+
+                const name = await getCategoryName(product.category_id);
+                if (name) {
+                    setCategoryName(name);
+                }
             } catch (error) {
-                console.error('Failed to fetch product features:', error);
+                console.error('Failed to fetch data for product:', error);
             }
         };
 
-        fetchProductFeatures();
-    }, [product.id]);
+        fetchData();
+    }, [product.id, product.category_id]);
 
     const handelDeleteProduct = async (id: string) => {
         const confirmDelete = window.confirm('هل انت متأكد من حذف هذا المنتج؟');
@@ -58,6 +65,9 @@ const ProductItem: React.FC<ProductItemProps> = ({ product, onEdit }) => {
             </div>
             <div className="product-item-description">
                 <p>{product.description}</p>
+            </div>
+            <div className="product-item-category">
+                <p>{categoryName}</p>
             </div>
 
             <div className="product-item-featuers">
