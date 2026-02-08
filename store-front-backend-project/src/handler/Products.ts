@@ -27,12 +27,12 @@ const create = async (req: Request, res: Response) => {
     try {
         const Product: Omit<Product, 'id'> = {
             name: req.body.name,
-            price: req.body.price,
+            price: Number(req.body.price),
             description: req.body.description,
-            category_id: req.body.category_id,
+            category_id: req.body.categoryId,
             image: req.file ? `/uploads/${req.file.filename}` : '',
-            stock: req.body.stock,
-            is_active: req.body.is_active,
+            stock: Number(req.body.stock) || 0,
+            is_active: req.body.isActive === 'true',
         };
 
         const newProduct = await store.create(Product);
@@ -84,14 +84,14 @@ const update = async (req: Request, res: Response) => {
         }
 
         const product: Product = {
-            id: id as string,
+            id: id,
             name: req.body.name,
-            price: req.body.price,
+            price: Number(req.body.price),
             description: req.body.description,
-            category_id: req.body.category,
+            category_id: req.body.categoryId,
             image: req.file ? `/uploads/${req.file.filename}` : req.body.existingImage,
-            stock: req.body.stock,
-            is_active: req.body.is_active,
+            stock: Number(req.body.stock) || 0,
+            is_active: req.body.isActive === 'true',
         };
 
         const updatedProduct = await store.update(product);
@@ -99,6 +99,7 @@ const update = async (req: Request, res: Response) => {
             message: 'Product updated successfully',
             dataUpdate: updatedProduct,
         });
+
     } catch (err) {
         res.status(400);
         res.json(err);
