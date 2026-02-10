@@ -30,7 +30,12 @@ const Products = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch<any>();
 
+    const [searchQuery, setSearchQuery] = useState('');
     const { products, loading } = useProducts();
+
+    const filteredProducts = products.filter((p: any) =>
+        p.name.toLowerCase().startsWith(searchQuery.toLowerCase())
+    );
 
     const addProduct = () => {
         navigate('/createProduct');
@@ -59,7 +64,10 @@ const Products = () => {
                 alignItems="center"
                 mb={4}
             >
-                <SearchInput />
+                <SearchInput
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                />
                 <Button
                     variant="contained"
                     startIcon={<AddIcon />}
@@ -74,9 +82,9 @@ const Products = () => {
                 <Box sx={{ display: 'flex', justifyContent: 'center', mt: 25 }}>
                     <CircularProgress />
                 </Box>
-            ) : products.length > 0 ? (
+            ) : filteredProducts.length > 0 ? (
                 <Grid container spacing={3}>
-                    {products.map((item: any) => (
+                    {filteredProducts.map((item: any) => (
                         <Grid
                             key={item.id}
                             size={{ xs: 12, sm: 6, md: 4, lg: 3 }}
