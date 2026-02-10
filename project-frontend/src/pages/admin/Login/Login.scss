@@ -10,8 +10,40 @@
     .form-section {
         padding: 20px;
 
+
         .welcome-text {
             text-align: center;
+        }
+
+        .login-form {
+            direction: rtl;
+
+            .forget-password {
+                text-align: right;
+                margin: 10px 0px;
+                font-size: 19px;
+
+                a {
+                    color: #1f1f57;
+                    text-decoration: none;
+
+                    &:hover {
+                        text-decoration: underline;
+                    }
+                }
+            }
+
+            .submit-btn {
+                margin-top: 20px;
+                font-size: 20px;
+                color: white; // Changed from black for better visibility on blue button
+                background-color: #000051;
+                font-weight: bold;
+
+                &:hover {
+                    background-color: #494991;
+                }
+            }
         }
     }
 }

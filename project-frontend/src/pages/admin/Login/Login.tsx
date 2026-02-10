@@ -39,7 +39,7 @@ const Login = () => {
             );
 
             if (!res.ok) {
-                setError('Invalid email or password');
+                setError('البريد الإلكتروني أو كلمة المرور غير صحيحة');
                 return;
             }
             const data = await res.json();
@@ -47,10 +47,14 @@ const Login = () => {
             localStorage.setItem('token', data.token);
             navigate('/dashboard');
         } catch (err) {
-            setError('Server connection error');
+            setError('خطأ في الاتصال بالخادم');
             console.error(err);
         }
     };
+
+
+
+
     return (
         <div className="login-page">
             <Paper className="login-card" elevation={8}>
@@ -60,21 +64,27 @@ const Login = () => {
                     </div>
 
                     <div className="welcome-text">
-                        <h1>Welcome back!</h1>
-                        <p>Please enter your details to sign in.</p>
+                        <h1>مرحبا بعودتك</h1>
+                        <p>الرجاء إدخال التفاصيل الخاصة بك لتسجيل الدخول.</p>
                     </div>
 
                     <Box
                         component="form"
                         onSubmit={handelLogin}
                         className="login-form"
+                        dir="rtl"
                     >
+                        {error && (
+                            <Alert severity="error" sx={{ mt: 1, my: 1 }}>
+                                {error}
+                            </Alert>
+                        )}
                         <TextField
                             margin="normal"
                             required
                             fullWidth
                             id="email"
-                            label="Email Address"
+                            label="البريد الإلكتروني"
                             name="email"
                             autoComplete="email"
                             autoFocus
@@ -93,7 +103,7 @@ const Login = () => {
                             required
                             fullWidth
                             name="password"
-                            label="Password"
+                            label="كلمة المرور"
                             type="password"
                             id="password"
                             autoComplete="current-password"
@@ -108,11 +118,11 @@ const Login = () => {
                             }}
                         />
 
-                        {error && (
-                            <Alert severity="error" sx={{ mt: 1, my: 1 }}>
-                                {error}
-                            </Alert>
-                        )}
+                        <div className="forget-password">
+                            <Link to="/forget-password">نسيت كلمة المرور؟</Link>
+                        </div>
+
+
 
                         <Button
                             type="submit"
@@ -120,7 +130,7 @@ const Login = () => {
                             variant="contained"
                             className="submit-btn"
                         >
-                            Log In
+                            تسجيل الدخول
                         </Button>
                     </Box>
                 </div>

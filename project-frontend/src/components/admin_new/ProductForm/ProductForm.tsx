@@ -124,34 +124,7 @@ const ProductForm: React.FC<ProductFormProps> = ({
         <Box className="product-form-container">
             <form onSubmit={handleSubmit}>
                 <Box className="form-grid">
-                    <Box className="image-section">
-                        <Box className="image-upload-box" component="label">
-                            <input
-                                accept="image/*"
-                                type="file"
-                                hidden
-                                onChange={handleFileChange}
-                            />
-                            {imagePreview ? (
-                                <Box
-                                    component="img"
-                                    src={imagePreview}
-                                    alt="Preview"
-                                    className="preview-img"
-                                />
-                            ) : (
-                                <>
-                                    <CloudUploadIcon className="upload-icon" />
-                                    <Typography
-                                        className="upload-text"
-                                        variant="body2"
-                                    >
-                                        اضغط لتحميل الصورة
-                                    </Typography>
-                                </>
-                            )}
-                        </Box>
-                    </Box>
+
 
                     <Box className="fields-section">
                         <Grid container spacing={2}>
@@ -293,6 +266,35 @@ const ProductForm: React.FC<ProductFormProps> = ({
                             >
                                 {submitLabel}
                             </Button>
+                        </Box>
+                    </Box>
+
+                    <Box className="image-section">
+                        <Box className="image-upload-box" component="label">
+                            <input
+                                accept="image/*"
+                                type="file"
+                                hidden
+                                onChange={handleFileChange}
+                            />
+                            {imagePreview ? (
+                                <Box
+                                    component="img"
+                                    src={imagePreview}
+                                    alt="Preview"
+                                    className="preview-img"
+                                />
+                            ) : (
+                                <>
+                                    <CloudUploadIcon className="upload-icon" />
+                                    <Typography
+                                        className="upload-text"
+                                        variant="body2"
+                                    >
+                                        اضغط لتحميل الصورة
+                                    </Typography>
+                                </>
+                            )}
                         </Box>
                     </Box>
                 </Box>

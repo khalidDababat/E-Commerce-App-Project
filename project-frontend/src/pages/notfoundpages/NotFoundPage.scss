@@ -1,0 +1,94 @@
+.not-found-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 80vh;
+    padding: 20px;
+    text-align: center;
+    background-color: #f9f9f9;
+
+    .not-found-content {
+        max-width: 600px;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+        animation: fadeIn 0.8s ease-out;
+
+        .not-found-image {
+            width: 300px;
+            max-width: 80%;
+            height: auto;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+
+            &:hover {
+                transform: scale(1.05);
+            }
+        }
+
+        h1 {
+            font-size: 2rem;
+            color: #333;
+            margin: 0;
+            font-family: 'Outfit', sans-serif;
+        }
+
+        p {
+            font-size: 1.1rem;
+            color: #666;
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        .home-link {
+            display: inline-block;
+            padding: 12px 30px;
+            background-color: #000051;
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(255, 87, 34, 0.3);
+
+            &:hover {
+                background-color: #494991;
+                transform: translateY(-2px);
+                box-shadow: 0 6px 20px rgba(20, 45, 184, 0.4);
+            }
+        }
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (max-width: 480px) {
+    .not-found-container {
+        .not-found-content {
+            .not-found-image {
+                width: 200px;
+            }
+
+            h1 {
+                font-size: 1.5rem;
+            }
+
+            p {
+                font-size: 1rem;
+            }
+        }
+    }
+}

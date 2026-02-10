@@ -13,6 +13,7 @@ import { authLoader } from './authLoader';
 import AddfeatFood from '../components/admin_new/addfeatfood/addfeatFood';
 import CartList from '../components/user/cartlistproduct/CartList';
 import FavoriteList from '../components/user/favoriteproducts/FavoriteList';
+import NotFoundPage from '../pages/notfoundpages/NotFoundPage';
 
 export const router = createBrowserRouter([
     {
@@ -24,6 +25,7 @@ export const router = createBrowserRouter([
     { path: '/favorite', element: <FavoriteList /> },
     { path: '/cartlist', element: <CartList /> },
     { path: '/login', element: <Login /> },
+    { path: "*", element: <NotFoundPage /> },
 
     {
         element: <Layout />,
