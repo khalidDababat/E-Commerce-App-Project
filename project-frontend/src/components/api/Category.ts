@@ -40,9 +40,9 @@ export const deleteCategory = async (id: string) => {
     );
 
     if (!res.ok) {
-        toast.error('Failed to delete category', { position: 'top-center' });
+        toast.error('فشل حذف الصنف', { position: 'top-center' });
     } else {
-        toast.success('Category deleted successfully', {
+        toast.success('تم حذف الصنف بنجاح', {
             position: 'top-center',
         });
     }

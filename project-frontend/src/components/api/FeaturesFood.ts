@@ -16,9 +16,9 @@ export const handleAddFeetFood = async (
     });
 
     if (!res.ok) {
-        toast.error('Failed to add Featuer', { position: 'top-center' });
+        toast.error('فشل إضافة الميزة', { position: 'top-center' });
     } else {
-        toast.success('Featuer added successfully', {
+        toast.success('تم إضافة الميزة بنجاح', {
             position: 'top-center',
         });
     }
@@ -40,9 +40,9 @@ export const deleteFeetFood = async (id: string) => {
     );
 
     if (!res.ok) {
-        toast.error('Failed to delete Featuer', { position: 'top-center' });
+        toast.error('فشل حذف الميزة', { position: 'top-center' });
     } else {
-        toast.success('Featuer deleted successfully', {
+        toast.success('تم حذف الميزة بنجاح', {
             position: 'top-center',
         });
     }
@@ -121,7 +121,7 @@ export const removeFeatureFromProduct = async (
     );
 
     if (!res.ok) {
-        toast.error('Failed to remove feature');
+        toast.error('فشل حذف الميزة');
     }
     return await res.json();
 };
