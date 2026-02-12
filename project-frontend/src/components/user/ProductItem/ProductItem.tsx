@@ -14,6 +14,7 @@ interface ProductItemProps {
     name: string;
     price: number;
     image?: string;
+    description?: string;
 }
 
 const ProductItem: React.FC<ProductItemProps> = ({
@@ -21,6 +22,7 @@ const ProductItem: React.FC<ProductItemProps> = ({
     name,
     price,
     image,
+    description,
 }) => {
     const { isFavorite, handleToggleFavorite, handleAddToCart } =
         useProductActions({
@@ -28,6 +30,7 @@ const ProductItem: React.FC<ProductItemProps> = ({
             name,
             price,
             image: image || '',
+            description,
         });
 
     const [isModalOpen, setIsModalOpen] = React.useState(false);
@@ -75,6 +78,7 @@ const ProductItem: React.FC<ProductItemProps> = ({
                 name={name}
                 price={price}
                 image={image}
+                description={description}
             />
         </>
     );

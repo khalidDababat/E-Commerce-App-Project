@@ -5,6 +5,7 @@ interface CartItem {
     name: string;
     price: number;
     image: string;
+    description?: string;
     quantity: number;
 }
 
@@ -26,12 +27,10 @@ const loadState = (): CartState => {
 };
 
 const saveState = (state: CartState) => {
-    try {
-        const serializedState = JSON.stringify(state);
-        localStorage.setItem('cart', serializedState);
-    } catch (err) {
-        // Ignore write errors
-    }
+
+    const serializedState = JSON.stringify(state);
+    localStorage.setItem('cart', serializedState);
+
 };
 
 const initialState: CartState = loadState();

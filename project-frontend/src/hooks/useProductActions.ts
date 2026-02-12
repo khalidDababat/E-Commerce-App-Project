@@ -10,6 +10,7 @@ interface Product {
     name: string;
     price: number;
     image: string;
+    description?: string;
 }
 
 export const useProductActions = (product: Product) => {

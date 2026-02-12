@@ -47,11 +47,7 @@ const MenuList: React.FC<MenuListProps> = ({ onClose }) => {
                         <ShoppingCartIcon className="item-icon" />
                     </Link>
 
-                    <Link to="#" className="menu-item" onClick={onClose}>
-                        <ArrowBackIosNewIcon className="arrow-icon" />
-                        <span className="item-text">English</span>
-                        <LanguageIcon className="item-icon" />
-                    </Link>
+
                 </div>
             </div>
         </div>

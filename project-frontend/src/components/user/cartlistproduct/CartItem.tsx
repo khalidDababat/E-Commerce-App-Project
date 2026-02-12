@@ -44,19 +44,7 @@ const CartItem: React.FC<CartItemProps> = ({
                 <Typography variant="body1" sx={{ fontWeight: 500 }}>
                     {item.name}
                 </Typography>
-                <Button
-                    size="small"
-                    sx={{
-                        p: 0,
-                        color: '#00897b',
-                        fontSize: '0.8rem',
-                        minWidth: 'auto',
-                        textTransform: 'none',
-                        '&:hover': { background: 'none' },
-                    }}
-                >
-                    + إضافة ملاحظة
-                </Button>
+
                 <Box sx={{ display: 'flex', alignItems: 'center', mt: 1 }}>
                     <Typography
                         variant="h6"
@@ -79,6 +67,7 @@ const CartItem: React.FC<CartItemProps> = ({
                     startIcon={<DeleteOutlineIcon />}
                     color="error"
                     onClick={() => onRemove(item.id)}
+                    sx={{ gap: 1 }}
                 >
                     حذف
                 </Button>

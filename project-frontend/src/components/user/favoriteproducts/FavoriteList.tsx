@@ -47,6 +47,7 @@ const FavoriteList: React.FC = () => {
                             name={product.name}
                             price={product.price}
                             image={product.image}
+                            description={product.description}
                         />
                     ))}
                 </div>

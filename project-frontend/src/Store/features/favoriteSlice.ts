@@ -5,6 +5,7 @@ interface FavoriteItem {
     name: string;
     price: number;
     image: string;
+    description?: string;
 }
 
 interface FavoriteState {

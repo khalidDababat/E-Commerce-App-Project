@@ -65,6 +65,7 @@ const ProductList: React.FC<ProductListProps> = ({ selectedCategory }) => {
                             name={p.name}
                             price={p.price}
                             image={p.image}
+                            description={p.description}
                         />
                     </Grid>
                 ))}
