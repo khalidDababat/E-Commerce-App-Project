@@ -14,6 +14,8 @@ import AddfeatFood from '../components/admin_new/addfeatfood/addfeatFood';
 import CartList from '../components/user/cartlistproduct/CartList';
 import FavoriteList from '../components/user/favoriteproducts/FavoriteList';
 import NotFoundPage from '../pages/notfoundpages/NotFoundPage';
+import ForgotPassword from '../pages/admin/forgotpassword/ForgotPassword';
+import ResetPassword from '../pages/admin/resetpassword/ResetPassword';
 
 export const router = createBrowserRouter([
     {
@@ -25,6 +27,8 @@ export const router = createBrowserRouter([
     { path: '/favorite', element: <FavoriteList /> },
     { path: '/cartlist', element: <CartList /> },
     { path: '/login', element: <Login /> },
+    { path: '/forgot-password', element: <ForgotPassword /> },
+    { path: '/reset-password', element: <ResetPassword /> },
     { path: "*", element: <NotFoundPage /> },
 
     {

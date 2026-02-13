@@ -119,7 +119,7 @@ const Login = () => {
                         />
 
                         <div className="forget-password">
-                            <Link to="/forget-password">نسيت كلمة المرور؟</Link>
+                            <Link to="/forgot-password">نسيت كلمة المرور؟</Link>
                         </div>
 
 
