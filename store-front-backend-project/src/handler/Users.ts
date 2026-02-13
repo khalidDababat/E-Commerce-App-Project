@@ -98,8 +98,10 @@ const forgotPassword = async (req: Request, res: Response) => {
 
         const token = await store.generateResetToken(email);
 
-        if (!token) {
+        if (token === null) {
+
             return res.json({ message: "Email not found" });
+
         }
 
         const resetUrl = `http://localhost:3000/reset-password?token=${token}`;
@@ -111,13 +113,13 @@ const forgotPassword = async (req: Request, res: Response) => {
             html: `
                 <h3>Password Reset</h3>
                 <p>Click the link below to reset your password:</p>
-                <a href="${resetUrl}">${resetUrl} Reset Password</a>
+                <a href="${resetUrl}">Reset Password </a>
                 <p>This link will expire soon.</p>
             `,
         };
 
         await sgMail.send(msg);
-        return res.json({ message: 'Reset link sent To Your Email' });
+        return res.json({ message: 'Reset link sent To Your Email', token: token });
 
     } catch (err) {
         console.error('Forgot password error:', err);
