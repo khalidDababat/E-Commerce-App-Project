@@ -17,6 +17,7 @@
     "description": "",
     "devDependencies": {
         "@types/jest": "^30.0.0",
+        "@types/nodemailer": "^7.0.9",
         "@typescript-eslint/eslint-plugin": "^8.46.0",
         "@typescript-eslint/parser": "^8.46.0",
         "cross-env": "^10.1.0",
@@ -27,6 +28,7 @@
         "typescript": "^5.9.3"
     },
     "dependencies": {
+        "@sendgrid/mail": "^8.1.6",
         "@types/bcrypt": "^6.0.0",
         "@types/cors": "^2.8.19",
         "@types/dotenv": "^6.1.1",
@@ -44,6 +46,7 @@
         "jsonwebtoken": "^9.0.2",
         "lodash": "^4.17.21",
         "multer": "^2.0.2",
+        "nodemailer": "^8.0.1",
         "pg": "^8.16.3",
         "pg-pool": "^3.10.1"
     }

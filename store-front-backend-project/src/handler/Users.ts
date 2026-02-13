@@ -2,11 +2,15 @@ import express, { Request, Response } from 'express';
 
 import { User, userStore } from '../module/Users.js';
 
+import sgMail from '@sendgrid/mail';
+
 import jwt from 'jsonwebtoken';
 import { verifyAuthToken } from './verifyAuthToken.js';
 
 import dotenv from 'dotenv';
 dotenv.config();
+
+sgMail.setApiKey(process.env['SENDGRID_API_KEY']!);
 
 const store = new userStore();
 
@@ -87,11 +91,67 @@ const authenticate = async (req: Request, res: Response) => {
     }
 };
 
+const forgotPassword = async (req: Request, res: Response) => {
+    const email = req.body.email;
+
+    try {
+
+        const token = await store.generateResetToken(email);
+
+        if (!token) {
+            return res.json({ message: "Email not found" });
+        }
+
+        const resetUrl = `http://localhost:3000/reset-password?token=${token}`;
+
+        const msg = {
+            to: email,
+            from: process.env['EMAIL_FROM']!,
+            subject: 'Reset Your Password',
+            html: `
+                <h3>Password Reset</h3>
+                <p>Click the link below to reset your password:</p>
+                <a href="${resetUrl}">${resetUrl} Reset Password</a>
+                <p>This link will expire soon.</p>
+            `,
+        };
+
+        await sgMail.send(msg);
+        return res.json({ message: 'Reset link sent To Your Email' });
+
+    } catch (err) {
+        console.error('Forgot password error:', err);
+        return res.status(400).json({ error: 'Something went wrong' });
+    }
+
+}
+
+const resetPassword = async (req: Request, res: Response) => {
+    const token = req.params['token'] as string;
+    const { password } = req.body;
+
+    try {
+        const success = await store.resetPassword(token, password);
+
+        if (!success) {
+            return res.status(400).json({ error: 'Invalid or expired token' });
+        }
+
+        return res.json({ message: 'Password updated successfully' });
+    } catch (err) {
+        return res.status(400).json({ error: 'Reset failed' });
+    }
+};
+
+
 const usersRoutes = (app: express.Application) => {
     app.get('/users', index);
     app.get('/users/:id', verifyAuthToken, show);
     app.post('/users', create);
     app.post('/users/authenticate', authenticate);
+
+    app.post('/users/forgot-password', forgotPassword);
+    app.put('/users/reset-password/:token', resetPassword);
 };
 
 export default usersRoutes;
