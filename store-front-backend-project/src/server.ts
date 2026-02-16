@@ -12,6 +12,10 @@ import productOrderRoutes from './handler/ProductOrder.js';
 
 import dashboardRoutes from './handler/dashboard.js';
 
+import http from 'http';
+import { Server } from 'socket.io';
+
+
 //Application Object
 export const app = express();
 const port: string = '4000';
@@ -35,6 +39,25 @@ app.get('/', (req: Request, res: Response) => {
     res.send('hello World');
 });
 
-app.listen(port, () => {
+
+
+
+const server = http.createServer(app);
+export const io = new Server(server, {
+    cors: {
+        origin: "*"
+    }
+});
+
+server.listen(port, () => {
     console.log(`running server on http://localhost:${port}`);
 });
+
+io.on("connection", (socket) => {
+    console.log('🟢 Admin connected:', socket.id);
+
+    socket.on('disconnect', () => {
+        console.log('🔴 Admin disconnected:', socket.id);
+    });
+
+})

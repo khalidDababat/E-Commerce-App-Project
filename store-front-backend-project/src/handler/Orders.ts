@@ -3,6 +3,7 @@ import express, { Request, Response } from 'express';
 import { Order, orderStore } from '../module/Orders.js';
 //import { verifyAuthToken } from './verifyAuthToken.js';
 
+import { io } from '../server';
 const store = new orderStore();
 
 const index = async (_req: Request, res: Response) => {
@@ -58,6 +59,12 @@ const create = async (req: Request, res: Response) => {
             order_type: req.body.order_type,
         };
         const newOrder = await store.create(o);
+
+        io.emit("new-order", {
+            message: 'New order received',
+            orderId: newOrder.id,
+        })
+
         res.json(newOrder);
     } catch (err) {
         res.status(400).json(err);
