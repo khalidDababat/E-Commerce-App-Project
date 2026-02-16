@@ -8,6 +8,7 @@ import {
     Box,
 } from '@mui/material';
 import PersonIcon from '@mui/icons-material/Person';
+import Notifications from '../../admin_new/notifications/Notifications';
 
 interface HeaderUserProps {
     title: string;
@@ -33,6 +34,7 @@ const HeaderUser: React.FC<HeaderUserProps> = ({ title }) => {
                     {title}
                 </Typography>
                 <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                    <Notifications />
                     <IconButton size="small">
                         <Avatar sx={{ bgcolor: 'primary.main' }}>
                             <PersonIcon />

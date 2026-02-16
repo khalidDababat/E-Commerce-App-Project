@@ -1,0 +1,14 @@
+.notifications-badge {
+    & .MuiBadge-badge {
+        font-size: 0.65rem;
+        height: 16px;
+        min-width: 16px;
+        padding: 0 4px;
+        top: 4px;
+        right: 4px;
+    }
+}
+
+.notifications-icon {
+    font-size: 1.5rem !important;
+}
