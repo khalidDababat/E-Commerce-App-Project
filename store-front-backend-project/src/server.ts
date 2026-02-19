@@ -11,6 +11,7 @@ import ProductFeatureRoutes from './handler/productFeatures.js';
 import productOrderRoutes from './handler/ProductOrder.js';
 
 import dashboardRoutes from './handler/dashboard.js';
+import notificationRoutes from './handler/notifications .js';
 
 import http from 'http';
 import { Server } from 'socket.io';
@@ -34,6 +35,7 @@ featureRoutes(app);
 ProductFeatureRoutes(app);
 productOrderRoutes(app);
 dashboardRoutes(app);
+notificationRoutes(app);
 
 app.get('/', (req: Request, res: Response) => {
     res.send('hello World');

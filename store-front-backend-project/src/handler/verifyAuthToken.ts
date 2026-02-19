@@ -14,7 +14,7 @@ export const verifyAuthToken = (
             res.status(401).json('Access denied, no token provided');
             return;
         }
-        const token = authorizationHeader.split(' ')[1] || '';
+        const token = authorizationHeader.split(' ')[1] as string;
         const { TOKEN_SECRET } = process.env;
         jwt.verify(token, TOKEN_SECRET as string);
         next();
