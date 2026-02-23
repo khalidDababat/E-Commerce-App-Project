@@ -18,6 +18,7 @@ export type OrderDetails = {
     status: string;
     total_price: number;
     created_at: Date;
+    order_type: string;
     products: OrderProduct[];
 };
 
@@ -66,6 +67,7 @@ export class DashboardQueries {
                 o.status,
                 o.total_price,
                 o.created_at,
+                o.order_type,
                 p.id AS product_id,
                 p.name,
                 p.price,
@@ -89,8 +91,10 @@ export class DashboardQueries {
                 customer_area: res.rows[0].customer_area,
                 note: res.rows[0].note,
                 status: res.rows[0].status,
+
                 total_price: res.rows[0].total_price,
                 created_at: res.rows[0].created_at,
+                order_type: res.rows[0].order_type,
                 products: [],
             };
 
