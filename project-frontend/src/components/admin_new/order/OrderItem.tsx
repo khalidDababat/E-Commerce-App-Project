@@ -54,8 +54,8 @@ const OrderItem: React.FC<OrderItemProps> = ({ order, onView, onDelete }) => {
                                 order.order_type === 'pickup'
                                     ? 'استلم بنفسك'
                                     : order.order_type === 'restaurant'
-                                      ? 'في المطعم'
-                                      : 'توصيل'
+                                        ? 'في المطعم'
+                                        : 'توصيل'
                             }
                             size="small"
                             className={`type-chip ${order.order_type}`}
@@ -64,7 +64,13 @@ const OrderItem: React.FC<OrderItemProps> = ({ order, onView, onDelete }) => {
                             label={
                                 order.status === 'pending'
                                     ? 'قيد الانتظار'
-                                    : order.status
+                                    : order.status === 'processing'
+                                        ? 'قيد التحضير'
+                                        : order.status === 'delivered'
+                                            ? 'تم الأستلام'
+                                            : order.status === 'cancelled'
+                                                ? 'تم الالغاء'
+                                                : order.status
                             }
                             size="small"
                             color="warning"

@@ -1,3 +1,9 @@
+.notifications-conteaner {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
 .notifications-badge {
     & .MuiBadge-badge {
         font-size: 0.65rem;
@@ -11,4 +17,97 @@
 
 .notifications-icon {
     font-size: 1.5rem !important;
+    color: #555;
+}
+
+.notifications-dropdown {
+    position: absolute;
+    top: 50px;
+    right: 0;
+    width: 320px;
+    background-color: #fff;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    border-radius: 8px;
+    z-index: 1000;
+    overflow: hidden;
+    animation: slideDown 0.3s ease-out;
+
+    &-header {
+        padding: 15px;
+        border-bottom: 1px solid #f0f0f0;
+
+        h3 {
+            margin: 0;
+            font-size: 1rem;
+            color: #333;
+        }
+    }
+
+    &-list {
+        max-height: 400px;
+        overflow-y: auto;
+
+        .no-notifications {
+            padding: 20px;
+            text-align: center;
+            color: #999;
+            font-size: 0.9rem;
+        }
+    }
+}
+
+.notification-item {
+    padding: 15px;
+    border-bottom: 1px solid #f9f9f9;
+    cursor: pointer;
+    transition: background-color 0.2s;
+
+    &:hover {
+        background-color: #f7f9fc;
+    }
+
+    &.unread {
+        background-color: #f0f7ff;
+        border-left: 3px solid #1976d2;
+
+        &:hover {
+            background-color: #e6f2ff;
+        }
+    }
+
+    &-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 5px;
+    }
+
+    &-title {
+        font-weight: 600;
+        font-size: 0.9rem;
+        color: #1a1a1a;
+    }
+
+    &-time {
+        font-size: 0.75rem;
+        color: #888;
+    }
+
+    &-content {
+        font-size: 0.85rem;
+        color: #666;
+        line-height: 1.4;
+    }
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }

@@ -20,6 +20,7 @@ import {
     TableHead,
     TableRow,
     Select,
+    Chip,
     MenuItem,
     FormControl,
     SelectChangeEvent,
@@ -54,6 +55,7 @@ interface OrderDetails {
     total_price: string;
     created_at: string;
     products: OrderProduct[];
+    order_type: string;
 }
 
 const ViewOrder = () => {
@@ -75,6 +77,8 @@ const ViewOrder = () => {
         fetchOrder();
     }, [id]);
 
+
+
     const handleStatusChange = async (event: SelectChangeEvent) => {
         const newStatus = event.target.value;
         if (!id || !order) return;
@@ -86,7 +90,7 @@ const ViewOrder = () => {
     };
 
     if (loading) {
-        <Progress />;
+        return <Progress />;
     }
 
     if (!order) {
@@ -119,7 +123,7 @@ const ViewOrder = () => {
                         <ArrowForwardIcon />
                     </IconButton>
                     <Typography variant="h5" fontWeight="bold" color="primary">
-                        تفاصيل الطلب #{order.order_id}
+                        تفاصيل الطلب  #{order.order_id}
                     </Typography>
                 </Stack>
 
@@ -276,6 +280,35 @@ const ViewOrder = () => {
                                                         order.created_at
                                                     )}
                                                 </Typography>
+                                            </Stack>
+                                        </Grid>
+                                        <Grid size={{ xs: 6, sm: 3 }}>
+                                            <Typography
+                                                variant="subtitle2"
+                                                color="text.secondary"
+                                            >
+                                                نوع الطلب
+                                            </Typography>
+                                            <Stack
+                                                direction="row"
+                                                alignItems="center"
+
+
+                                            >
+
+
+                                                <Chip
+                                                    label={order.order_type === 'delivery' ? 'توصيل' :
+                                                        order.order_type === 'pickup' ? 'استلم بنفسك' : 'في المطعم'}
+                                                    variant="outlined"
+                                                    color="primary"
+
+                                                    sx={{
+                                                        fontSize: '17px',
+                                                        fontWeight: 'bold',
+                                                    }}
+
+                                                />
                                             </Stack>
                                         </Grid>
                                         <Grid size={{ xs: 6, sm: 3 }}>
