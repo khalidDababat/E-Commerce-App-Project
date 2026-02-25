@@ -72,7 +72,6 @@ const CategoryManagement = () => {
                                     await handleAddCategory(e, nameCategory);
                                     fetchCategories();
                                     setIsModalOpen(false);
-                                    setnameCategory('');
                                 }}
                             >
                                 <div className="form-group">
@@ -82,6 +81,7 @@ const CategoryManagement = () => {
                                         id="name"
                                         name="name"
                                         value={nameCategory}
+                                        required
                                         onChange={(e) =>
                                             setnameCategory(e.target.value)
                                         }

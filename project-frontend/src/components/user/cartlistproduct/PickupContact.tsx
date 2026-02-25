@@ -12,6 +12,7 @@ const PickupContact = () => {
         <div className="contact-fields">
             <RestaurantContact />
             <TextField
+                required
                 fullWidth
                 multiline
                 minRows={3}

@@ -37,6 +37,7 @@ const DeliveryContact = () => {
                     value={customer_area}
                     label="اختر المنطقة"
                     onChange={handleChange}
+                    required
                     startAdornment={
                         <InputAdornment
                             position="start"
@@ -54,7 +55,7 @@ const DeliveryContact = () => {
                     <MenuItem value="عقابا">عقابا</MenuItem>
                     <MenuItem value="الفارعه">الفارعه</MenuItem>
                     <MenuItem value="ميثلون">ميثلون</MenuItem>
-                    <MenuItem value="الشاطئ">الشاطئ</MenuItem>
+                    <MenuItem value="الشاطئ">حارة الصوافطة</MenuItem>
                 </Select>
             </FormControl>
 
@@ -63,6 +64,7 @@ const DeliveryContact = () => {
                 placeholder="أدخل العنوان"
                 variant="outlined"
                 size="small"
+                required
                 className="field-input"
                 value={customer_address}
                 onChange={(e) => dispatch(setCustomerAddress(e.target.value))}
@@ -83,6 +85,7 @@ const DeliveryContact = () => {
                 minRows={3}
                 placeholder="ملاحظات إضافية للطلب"
                 variant="outlined"
+                required
                 size="small"
                 className="field-input"
                 value={note}

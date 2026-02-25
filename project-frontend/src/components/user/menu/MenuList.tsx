@@ -46,8 +46,6 @@ const MenuList: React.FC<MenuListProps> = ({ onClose }) => {
                         <span className="item-text">سلة المشتريات</span>
                         <ShoppingCartIcon className="item-icon" />
                     </Link>
-
-
                 </div>
             </div>
         </div>

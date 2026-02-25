@@ -26,6 +26,8 @@ import {
     clearCart,
 } from '../../../Store/features/cartSlice';
 
+import { toast } from 'react-toastify';
+
 const CartList = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -64,6 +66,36 @@ const CartList = () => {
 
     const handleSendOrder = async () => {
         if (isCartEmpty) return;
+
+        // Validation Logic
+        const {
+            method,
+            customer_name,
+            customer_phone,
+            customer_area,
+            customer_address,
+        } = orderInfo;
+
+        if (!customer_name.trim()) {
+            toast.error('يرجى إدخال الاسم');
+            return;
+        }
+
+        if (!customer_phone.trim()) {
+            toast.error('يرجى إدخال رقم الجوال');
+            return;
+        }
+
+        if (method === 'delivery') {
+            if (!customer_area.trim()) {
+                toast.error('يرجى اختيار المنطقة');
+                return;
+            }
+            if (!customer_address.trim()) {
+                toast.error('يرجى إدخال العنوان بالتفصيل');
+                return;
+            }
+        }
 
         setLoading(true);
         try {

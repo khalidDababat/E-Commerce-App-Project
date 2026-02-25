@@ -8,14 +8,8 @@ import CssBaseline from '@mui/material/CssBaseline';
 
 import { socket } from './socket';
 
-
 function App() {
-
-
     useEffect(() => {
-
-
-
         socket.connect();
 
         // socket.on("connect", () => {

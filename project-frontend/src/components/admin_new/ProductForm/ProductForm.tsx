@@ -124,8 +124,6 @@ const ProductForm: React.FC<ProductFormProps> = ({
         <Box className="product-form-container">
             <form onSubmit={handleSubmit}>
                 <Box className="form-grid">
-
-
                     <Box className="fields-section">
                         <Grid container spacing={2}>
                             <Grid size={{ xs: 12 }}>

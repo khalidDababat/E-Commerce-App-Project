@@ -27,10 +27,8 @@ const loadState = (): CartState => {
 };
 
 const saveState = (state: CartState) => {
-
     const serializedState = JSON.stringify(state);
     localStorage.setItem('cart', serializedState);
-
 };
 
 const initialState: CartState = loadState();

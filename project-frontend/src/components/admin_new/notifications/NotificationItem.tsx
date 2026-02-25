@@ -2,16 +2,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { formatTime } from '../../../utilities/FormatDateTime';
 import { markNotificationAsRead } from '../../api/Notification';
-
-export interface Notification {
-    id: number;
-    user_id: number;
-    order_id: number;
-    title: string;
-    message: string;
-    is_read: boolean;
-    created_at: string;
-}
+import { Notification } from '../../../types';
 
 interface NotificationItemProps {
     message: Notification;
@@ -19,7 +10,11 @@ interface NotificationItemProps {
     onRead: () => void;
 }
 
-const NotificationItem: React.FC<NotificationItemProps> = ({ message, title, onRead }) => {
+const NotificationItem: React.FC<NotificationItemProps> = ({
+    message,
+    title,
+    onRead,
+}) => {
     const navigate = useNavigate();
 
     const handleClick = async () => {
@@ -28,7 +23,7 @@ const NotificationItem: React.FC<NotificationItemProps> = ({ message, title, onR
             onRead();
         }
         navigate(`/order/${message.order_id}`);
-    }
+    };
 
     return (
         <div
@@ -41,9 +36,7 @@ const NotificationItem: React.FC<NotificationItemProps> = ({ message, title, onR
                     {formatTime(message.created_at)}
                 </span>
             </div>
-            <div className="notification-item-content">
-                {message.message}
-            </div>
+            <div className="notification-item-content">{message.message}</div>
         </div>
     );
 };

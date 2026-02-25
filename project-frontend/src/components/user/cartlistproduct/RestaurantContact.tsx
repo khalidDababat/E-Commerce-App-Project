@@ -25,6 +25,7 @@ const RestaurantContact = () => {
                 size="small"
                 className="field-input"
                 value={customer_name}
+                required
                 onChange={(e) => dispatch(setCustomerName(e.target.value))}
                 InputProps={{
                     startAdornment: (
@@ -40,6 +41,7 @@ const RestaurantContact = () => {
                 placeholder="أدخل رقم الجوال"
                 variant="outlined"
                 size="small"
+                required
                 className="field-input"
                 value={customer_phone}
                 onChange={(e) => dispatch(setCustomerPhone(e.target.value))}

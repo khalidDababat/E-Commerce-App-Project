@@ -77,6 +77,7 @@ const AddfeatFood = () => {
                                         type="text"
                                         id="name"
                                         name="name"
+                                        required
                                         value={featFood}
                                         onChange={(e) =>
                                             setfeatFood(e.target.value)

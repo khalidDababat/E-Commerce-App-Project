@@ -52,9 +52,6 @@ const Login = () => {
         }
     };
 
-
-
-
     return (
         <div className="login-page">
             <Paper className="login-card" elevation={8}>
@@ -121,8 +118,6 @@ const Login = () => {
                         <div className="forget-password">
                             <Link to="/forgot-password">نسيت كلمة المرور؟</Link>
                         </div>
-
-
 
                         <Button
                             type="submit"

@@ -1,56 +1,20 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Badge, IconButton } from '@mui/material';
 import NotificationsNoneIcon from '@mui/icons-material/NotificationsNone';
 import './Notifications.scss';
-import { socket } from "../../../socket";
 
-import { getAllNotifications } from "../../api/Notification";
-import NotificationItem, { Notification } from './NotificationItem';
-
+import NotificationItem from './NotificationItem';
+import { useNotifications } from '../../../hooks/useNotifications';
 
 const Notifications = () => {
-
     const [isOpen, setIsOpen] = useState(false);
-    const [count, setCount] = useState(0);
-    const [notifications, setNotifications] = useState<Notification[]>([]);
-
-    useEffect(() => {
-        const fetchNotifications = async () => {
-            const data = await getAllNotifications();
-
-            if (Array.isArray(data)) {
-                setNotifications(data);
-                const unreadCount = data.filter((n: Notification) => !n.is_read).length;
-                setCount(unreadCount);
-            }
-        }
-        fetchNotifications();
-
-        const handelNewOrder = (data: any) => {
-            setCount((prev) => prev + 1);
-            setNotifications((prev) => [data, ...prev]);
-        }
-
-        socket.on("new-order", handelNewOrder);
-        return () => {
-            socket.off("new-order", handelNewOrder);
-        }
-
-    }, []);
+    const { notifications, count, handleMarkAsRead } = useNotifications();
 
     const toggleDropdown = () => {
         setIsOpen(!isOpen);
     };
 
-    const handleMarkAsRead = (id: number) => {
-        setNotifications((prev) =>
-            prev.map((n) => (n.id === id ? { ...n, is_read: true } : n))
-        );
-        setCount((prev) => Math.max(0, prev - 1));
-    };
-
     return (
-
         <div className="notifications-conteaner">
             <IconButton size="large" onClick={toggleDropdown}>
                 <Badge
@@ -78,14 +42,14 @@ const Notifications = () => {
                                 />
                             ))
                         ) : (
-                            <div className="no-notifications">لا يوجد إشعارات جديدة</div>
+                            <div className="no-notifications">
+                                لا يوجد إشعارات جديدة
+                            </div>
                         )}
                     </div>
                 </div>
             )}
-
         </div>
-
     );
 };
 
