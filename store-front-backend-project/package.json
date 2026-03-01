@@ -5,13 +5,16 @@
     "type": "commonjs",
     "scripts": {
         "build": "npx tsc",
+        "start": "node build/server.js",
         "format": "npx prettier . --write",
         "test": "cross-env ENV=test && npx tsc && db-migrate --env test up && jasmine && db-migrate db:drop test",
         "lint": "eslint . --ext .ts",
         "dev": "tsc-watch --onSuccess \"node build/server.js\"",
         "database": "tsc-watch --onSuccess \"node build/database.js\""
     },
-    "private": true,
+    "engines": {
+        "node": "^20.17.0"
+    },
     "keywords": [],
     "author": "",
     "license": "ISC",
