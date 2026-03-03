@@ -1,5 +1,8 @@
-import express, { Request, Response } from 'express';
 
+import dotenv from 'dotenv';
+dotenv.config();
+
+import express, { Request, Response } from 'express';
 import { User, userStore } from '../module/Users.js';
 
 import sgMail from '@sendgrid/mail';
@@ -7,8 +10,7 @@ import sgMail from '@sendgrid/mail';
 import jwt from 'jsonwebtoken';
 import { verifyAuthToken } from './verifyAuthToken.js';
 
-import dotenv from 'dotenv';
-dotenv.config();
+
 
 sgMail.setApiKey(process.env['SENDGRID_API_KEY']!);
 
@@ -102,6 +104,8 @@ const forgotPassword = async (req: Request, res: Response) => {
             return res.json({ message: "Email not found" });
 
         }
+
+
 
         const resetUrl = `http://localhost:3000/reset-password?token=${token}`;
 
