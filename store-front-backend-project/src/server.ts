@@ -19,7 +19,7 @@ import { Server } from 'socket.io';
 
 //Application Object
 export const app = express();
-const port: string = '4000';
+const port: string = process.env['PORT'] || '4000';
 
 // middleware
 app.use(cors()); // shearing Between backend and frontend
