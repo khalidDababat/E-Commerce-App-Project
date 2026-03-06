@@ -1,4 +1,3 @@
-import { toast } from 'react-toastify';
 
 export interface DashboardData {
     products_count: number;

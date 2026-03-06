@@ -9,7 +9,6 @@ import {
     Divider,
     Stack,
     IconButton,
-    CircularProgress,
     Button,
     Card,
     CardContent,
@@ -294,12 +293,12 @@ const ViewOrder = () => {
                                                 <Chip
                                                     label={
                                                         order.order_type ===
-                                                        'delivery'
+                                                            'delivery'
                                                             ? 'توصيل'
                                                             : order.order_type ===
                                                                 'pickup'
-                                                              ? 'استلم بنفسك'
-                                                              : 'في المطعم'
+                                                                ? 'استلم بنفسك'
+                                                                : 'في المطعم'
                                                     }
                                                     variant="outlined"
                                                     color="primary"

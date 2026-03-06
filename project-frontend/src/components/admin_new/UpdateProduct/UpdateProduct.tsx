@@ -5,7 +5,6 @@ import {
     DialogTitle,
     IconButton,
     Typography,
-    Box,
 } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 import ProductForm from '../ProductForm/ProductForm';

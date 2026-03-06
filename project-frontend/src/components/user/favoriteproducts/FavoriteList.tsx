@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import { Typography } from '@mui/material';
 import ArrowForwardIcon from '../../shared/ArrowForwardIcon/ArrowForwardIcon';
 import emptyImage from '../../../assets/images/favoriteempty.jpg';

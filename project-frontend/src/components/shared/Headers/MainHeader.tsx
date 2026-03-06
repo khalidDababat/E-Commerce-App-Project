@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import ProductionQuantityLimitsIcon from '@mui/icons-material/ProductionQuantityLimits';
-import PermIdentityIcon from '@mui/icons-material/PermIdentity';
 import MenuIcon from '@mui/icons-material/Menu';
 
 import logoImage from '../../../assets/images/Logo.png';
