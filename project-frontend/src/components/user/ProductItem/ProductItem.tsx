@@ -2,10 +2,8 @@ import React from 'react';
 import './ProductItem.scss';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import FavoriteIcon from '@mui/icons-material/Favorite';
-import { toast } from 'react-toastify';
 
 import ShoppingBasketIcon from '@mui/icons-material/ShoppingBasket';
-import { RootState } from '../../../Store/Store';
 import ProductDetails from '../productdetails/ProductDetails';
 import { useProductActions } from '../../../hooks/useProductActions';
 

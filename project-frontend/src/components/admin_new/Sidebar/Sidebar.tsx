@@ -14,8 +14,6 @@ import {
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import ShoppingBasketIcon from '@mui/icons-material/ShoppingBasket';
 import BookmarkIcon from '@mui/icons-material/Bookmark';
-import NotificationsIcon from '@mui/icons-material/Notifications';
-import PersonAddIcon from '@mui/icons-material/PersonAdd';
 import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 
 import CategoryIcon from '@mui/icons-material/Category';

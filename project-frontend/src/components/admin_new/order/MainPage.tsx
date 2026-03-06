@@ -4,7 +4,6 @@ import {
     Typography,
     Box,
     Container,
-    CircularProgress,
 } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import './Order.scss';

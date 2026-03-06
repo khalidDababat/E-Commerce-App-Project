@@ -15,8 +15,6 @@ import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
-import { useSelector } from 'react-redux';
-import { RootState } from '../../../Store/Store';
 import { useProductActions } from '../../../hooks/useProductActions';
 import './ProductDetails.scss';
 
@@ -57,15 +55,7 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({
     const [loadingFeatures, setLoadingFeatures] = useState(false);
     const [selectedFeatures, setSelectedFeatures] = useState<number[]>([]);
 
-    useEffect(() => {
-        if (open) {
-            fetchFeatures();
-            setQuantity(1);
-            setSelectedFeatures([]);
-        }
-    }, [open, id]);
-
-    const fetchFeatures = async () => {
+    const fetchFeatures = React.useCallback(async () => {
         setLoadingFeatures(true);
         try {
             const res = await fetch(
@@ -78,7 +68,15 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({
         } finally {
             setLoadingFeatures(false);
         }
-    };
+    }, [id]);
+
+    useEffect(() => {
+        if (open) {
+            fetchFeatures();
+            setQuantity(1);
+            setSelectedFeatures([]);
+        }
+    }, [open, fetchFeatures]);
 
     const handleAddQuantity = () => setQuantity((prev) => prev + 1);
     const handleRemoveQuantity = () => {

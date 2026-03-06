@@ -2,13 +2,12 @@ import React, { useState } from 'react';
 import './CartList.scss';
 import cartEmpty from '../../../assets/images/cartEmpty.jpg';
 import { useSelector, useDispatch } from 'react-redux';
-import { Button, Box, Typography } from '@mui/material';
+import { Button, Box } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 
 import CartListHeader from './CartListHeader';
 import CartItem from './CartItem';
 import DatailsOrder from './DatailsOrder';
-import CouponSection from './CouponSection';
 import ContactInfo from './ContactInfo';
 import FastfoodIcon from '@mui/icons-material/Fastfood';
 import {

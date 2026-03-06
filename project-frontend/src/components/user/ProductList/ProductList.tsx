@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import ProductItem from '../ProductItem/ProductItem';
-import { Grid, Typography, CircularProgress, Box } from '@mui/material';
+import { Grid, CircularProgress, Box } from '@mui/material';
 import './ProductList.scss';
 import { useProducts } from '../../../hooks/useProducts';
 
