@@ -37,7 +37,10 @@ export class productFeatureStore {
         return res.rows;
     }
 
-    async delete(productId: number, featureId: number): Promise<ProductFeature> {
+    async delete(
+        productId: number,
+        featureId: number
+    ): Promise<ProductFeature> {
         if (!client) throw new Error('Database client not initialized');
         // '@ts-expect-error
         const conn = await client.connect();

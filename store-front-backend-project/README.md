@@ -95,11 +95,6 @@ quantity INT NOT NULL
 - http://localhost:4000/products PUT uPdate product by id
 - http://localhost:4000/products/1 delete specific product
 
-
-
-
-
-
 # Contact
 
 ### Khalid Ahmad Dababat

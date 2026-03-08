@@ -1,6 +1,5 @@
-
 import express, { Request, Response } from 'express';
-import { notificationStore } from '../module/notifications .js';
+import { notificationStore } from '../module/notifications.js';
 
 import { verifyAuthToken } from './verifyAuthToken.js';
 
@@ -13,7 +12,7 @@ const index = async (req: Request, res: Response) => {
     } catch (error) {
         res.status(500).json(error);
     }
-}
+};
 
 const unreadCount = async (req: Request, res: Response) => {
     try {
@@ -22,7 +21,7 @@ const unreadCount = async (req: Request, res: Response) => {
     } catch (error) {
         res.status(500).json(error);
     }
-}
+};
 const markAsRead = async (req: Request, res: Response) => {
     try {
         const id = Number(req.params['id']);
@@ -31,14 +30,12 @@ const markAsRead = async (req: Request, res: Response) => {
     } catch (error) {
         res.status(500).json(error);
     }
-}
+};
 
 const notificationRoutes = (app: express.Application) => {
     app.get('/notifications', verifyAuthToken, index);
     app.get('/notifications/unread', verifyAuthToken, unreadCount);
     app.put('/notifications/:id', verifyAuthToken, markAsRead);
-}
+};
 
 export default notificationRoutes;
-
-

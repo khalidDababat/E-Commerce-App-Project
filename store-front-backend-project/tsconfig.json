@@ -37,11 +37,6 @@
         "moduleDetection": "force",
         "skipLibCheck": true
     },
-    "include": [
-        "src"
-    ],
-    "exclude": [
-        "node_modules",
-        "spec"
-    ]
+    "include": ["src"],
+    "exclude": ["node_modules", "spec"]
 }
