@@ -45,7 +45,8 @@ export const io = new Server(server, {
     cors: {
         origin: [
             'http://localhost:3000',
-            'https://e-commerce-app-project-beta.vercel.app/login',
+            "https://e-commerce-app-project-beta.vercel.app",
+            "https://e-commerce-app-project-ib0u9oi5u-khalid-dababats-projects.vercel.app"
         ],
         credentials: true,
     },
