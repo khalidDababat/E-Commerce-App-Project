@@ -2,8 +2,6 @@ import express, { Request, Response } from 'express';
 
 import { Order, orderStore } from '../module/Orders.js';
 
-
-
 import { io } from '../server';
 const store = new orderStore();
 
@@ -61,10 +59,10 @@ const create = async (req: Request, res: Response) => {
         };
         const newOrder = await store.create(o);
 
-        io.emit("new-order", {
+        io.emit('new-order', {
             message: 'New order received',
             orderId: newOrder.id,
-        })
+        });
 
         res.json(newOrder);
     } catch (err) {

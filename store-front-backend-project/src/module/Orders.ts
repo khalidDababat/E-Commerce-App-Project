@@ -1,6 +1,5 @@
 import client from '../database.js';
-
-import { notificationStore } from '../module/notifications .js';
+import { notificationStore } from '../module/notifications.js';
 
 const notification = new notificationStore();
 
@@ -41,18 +40,16 @@ export class orderStore {
                 o.order_type,
             ]);
 
-
             const newOrder = res.rows[0];
 
             await notification.create({
                 order_id: newOrder.id,
-                title: "طلب جديد",
+                title: 'طلب جديد',
                 message: `تم استلام طلب جديد رقم #${newOrder.id}`,
             });
 
             conn.release();
             return newOrder;
-
         } catch (err) {
             throw new Error(`Could not create order: ${err}`);
         }

@@ -2,8 +2,6 @@ import client from '../database.js';
 import bcrypt from 'bcrypt';
 import crypto from 'crypto';
 
-
-
 import dotenv from 'dotenv';
 dotenv.config();
 
@@ -114,30 +112,22 @@ export class userStore {
         } catch (err) {
             throw new Error(`Could not authenticate user. Error: ${err}`);
         }
-
     }
 
     async generateResetToken(email: string): Promise<string | null> {
-
         try {
-
             //'@ts-expect-error'
             if (!client) throw new Error('Database client not initialized');
 
             const conn = await client.connect();
 
-
             const token = crypto.randomBytes(32).toString('hex');
             const expiration = new Date(Date.now() + 15 * 60 * 1000);
-
 
             const result = await conn.query(
                 'SELECT * FROM users WHERE email = $1',
                 [email]
             );
-
-
-
 
             if (!result.rows.length) {
                 conn.release();
@@ -153,19 +143,14 @@ export class userStore {
 
             conn.release();
             return token;
-
-
         } catch (err) {
             throw new Error(`Could not generate reset token. Error: ${err}`);
         }
-
     }
 
     async resetPassword(token: string, newPassword: string): Promise<boolean> {
-
         try {
-
-            //'@ts-expect-error' 
+            //'@ts-expect-error'
             if (!client) throw new Error('Database client not initialized');
 
             const conn = await client.connect();
@@ -203,12 +188,8 @@ export class userStore {
 
             conn.release();
             return true;
-
-
         } catch (err) {
-
             throw new Error(`Could not reset password. Error: ${err}`);
         }
     }
-
 }

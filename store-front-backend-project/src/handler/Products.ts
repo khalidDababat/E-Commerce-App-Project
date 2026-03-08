@@ -89,7 +89,9 @@ const update = async (req: Request, res: Response) => {
             price: Number(req.body.price),
             description: req.body.description,
             category_id: req.body.categoryId,
-            image: req.file ? `/uploads/${req.file.filename}` : req.body.existingImage,
+            image: req.file
+                ? `/uploads/${req.file.filename}`
+                : req.body.existingImage,
             stock: Number(req.body.stock) || 0,
             is_active: req.body.isActive === 'true',
         };
@@ -99,7 +101,6 @@ const update = async (req: Request, res: Response) => {
             message: 'Product updated successfully',
             dataUpdate: updatedProduct,
         });
-
     } catch (err) {
         res.status(400);
         res.json(err);

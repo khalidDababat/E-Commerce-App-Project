@@ -11,18 +11,17 @@ import ProductFeatureRoutes from './handler/productFeatures.js';
 import productOrderRoutes from './handler/ProductOrder.js';
 
 import dashboardRoutes from './handler/dashboard.js';
-import notificationRoutes from './handler/notifications .js';
+import notificationRoutes from './handler/notifications.js';
 
 import http from 'http';
 import { Server } from 'socket.io';
-
 
 //Application Object
 export const app = express();
 const port: string = process.env['PORT'] || '4000';
 
 // middleware
-app.use(cors()); // shearing Between backend and frontend
+app.use(cors()); //sharing backend to frontend
 app.use(express.json());
 app.use(bodyParser.json());
 app.use('/uploads', express.static('uploads')); //Make the uploads folder publicly accessible
@@ -41,26 +40,25 @@ app.get('/', (req: Request, res: Response) => {
     res.send('hello World');
 });
 
-
-
-
 const server = http.createServer(app);
 export const io = new Server(server, {
     cors: {
-        origin: "http://localhost:3000",
-        credentials: true
-    }
+        origin: [
+            'http://localhost:3000',
+            'https://e-commerce-app-project-beta.vercel.app/login',
+        ],
+        credentials: true,
+    },
 });
 
 server.listen(port, () => {
-    console.log(`running server on http://localhost:${port}`);
+    console.log(`Server running on port ${port}`);
 });
 
-io.on("connection", (socket) => {
+io.on('connection', (socket) => {
     console.log('🟢 Admin connected:', socket.id);
 
     socket.on('disconnect', () => {
         console.log('🔴 Admin disconnected:', socket.id);
     });
-
-})
+});

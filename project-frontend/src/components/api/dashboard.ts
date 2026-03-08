@@ -1,4 +1,3 @@
-
 export interface DashboardData {
     products_count: number;
     orders_count: number;

@@ -1,10 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import {
-    Grid,
-    Typography,
-    Box,
-    Container,
-} from '@mui/material';
+import { Grid, Typography, Box, Container } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import './Order.scss';
 import { getOrders } from '../../api/Orders';

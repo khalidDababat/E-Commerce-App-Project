@@ -1,4 +1,3 @@
-
 import dotenv from 'dotenv';
 dotenv.config();
 
@@ -9,8 +8,6 @@ import sgMail from '@sendgrid/mail';
 
 import jwt from 'jsonwebtoken';
 import { verifyAuthToken } from './verifyAuthToken.js';
-
-
 
 sgMail.setApiKey(process.env['SENDGRID_API_KEY']!);
 
@@ -96,16 +93,11 @@ const forgotPassword = async (req: Request, res: Response) => {
     const email = req.body.email;
 
     try {
-
         const token = await store.generateResetToken(email);
 
         if (token === null) {
-
-            return res.json({ message: "Email not found" });
-
+            return res.json({ message: 'Email not found' });
         }
-
-
 
         const resetUrl = `http://localhost:3000/reset-password?token=${token}`;
 
@@ -122,14 +114,15 @@ const forgotPassword = async (req: Request, res: Response) => {
         };
 
         await sgMail.send(msg);
-        return res.json({ message: 'Reset link sent To Your Email', token: token });
-
+        return res.json({
+            message: 'Reset link sent To Your Email',
+            token: token,
+        });
     } catch (err) {
         console.error('Forgot password error:', err);
         return res.status(400).json({ error: 'Something went wrong' });
     }
-
-}
+};
 
 const resetPassword = async (req: Request, res: Response) => {
     const token = req.params['token'] as string;
@@ -147,7 +140,6 @@ const resetPassword = async (req: Request, res: Response) => {
         return res.status(400).json({ error: 'Reset failed' });
     }
 };
-
 
 const usersRoutes = (app: express.Application) => {
     app.get('/users', index);

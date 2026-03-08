@@ -20,7 +20,7 @@ import ResetPassword from '../pages/admin/resetpassword/ResetPassword';
 export const router = createBrowserRouter([
     {
         path: '/',
-        loader: () => redirect('/MainLayout'),
+        loader: () => redirect('/login'),
     },
     { path: '/MainLayout', element: <MainLayout /> },
 
