@@ -1,6 +1,6 @@
 
 
-CREATE TABLE product_features (
+CREATE TABLE IF NOT EXISTS product_features (
     id SERIAL PRIMARY KEY,
     product_id INT NOT NULL,
     feature_id INT NOT NULL,

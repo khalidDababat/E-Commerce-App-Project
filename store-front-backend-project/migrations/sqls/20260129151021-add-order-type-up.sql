@@ -1,8 +1,8 @@
 
 
 
-ALTER TABLE orders
+ALTER TABLE IF EXISTS orders
 ADD order_type VARCHAR(30) NOT NULL DEFAULT 'delivery';
 
-ALTER TABLE orders
+ALTER TABLE IF EXISTS orders
 ALTER COLUMN order_type DROP DEFAULT;
