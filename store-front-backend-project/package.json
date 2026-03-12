@@ -5,7 +5,7 @@
     "type": "commonjs",
     "scripts": {
         "build": "npx tsc",
-        "start": "node build/server.js",
+        "start": "npm run migrate && node build/server.js",
         "migrate": "db-migrate up",
         "format": "npx prettier . --write",
         "test": "cross-env ENV=test && npx tsc && db-migrate --env test up && jasmine && db-migrate db:drop test",
