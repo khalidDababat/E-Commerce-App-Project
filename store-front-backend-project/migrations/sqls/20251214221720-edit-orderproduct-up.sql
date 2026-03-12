@@ -1,7 +1,7 @@
 /* Replace with your SQL commands */
 
 
-CREATE TABLE products_orders (
+CREATE TABLE IF NOT EXISTS products_orders (
     id SERIAL PRIMARY KEY,
     product_id INT NOT NULL,
     order_id INT NOT NULL,

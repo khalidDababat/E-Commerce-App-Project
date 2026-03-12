@@ -1,6 +1,6 @@
 /* Replace with your SQL commands */
 
-CREATE TABLE notifications (
+CREATE TABLE IF NOT EXISTS notifications (
     id SERIAL PRIMARY KEY,
     user_id INT, 
     order_id INT REFERENCES orders(id) ON DELETE CASCADE,

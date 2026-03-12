@@ -1,7 +1,7 @@
 
 
 
-CREATE TABLE orders (
+CREATE TABLE IF NOT EXISTS orders (
     id SERIAL PRIMARY KEY,
     userid INTEGER REFERENCES users(id), 
     customer_name VARCHAR(100) NOT NULL,
