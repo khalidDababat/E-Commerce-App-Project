@@ -1,48 +1,98 @@
 .login-page {
+
     display: flex;
     justify-content: center;
-    margin-top: 50px;
+    align-items: center;
+    gap: 60px;
 
-    .login-card {
-        width: 50%;
-    }
+    height: 100vh;
 
-    .form-section {
-        padding: 20px;
 
-        .welcome-text {
-            text-align: center;
-        }
 
-        .login-form {
-            direction: rtl;
+    .login_part {
 
-            .forget-password {
-                text-align: right;
-                margin: 10px 0px;
-                font-size: 19px;
+        .login_content {
 
-                a {
-                    color: #1f1f57;
-                    text-decoration: none;
+            .form-section {
 
-                    &:hover {
-                        text-decoration: underline;
+                display: flex;
+                flex-direction: column;
+
+
+                .logo-container,
+                .welcome-text {
+                    text-align: center;
+
+
+                    h1 {
+                        font-weight: 800;
+                    }
+
+                    p {
+                        font-size: 18px;
+                        font-weight: 600;
+                        color: #666363;
                     }
                 }
-            }
 
-            .submit-btn {
-                margin-top: 20px;
-                font-size: 20px;
-                color: white; // Changed from black for better visibility on blue button
-                background-color: #000051;
-                font-weight: bold;
+                .submit-btn {
+                    background-color: #000051;
+                    padding: 10px;
+                    border-radius: 10px;
+                    cursor: pointer;
+                    font-size: 17px;
+                    font-weight: 700;
+                    color: white;
+                    border: none;
+                    outline: none;
+                    transition: all 0.3s ease;
+                    margin-top: 40px;
 
-                &:hover {
-                    background-color: #494991;
+                    &:hover {
+                        background-color: #494991;
+                    }
                 }
+
+                label {
+                    font-size: 18px;
+                    font-weight: bold;
+                    margin-bottom: 0px;
+
+                }
+
+
+
+                a {
+                    text-decoration: none;
+                    color: #57336b;
+                    font-size: 18px;
+                    font-weight: 700;
+                    transition: all 0.3s ease;
+
+
+                    &:hover {
+                        color: #f7f1e5;
+                    }
+                }
+
+                .register-link {
+                    display: flex;
+                    justify-content: space-between;
+                    margin-top: 10px;
+
+                    p {
+                        font-size: 18px;
+                        font-weight: 600;
+                        color: black;
+                    }
+
+
+                }
+
+
+
             }
         }
     }
+
 }

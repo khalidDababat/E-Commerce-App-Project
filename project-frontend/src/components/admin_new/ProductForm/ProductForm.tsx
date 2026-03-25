@@ -91,7 +91,6 @@ const ProductForm: React.FC<ProductFormProps> = ({
     }, [
         initialData.categoryName,
         initialData.categoryId,
-        initialData.category_id,
     ]);
 
     const handleSubmit = (e: React.FormEvent) => {

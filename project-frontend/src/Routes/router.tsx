@@ -16,6 +16,7 @@ import FavoriteList from '../components/user/favoriteproducts/FavoriteList';
 import NotFoundPage from '../pages/notfoundpages/NotFoundPage';
 import ForgotPassword from '../pages/admin/forgotpassword/ForgotPassword';
 import ResetPassword from '../pages/admin/resetpassword/ResetPassword';
+import SignUp from '../pages/admin/signup/SignUp';
 
 export const router = createBrowserRouter([
     {
@@ -30,6 +31,7 @@ export const router = createBrowserRouter([
     { path: '/forgot-password', element: <ForgotPassword /> },
     { path: '/reset-password', element: <ResetPassword /> },
     { path: '*', element: <NotFoundPage /> },
+    { path: '/register_admin', element: <SignUp /> },
 
     {
         element: <Layout />,
