@@ -6,7 +6,6 @@ import {
     Box,
     Button,
     TextField,
-    Paper,
     Alert,
     InputAdornment,
 } from '@mui/material';
@@ -55,82 +54,7 @@ const Login = () => {
 
     return (
         <div className="login-page">
-            {/* <Paper className="login-card" elevation={8}>
-                <div className="form-section">
-                    <div className="logo-container">
-                        <Logo />
-                    </div>
 
-                    <div className="welcome-text">
-                        <h1>مرحبا بعودتك</h1>
-                        <p>الرجاء إدخال التفاصيل الخاصة بك لتسجيل الدخول.</p>
-                    </div>
-
-                    <Box
-                        component="form"
-                        onSubmit={handelLogin}
-                        className="login-form"
-                        dir="rtl"
-                    >
-                        {error && (
-                            <Alert severity="error" sx={{ mt: 1, my: 1 }}>
-                                {error}
-                            </Alert>
-                        )}
-                        <TextField
-                            margin="normal"
-                            required
-                            fullWidth
-                            id="email"
-                            label="البريد الإلكتروني"
-                            name="email"
-                            autoComplete="email"
-                            autoFocus
-                            value={email}
-                            onChange={(e) => setEmail(e.target.value)}
-                            InputProps={{
-                                startAdornment: (
-                                    <InputAdornment position="start">
-                                        <PersonIcon color="action" />
-                                    </InputAdornment>
-                                ),
-                            }}
-                        />
-                        <TextField
-                            margin="normal"
-                            required
-                            fullWidth
-                            name="password"
-                            label="كلمة المرور"
-                            type="password"
-                            id="password"
-                            autoComplete="current-password"
-                            value={password}
-                            onChange={(e) => setPassword(e.target.value)}
-                            InputProps={{
-                                startAdornment: (
-                                    <InputAdornment position="start">
-                                        <LockIcon color="action" />
-                                    </InputAdornment>
-                                ),
-                            }}
-                        />
-
-                        <div className="forget-password">
-                            <Link to="/forgot-password">نسيت كلمة المرور؟</Link>
-                        </div>
-
-                        <Button
-                            type="submit"
-                            fullWidth
-                            variant="contained"
-                            className="submit-btn"
-                        >
-                            تسجيل الدخول
-                        </Button>
-                    </Box>
-                </div>
-            </Paper> */}
 
             <div className="hero-part">
                 <div className="hero_content">
