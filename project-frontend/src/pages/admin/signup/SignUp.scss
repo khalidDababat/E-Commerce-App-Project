@@ -1,0 +1,188 @@
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap');
+
+.signup-page {
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    min-height: 100vh;
+    background-color: #f7f9fc;
+    font-family: 'Cairo', sans-serif;
+    padding: 20px;
+    box-sizing: border-box;
+
+    .hero-part {
+        flex: 1;
+        display: none; // hide by default on small screens
+        max-width: 50%;
+        border-radius: 20px;
+        overflow: hidden;
+
+        @media (min-width: 900px) {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding-right: 20px;
+        }
+
+        .img_part {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                border-radius: 20px;
+            }
+        }
+    }
+
+    .signup_part {
+        flex: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        max-width: 600px;
+        width: 100%;
+
+        .login_content {
+            background-color: #ffffff;
+            width: 100%;
+            border-radius: 20px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+            padding: 40px;
+            box-sizing: border-box;
+
+            .form-section {
+                display: flex;
+                flex-direction: column;
+                align-items: stretch;
+
+                .logo-container {
+                    margin-bottom: 20px;
+                    display: flex;
+                    justify-content: center;
+                }
+
+                .welcome-text {
+                    text-align: center;
+                    margin-bottom: 30px;
+
+                    h1 {
+                        font-size: 28px;
+                        font-weight: 700;
+                        color: #1a1a1a;
+                        margin: 0 0 10px 0;
+                    }
+
+                    p {
+                        font-size: 14px;
+                        font-weight: 700;
+
+                        color: #666;
+                        margin: 0;
+                    }
+                }
+
+                .login-form {
+                    width: 100%;
+
+                    .input-group {
+                        display: flex;
+                        flex-direction: column;
+                        margin-bottom: 15px;
+
+                        label {
+                            font-size: 14px;
+                            font-weight: 700;
+                            color: black;
+                            margin-bottom: 5px;
+                            text-align: right;
+                        }
+
+                        /* Override MUI TextField styles */
+                        .MuiFormControl-root {
+                            margin: 0;
+
+                            .MuiInputBase-root {
+                                border-radius: 8px;
+                                background-color: #ffffff;
+
+                                fieldset {
+                                    border-color: #e0e0e0;
+                                }
+
+                                &:hover fieldset {
+                                    border-color: #610094;
+                                    /* Purple color for hover */
+                                }
+
+                                &.Mui-focused fieldset {
+                                    border-color: #610094;
+                                    /* Darker purple for focus */
+                                }
+
+                                input {
+                                    padding: 12px 14px;
+                                    font-family: 'Cairo', sans-serif;
+                                    font-size: 14px;
+
+                                    &::placeholder {
+                                        color: #aaa;
+                                        opacity: 1;
+                                    }
+                                }
+                            }
+                        }
+
+                        .input-icon {
+                            color: #610094;
+                        }
+                    }
+
+                    .submit-btn {
+                        background-color: #000051;
+                        color: #ffffff;
+                        padding: 12px;
+                        font-size: 16px;
+                        font-weight: 700;
+                        border-radius: 8px;
+                        text-transform: none;
+                        font-family: 'Cairo', sans-serif;
+                        margin-top: 15px;
+                        box-shadow: none;
+
+                        &:hover {
+                            background-color: #4b0073;
+                            box-shadow: 0 4px 10px rgba(97, 0, 148, 0.2);
+                        }
+                    }
+
+                    .register-link {
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        margin-top: 20px;
+                        gap: 5px;
+
+                        p {
+                            color: #666;
+                            font-size: 14px;
+                            margin: 0;
+                        }
+
+                        a {
+                            color: #610094;
+                            font-size: 14px;
+                            font-weight: 700;
+                            text-decoration: none;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

@@ -6,19 +6,28 @@ import {
     Box,
     Button,
     TextField,
-    Paper,
     Alert,
     InputAdornment,
+    IconButton,
 } from '@mui/material';
 import PersonIcon from '@mui/icons-material/Person';
 import LockIcon from '@mui/icons-material/Lock';
 import Logo from '../../../components/shared/Logo/Logo';
-
+import hero_image from '../../../assets/images/login.png';
+import Visibility from '@mui/icons-material/Visibility';
+import VisibilityOff from '@mui/icons-material/VisibilityOff';
 const Login = () => {
     const navigate = useNavigate();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
+
+    const [showPassword, setShowPassword] = useState(false);
+    const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+
+    const handleClickShowPassword = () => setShowPassword((show) => !show);
+    const handleClickShowConfirmPassword = () =>
+        setShowConfirmPassword((show) => !show);
 
     const handelLogin = async (
         e: React.FormEvent<HTMLFormElement>
@@ -54,15 +63,20 @@ const Login = () => {
 
     return (
         <div className="login-page">
-            <Paper className="login-card" elevation={8}>
-                <div className="form-section">
+            <div className="hero-part">
+                <div className="hero_content">
+                    <img src={hero_image} alt="hero_image" />
+                </div>
+            </div>
+            <div className="login_part">
+                <div className="login_content">
                     <div className="logo-container">
                         <Logo />
                     </div>
 
                     <div className="welcome-text">
-                        <h1>مرحبا بعودتك</h1>
-                        <p>الرجاء إدخال التفاصيل الخاصة بك لتسجيل الدخول.</p>
+                        <h1>تسجيل الدخول</h1>
+                        <p>أدخل بياناتك للوصول إلى لوحة التحكم الخاصة بك</p>
                     </div>
 
                     <Box
@@ -72,48 +86,74 @@ const Login = () => {
                         dir="rtl"
                     >
                         {error && (
-                            <Alert severity="error" sx={{ mt: 1, my: 1 }}>
+                            <Alert
+                                severity="error"
+                                sx={{ mt: 1, my: 1, fontWeight: 'bold' }}
+                            >
                                 {error}
                             </Alert>
                         )}
-                        <TextField
-                            margin="normal"
-                            required
-                            fullWidth
-                            id="email"
-                            label="البريد الإلكتروني"
-                            name="email"
-                            autoComplete="email"
-                            autoFocus
-                            value={email}
-                            onChange={(e) => setEmail(e.target.value)}
-                            InputProps={{
-                                startAdornment: (
-                                    <InputAdornment position="start">
-                                        <PersonIcon color="action" />
-                                    </InputAdornment>
-                                ),
-                            }}
-                        />
-                        <TextField
-                            margin="normal"
-                            required
-                            fullWidth
-                            name="password"
-                            label="كلمة المرور"
-                            type="password"
-                            id="password"
-                            autoComplete="current-password"
-                            value={password}
-                            onChange={(e) => setPassword(e.target.value)}
-                            InputProps={{
-                                startAdornment: (
-                                    <InputAdornment position="start">
-                                        <LockIcon color="action" />
-                                    </InputAdornment>
-                                ),
-                            }}
-                        />
+
+                        <div className="input_group">
+                            <label htmlFor="email">البريد الإلكتروني</label>
+                            <TextField
+                                margin="normal"
+                                required
+                                fullWidth
+                                id="email"
+                                name="email"
+                                autoComplete="email"
+                                autoFocus
+                                value={email}
+                                onChange={(e) => setEmail(e.target.value)}
+                                InputProps={{
+                                    startAdornment: (
+                                        <InputAdornment position="start">
+                                            <PersonIcon color="action" />
+                                        </InputAdornment>
+                                    ),
+                                }}
+                            />
+                        </div>
+
+                        <div className="input_group">
+                            <label>كلمة المرور</label>
+                            <TextField
+                                margin="normal"
+                                required
+                                fullWidth
+                                name="password"
+                                type={showPassword ? 'text' : 'password'}
+                                id="password"
+                                autoComplete="current-password"
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)}
+                                InputProps={{
+                                    startAdornment: (
+                                        <InputAdornment position="start">
+                                            <LockIcon color="action" />
+                                        </InputAdornment>
+                                    ),
+                                    endAdornment: (
+                                        <InputAdornment position="end">
+                                            <IconButton
+                                                aria-label="toggle password visibility"
+                                                onClick={
+                                                    handleClickShowPassword
+                                                }
+                                                edge="end"
+                                            >
+                                                {showPassword ? (
+                                                    <VisibilityOff />
+                                                ) : (
+                                                    <Visibility />
+                                                )}
+                                            </IconButton>
+                                        </InputAdornment>
+                                    ),
+                                }}
+                            />
+                        </div>
 
                         <div className="forget-password">
                             <Link to="/forgot-password">نسيت كلمة المرور؟</Link>
@@ -127,9 +167,14 @@ const Login = () => {
                         >
                             تسجيل الدخول
                         </Button>
+
+                        <div className="register-link">
+                            <p>ليس لديك حساب؟</p>
+                            <Link to="/register_admin">سجل الآن</Link>
+                        </div>
                     </Box>
                 </div>
-            </Paper>
+            </div>
         </div>
     );
 };

@@ -88,11 +88,7 @@ const ProductForm: React.FC<ProductFormProps> = ({
             }
         };
         fetchCategories();
-    }, [
-        initialData.categoryName,
-        initialData.categoryId,
-        initialData.category_id,
-    ]);
+    }, [initialData.categoryName, initialData.categoryId]);
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();

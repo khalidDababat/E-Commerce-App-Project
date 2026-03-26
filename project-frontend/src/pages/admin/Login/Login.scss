@@ -1,46 +1,204 @@
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap');
+
 .login-page {
     display: flex;
     justify-content: center;
-    margin-top: 50px;
+    align-items: stretch;
+    min-height: 100vh;
+    background-color: #f7f9fc;
+    font-family: 'Cairo', sans-serif;
+    padding: 20px;
+    box-sizing: border-box;
 
-    .login-card {
-        width: 50%;
-    }
+    .hero-part {
+        flex: 1;
+        display: none; // hide by default on small screens
+        max-width: 50%;
+        border-radius: 20px;
+        overflow: hidden;
 
-    .form-section {
-        padding: 20px;
-
-        .welcome-text {
-            text-align: center;
+        @media (min-width: 900px) {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding-right: 20px;
         }
 
-        .login-form {
-            direction: rtl;
+        .hero_content {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
 
-            .forget-password {
-                text-align: right;
-                margin: 10px 0px;
-                font-size: 19px;
+            img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                border-radius: 20px;
+            }
+        }
+    }
 
-                a {
-                    color: #1f1f57;
-                    text-decoration: none;
+    .login_part {
+        flex: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        max-width: 600px;
+        width: 100%;
 
-                    &:hover {
-                        text-decoration: underline;
-                    }
+        .login_content {
+            background-color: #ffffff;
+            width: 100%;
+            border-radius: 20px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+            padding: 40px;
+            box-sizing: border-box;
+
+            .logo-container {
+                margin-bottom: 20px;
+                display: flex;
+                justify-content: center;
+            }
+
+            .welcome-text {
+                text-align: center;
+                margin-bottom: 30px;
+
+                h1 {
+                    font-size: 28px;
+                    font-weight: 800;
+                    color: #1a1a1a;
+                    margin: 0 0 10px 0;
+                }
+
+                p {
+                    font-size: 16px;
+                    font-weight: 600;
+                    color: #666;
+                    margin: 0;
                 }
             }
 
-            .submit-btn {
-                margin-top: 20px;
-                font-size: 20px;
-                color: white; // Changed from black for better visibility on blue button
-                background-color: #000051;
-                font-weight: bold;
+            .login-form {
+                width: 100%;
 
-                &:hover {
-                    background-color: #494991;
+                .input_group {
+                    display: flex;
+                    flex-direction: column;
+                    margin-bottom: 15px;
+
+                    label {
+                        font-size: 14px;
+                        font-weight: 700;
+                        color: black;
+                        margin-bottom: 5px;
+                        text-align: right;
+                    }
+
+                    /* Override MUI TextField styles */
+                    .MuiFormControl-root {
+                        margin: 0;
+
+                        .MuiInputBase-root {
+                            border-radius: 8px;
+                            background-color: #ffffff;
+
+                            fieldset {
+                                border-color: #e0e0e0;
+                            }
+
+                            &:hover fieldset {
+                                border-color: #000051;
+                                /* Dark blue color for hover */
+                            }
+
+                            &.Mui-focused fieldset {
+                                border-color: #000051;
+                                /* Dark blue for focus */
+                            }
+
+                            input {
+                                padding: 12px 14px;
+                                font-family: 'Cairo', sans-serif;
+                                font-size: 14px;
+
+                                &::placeholder {
+                                    color: #aaa;
+                                    opacity: 1;
+                                }
+                            }
+                        }
+
+                        /* Force input adornment icons to match your theme */
+                        .MuiInputAdornment-root .MuiSvgIcon-root {
+                            color: #000051;
+                        }
+                    }
+                }
+
+                .forget-password {
+                    margin-top: 10px;
+                    margin-bottom: 20px;
+                    display: flex;
+                    justify-content: flex-start;
+
+                    a {
+                        text-decoration: none;
+                        color: #000051;
+                        font-size: 14px;
+                        font-weight: 700;
+                        transition: all 0.3s ease;
+
+                        &:hover {
+                            text-decoration: underline;
+                        }
+                    }
+                }
+
+                .submit-btn {
+                    background-color: #000051;
+                    padding: 12px;
+                    border-radius: 8px;
+                    cursor: pointer;
+                    font-size: 16px;
+                    font-weight: 700;
+                    color: white;
+                    border: none;
+                    outline: none;
+                    transition: all 0.3s ease;
+                    margin-top: 10px;
+                    text-transform: none;
+                    font-family: 'Cairo', sans-serif;
+                    box-shadow: none;
+
+                    &:hover {
+                        background-color: #000033;
+                        box-shadow: 0 4px 10px rgba(0, 0, 81, 0.2);
+                    }
+                }
+
+                .register-link {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    margin-top: 20px;
+                    gap: 5px;
+
+                    p {
+                        color: #666;
+                        font-size: 14px;
+                        margin: 0;
+                        font-weight: 600;
+                    }
+
+                    a {
+                        color: #000051;
+                        font-size: 14px;
+                        font-weight: 700;
+                        text-decoration: none;
+                    }
                 }
             }
         }
