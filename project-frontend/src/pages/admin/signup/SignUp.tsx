@@ -1,5 +1,3 @@
-
-
 import React, { useState } from 'react';
 import signUp from '../../../assets/images/signUp.png';
 import './SignUp.scss';
@@ -25,21 +23,19 @@ const SignUp = () => {
     const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
     const handleClickShowPassword = () => setShowPassword((show) => !show);
-    const handleClickShowConfirmPassword = () => setShowConfirmPassword((show) => !show);
+    const handleClickShowConfirmPassword = () =>
+        setShowConfirmPassword((show) => !show);
 
     return (
-        <div className='signup-page'>
-
-            <div className='hero-part'>
+        <div className="signup-page">
+            <div className="hero-part">
                 <div className="img_part">
                     <img src={signUp} alt="signUp" />
                 </div>
             </div>
 
-            <div className='signup_part'>
-
-                <div className='login_content'>
-
+            <div className="signup_part">
+                <div className="login_content">
                     <div className="form-section">
                         <div className="logo-container">
                             <Logo />
@@ -47,11 +43,12 @@ const SignUp = () => {
 
                         <div className="welcome-text">
                             <h1>إنشاء حساب</h1>
-                            <p>ابدأ تجربتك مع نظامنا الذكي لإدارة طلبات مطعمك</p>
+                            <p>
+                                ابدأ تجربتك مع نظامنا الذكي لإدارة طلبات مطعمك
+                            </p>
                         </div>
 
                         <Box component="form" className="login-form" dir="rtl">
-
                             <div className="input-group">
                                 <label htmlFor="username">اسم الأول</label>
                                 <TextField
@@ -81,7 +78,7 @@ const SignUp = () => {
                                     name="username"
                                     placeholder="أدخل اسم الثاني"
                                     autoFocus
-                                    className='input-text'
+                                    className="input-text"
                                     InputProps={{
                                         startAdornment: (
                                             <InputAdornment position="start">
@@ -132,25 +129,37 @@ const SignUp = () => {
                                             <InputAdornment position="end">
                                                 <IconButton
                                                     aria-label="toggle password visibility"
-                                                    onClick={handleClickShowPassword}
+                                                    onClick={
+                                                        handleClickShowPassword
+                                                    }
                                                     edge="end"
                                                 >
-                                                    {showPassword ? <Visibility /> : <VisibilityOff />}
+                                                    {showPassword ? (
+                                                        <Visibility />
+                                                    ) : (
+                                                        <VisibilityOff />
+                                                    )}
                                                 </IconButton>
                                             </InputAdornment>
-                                        )
+                                        ),
                                     }}
                                 />
                             </div>
 
                             <div className="input-group">
-                                <label htmlFor="confirmPassword">تأكيد كلمة المرور</label>
+                                <label htmlFor="confirmPassword">
+                                    تأكيد كلمة المرور
+                                </label>
                                 <TextField
                                     margin="normal"
                                     required
                                     fullWidth
                                     name="confirmPassword"
-                                    type={showConfirmPassword ? 'text' : 'password'}
+                                    type={
+                                        showConfirmPassword
+                                            ? 'text'
+                                            : 'password'
+                                    }
                                     id="confirmPassword"
                                     placeholder="*****"
                                     InputProps={{
@@ -163,13 +172,19 @@ const SignUp = () => {
                                             <InputAdornment position="end">
                                                 <IconButton
                                                     aria-label="toggle confirm password visibility"
-                                                    onClick={handleClickShowConfirmPassword}
+                                                    onClick={
+                                                        handleClickShowConfirmPassword
+                                                    }
                                                     edge="end"
                                                 >
-                                                    {showConfirmPassword ? <Visibility /> : <VisibilityOff />}
+                                                    {showConfirmPassword ? (
+                                                        <Visibility />
+                                                    ) : (
+                                                        <VisibilityOff />
+                                                    )}
                                                 </IconButton>
                                             </InputAdornment>
-                                        )
+                                        ),
                                     }}
                                 />
                             </div>
@@ -199,6 +214,7 @@ const SignUp = () => {
                                 fullWidth
                                 variant="contained"
                                 className="submit-btn"
+                                onClick={() => alert('غير مفعلة الان')}
                             >
                                 إنشاء حساب
                             </Button>
@@ -207,15 +223,12 @@ const SignUp = () => {
                                 <p>لديك حساب بالفعل؟</p>
                                 <Link to="/login">تسجيل الدخول</Link>
                             </div>
-
                         </Box>
                     </div>
-
                 </div>
             </div>
-
         </div>
-    )
-}
+    );
+};
 
 export default SignUp;

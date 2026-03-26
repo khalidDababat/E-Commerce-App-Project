@@ -8,17 +8,26 @@ import {
     TextField,
     Alert,
     InputAdornment,
+    IconButton,
 } from '@mui/material';
 import PersonIcon from '@mui/icons-material/Person';
 import LockIcon from '@mui/icons-material/Lock';
 import Logo from '../../../components/shared/Logo/Logo';
 import hero_image from '../../../assets/images/login.png';
-
+import Visibility from '@mui/icons-material/Visibility';
+import VisibilityOff from '@mui/icons-material/VisibilityOff';
 const Login = () => {
     const navigate = useNavigate();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
+
+    const [showPassword, setShowPassword] = useState(false);
+    const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+
+    const handleClickShowPassword = () => setShowPassword((show) => !show);
+    const handleClickShowConfirmPassword = () =>
+        setShowConfirmPassword((show) => !show);
 
     const handelLogin = async (
         e: React.FormEvent<HTMLFormElement>
@@ -54,45 +63,44 @@ const Login = () => {
 
     return (
         <div className="login-page">
-
-
             <div className="hero-part">
                 <div className="hero_content">
                     <img src={hero_image} alt="hero_image" />
                 </div>
             </div>
             <div className="login_part">
-
                 <div className="login_content">
-                    <div className="form-section">
-                        <div className="logo-container">
-                            <Logo />
-                        </div>
+                    <div className="logo-container">
+                        <Logo />
+                    </div>
 
-                        <div className="welcome-text">
-                            <h1>تسجيل الدخول</h1>
-                            <p>أدخل بياناتك للوصول إلى لوحة التحكم الخاصة بك</p>
-                        </div>
+                    <div className="welcome-text">
+                        <h1>تسجيل الدخول</h1>
+                        <p>أدخل بياناتك للوصول إلى لوحة التحكم الخاصة بك</p>
+                    </div>
 
-                        <Box
-                            component="form"
-                            onSubmit={handelLogin}
-                            className="login-form"
-                            dir="rtl"
-                        >
-                            {error && (
-                                <Alert severity="error" sx={{ mt: 1, my: 1 }}>
-                                    {error}
-                                </Alert>
-                            )}
+                    <Box
+                        component="form"
+                        onSubmit={handelLogin}
+                        className="login-form"
+                        dir="rtl"
+                    >
+                        {error && (
+                            <Alert
+                                severity="error"
+                                sx={{ mt: 1, my: 1, fontWeight: 'bold' }}
+                            >
+                                {error}
+                            </Alert>
+                        )}
 
+                        <div className="input_group">
                             <label htmlFor="email">البريد الإلكتروني</label>
                             <TextField
                                 margin="normal"
                                 required
                                 fullWidth
                                 id="email"
-
                                 name="email"
                                 autoComplete="email"
                                 autoFocus
@@ -106,16 +114,16 @@ const Login = () => {
                                     ),
                                 }}
                             />
-                            <label>
-                                كلمة المرور
-                            </label>
+                        </div>
+
+                        <div className="input_group">
+                            <label>كلمة المرور</label>
                             <TextField
                                 margin="normal"
                                 required
                                 fullWidth
                                 name="password"
-
-                                type="password"
+                                type={showPassword ? 'text' : 'password'}
                                 id="password"
                                 autoComplete="current-password"
                                 value={password}
@@ -126,28 +134,45 @@ const Login = () => {
                                             <LockIcon color="action" />
                                         </InputAdornment>
                                     ),
+                                    endAdornment: (
+                                        <InputAdornment position="end">
+                                            <IconButton
+                                                aria-label="toggle password visibility"
+                                                onClick={
+                                                    handleClickShowPassword
+                                                }
+                                                edge="end"
+                                            >
+                                                {showPassword ? (
+                                                    <VisibilityOff />
+                                                ) : (
+                                                    <Visibility />
+                                                )}
+                                            </IconButton>
+                                        </InputAdornment>
+                                    ),
                                 }}
                             />
+                        </div>
 
-                            <div className="forget-password">
-                                <Link to="/forgot-password">نسيت كلمة المرور؟</Link>
-                            </div>
+                        <div className="forget-password">
+                            <Link to="/forgot-password">نسيت كلمة المرور؟</Link>
+                        </div>
 
-                            <Button
-                                type="submit"
-                                fullWidth
-                                variant="contained"
-                                className="submit-btn"
-                            >
-                                تسجيل الدخول
-                            </Button>
+                        <Button
+                            type="submit"
+                            fullWidth
+                            variant="contained"
+                            className="submit-btn"
+                        >
+                            تسجيل الدخول
+                        </Button>
 
-                            <div className="register-link">
-                                <p>ليس لديك حساب؟</p>
-                                <Link to="/register_admin">سجل الآن</Link>
-                            </div>
-                        </Box>
-                    </div>
+                        <div className="register-link">
+                            <p>ليس لديك حساب؟</p>
+                            <Link to="/register_admin">سجل الآن</Link>
+                        </div>
+                    </Box>
                 </div>
             </div>
         </div>
