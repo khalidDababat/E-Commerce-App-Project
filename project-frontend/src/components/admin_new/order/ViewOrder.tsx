@@ -276,6 +276,7 @@ const ViewOrder = () => {
                                                     {formatTime(
                                                         order.created_at
                                                     )}
+
                                                 </Typography>
                                             </Stack>
                                         </Grid>
@@ -293,12 +294,12 @@ const ViewOrder = () => {
                                                 <Chip
                                                     label={
                                                         order.order_type ===
-                                                        'delivery'
+                                                            'delivery'
                                                             ? 'توصيل'
                                                             : order.order_type ===
                                                                 'pickup'
-                                                              ? 'استلم بنفسك'
-                                                              : 'في المطعم'
+                                                                ? 'استلم بنفسك'
+                                                                : 'في المطعم'
                                                     }
                                                     variant="outlined"
                                                     color="primary"
@@ -346,21 +347,7 @@ const ViewOrder = () => {
                                                 </Select>
                                             </FormControl>
                                         </Grid>
-                                        <Grid size={{ xs: 6, sm: 3 }}>
-                                            <Typography
-                                                variant="subtitle2"
-                                                color="text.secondary"
-                                            >
-                                                السعر الكلي
-                                            </Typography>
-                                            <Typography
-                                                variant="h6"
-                                                color="secondary"
-                                                fontWeight="bold"
-                                            >
-                                                ₪{order.total_price}
-                                            </Typography>
-                                        </Grid>
+
                                     </Grid>
                                 </CardContent>
                             </Card>
@@ -412,6 +399,7 @@ const ViewOrder = () => {
                                         </TableRow>
                                     </TableHead>
                                     <TableBody>
+
                                         {order.products.map((product) => (
                                             <TableRow key={product.product_id}>
                                                 <TableCell align="right">

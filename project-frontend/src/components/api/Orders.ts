@@ -30,13 +30,13 @@ export const createOrder = async (orderData: OrderData) => {
 
         if (!res.ok) {
             toast.error('فشل إنشاء الطلب', {
-                position: 'top-center',
+                position: 'top-right',
             });
             return null;
         }
 
         toast.success('تم إرسال الطلب بنجاح سيتم التواصل معك قريبا ', {
-            position: 'top-center',
+            position: 'top-right',
         });
 
         const data = await res.json();

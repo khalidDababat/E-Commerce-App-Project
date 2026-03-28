@@ -16,9 +16,9 @@ export const handleAddCategory = async (
     });
 
     if (!res.ok) {
-        toast.error('Failed to add category', { position: 'top-center' });
+        toast.error('فشل انشاء الصنف', { position: 'top-center' });
     } else {
-        toast.success('Category added successfully', {
+        toast.success('تم إضافة الصنف بنجاح', {
             position: 'top-center',
         });
     }

@@ -87,6 +87,24 @@ export class userStore {
         }
     }
 
+    async delete(id: number): Promise<User | null> {
+        try {
+
+            // '@ts-expect-error'
+            if (!client) throw new Error('Database client not initialized');
+
+            const conn = await client.connect();
+            const sql = `
+            DELETE FROM users WHERE id = $1 RETURNING *`;
+            const result = await conn.query(sql, [id]);
+            conn.release();
+            return result.rows[0];
+
+        } catch (err) {
+            throw new Error(`Could not delete user ${id}. Error: ${err}`);
+        }
+
+    }
     async authenticate(email: string, password: string): Promise<User | null> {
         try {
             // '@ts-expect-error'

@@ -59,6 +59,25 @@ const create = async (req: Request, res: Response) => {
     }
 };
 
+
+const deleteUser = async (req: Request, res: Response) => {
+
+    try {
+
+        const id = parseInt((req.params['id'] as string));
+        if (isNaN(id)) {
+            res.status(400).json({ error: 'Invalid user id' });
+            return;
+        }
+
+        const deletedUser = await store.delete(id);
+        res.json(deletedUser);
+
+    } catch (err) {
+        res.status(400).json(err);
+    }
+
+}
 const authenticate = async (req: Request, res: Response) => {
     const user: User = {
         email: req.body.email,
@@ -144,6 +163,7 @@ const resetPassword = async (req: Request, res: Response) => {
 const usersRoutes = (app: express.Application) => {
     app.get('/users', index);
     app.get('/users/:id', verifyAuthToken, show);
+    app.delete('/users/:id', deleteUser);
     app.post('/users', create);
     app.post('/users/authenticate', authenticate);
 
